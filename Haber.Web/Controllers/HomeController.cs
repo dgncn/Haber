@@ -18,6 +18,7 @@ namespace Haber.Web.Controllers
             ResimHelper resimhelper = new ResimHelper();
             EtiketHelper etikethelper = new EtiketHelper();
             YazarHelper yazarhelper = new YazarHelper();
+
             ViewBag.kategoriler = kategorihelper.TumKategoriler();
             ViewBag.haberler = haberhelper.TumHaberleriListele();
             ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
