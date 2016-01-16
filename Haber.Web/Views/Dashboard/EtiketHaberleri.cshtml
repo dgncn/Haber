@@ -1,0 +1,63 @@
+﻿@model List<HaberCl>
+@using Haber.COM;
+@{
+    ViewBag.Title = "EtiketHaberleri";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Etiket Haberleri</h2>
+
+
+@using (Html.BeginForm())
+{
+
+
+    <select name="etiketID">
+        <option value="0" name="tEtiketID" selected>Tüm Etiketler</option>
+        @foreach (var etiket in (List<Etiket>)ViewBag.etiketlerTum)
+        {
+
+            <option value="@etiket.EtiketID" name="etiketID">@etiket.EtiketAdi</option>
+        }
+
+    </select>
+    <input type="submit" name="btnYazHaberleri" value="Haberleri Görüntüle" />
+    <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <td>@Html.LabelFor(x => x[0].HaberID)</td>
+                <td>@Html.LabelFor(x => x[0].HaberBaslik)</td>
+                <td>@Html.LabelFor(x => x[0].HaberIcerik)</td>
+                <td>@Html.LabelFor(x => x[0].HaberGirisTarihi)</td>
+                <td>@Html.LabelFor(x => x[0].HaberYazari.YazarAdSoyad)</td>
+                <td>@Html.LabelFor(x => x[0].HaberKategori.KategoriAdi)</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var haber in Model)
+            {
+                <tr>
+                    <td>@haber.HaberID</td>
+                    <td>@haber.HaberBaslik</td>
+                    <td>@haber.HaberIcerik</td>
+                    <td>@haber.HaberGirisTarihi</td>
+                    <td>@haber.HaberYazari.YazarAdSoyad</td>
+                    <td>@haber.HaberKategori.KategoriAdi</td>
+                    <td>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Düzenle", "HaberDuzenleme", new { id = haber.HaberID })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Sil", "HaberSil", new { id = haber.HaberID })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

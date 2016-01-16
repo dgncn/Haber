@@ -1,0 +1,28 @@
+﻿@model List<Etiket>
+@using Haber.COM;
+    @{
+        ViewBag.Title = "Etiket Listesi";
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+
+<h2>Etiket Listesi</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].EtiketID)</td>
+            <td>@Html.LabelFor(x => x[0].EtiketAdi)</td>
+            <td>@Html.LabelFor(x => x[0].EtiketHaberleri)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var etiket in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(etiket.EtiketID.ToString(),"EtiketDuzenleme",new { id = etiket.EtiketID })</td>
+                <td>@Html.ActionLink(etiket.EtiketAdi, "EtiketHaberleriYeni", new { id = etiket.EtiketID })</td>
+                <td>Etiket Haberleri</td>
+            </tr>
+        }
+    </tbody>
+</table>

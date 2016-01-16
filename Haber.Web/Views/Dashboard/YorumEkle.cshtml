@@ -1,0 +1,49 @@
+﻿@using Haber.COM;
+@model Haber.COM.Yorum
+@{
+    ViewBag.Title = "Yorum Ekle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Yorum Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x => x.YorumIcerik)</td>
+                <td>@Html.TextBoxFor(x => x.YorumIcerik)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.YorumDurumu)</td>
+                <td>
+                    @Html.CheckBoxFor(x => x.YorumDurumu, new { @checked = "checked" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.YorumHaberi.HaberBaslik)</td>
+                <td>
+                    <select name="HaberID">
+                        @foreach (var haber in (List<HaberCl>)ViewBag.haberlistesi)
+                        {
+                            <option value="@haber.HaberID">@haber.HaberBaslik</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="btnYorumKaydet" value="Yorum Ekle" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,36 @@
+﻿@model Haber.COM.Kategori
+@using Haber.COM;
+@{
+    ViewBag.Title = "Kategori Ekle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Kategori Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(x=>x.KategoriAdi)</td>
+                <td>@Html.TextBoxFor(x=>x.KategoriAdi)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.KategoriAciklama)</td>
+                <td>@Html.TextBoxFor(x => x.KategoriAciklama)</td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td><input type="submit" id="btnKategoriKaydet" value="Kategori Kaydet" /></td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,58 @@
+﻿@model List<Yorum>
+@using Haber.COM;
+@{
+    ViewBag.Title = "Yorum Duzenle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Yorum Düzenleme Sayfası</h2>
+
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].YorumID)</td>
+            <td>@Html.LabelFor(x => x[0].YorumIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].YorumYazmaTarihi)</td>
+            <td>@Html.LabelFor(x => x[0].YorumDurumu)</td>
+            <td>@Html.LabelFor(x => x[0].YorumHaberi.HaberID)</td>
+            <td>@Html.Label("YorumDuzenleme", "Yorum Düzenleme İşlemleri")</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var yorum in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(yorum.YorumID.ToString(), "YorumDuzenleme", new { id = yorum.YorumID })</td>
+                <td>@yorum.YorumIcerik</td>
+                <td>@yorum.YorumYazmaTarihi</td>
+                <td>
+                    @if (yorum.YorumDurumu)
+                    {
+                        <input type="checkbox" checked name="Aktiflik" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Aktiflik" />
+                    }
+                </td>
+                <td>@Html.ActionLink(yorum.YorumHaberi.HaberID.ToString(), "HaberDuzenleme", new { id = yorum.YorumHaberi.HaberID })</td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "YorumDuzenleme", new { id = yorum.YorumID })
+                    </div>
+                
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "YorumSil", new { id = yorum.YorumID })
+                    </div>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="7">
+                <b><span>@ViewBag.hata5</span></b>
+            </td>
+        </tr>
+    </tbody>
+</table>

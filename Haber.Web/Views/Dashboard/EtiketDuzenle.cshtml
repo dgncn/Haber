@@ -1,0 +1,47 @@
+﻿@model List<Etiket>
+@using Haber.COM;
+@{
+    ViewBag.Title = "Etiket Düzenle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Etiket Düzenle</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].EtiketID)</td>
+            <td>@Html.LabelFor(x => x[0].EtiketAdi)</td>
+            <td>@Html.LabelFor(x => x[0].EtiketHaberleri)</td>
+            <td>@Html.Label("EtiketDuzenleme", "Etiket Düzenleme İşlemleri")</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var etiket in Model)
+        {
+            <tr>
+                <td>@etiket.EtiketID</td>
+                <td>@etiket.EtiketAdi</td>
+                <td>@Html.ActionLink(etiket.EtiketAdi + " etiketine ilişkin haberler","EtiketHaberleriYeni",new { id = etiket.EtiketID })</td>
+                
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "EtiketDuzenleme", new { id = etiket.EtiketID })
+                    </div>
+                </td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "EtiketSil", new { id = etiket.EtiketID})
+                    </div>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="7">
+                <b><span>@ViewBag.hata5</span></b>
+            </td>
+        </tr>
+    </tbody>
+</table>

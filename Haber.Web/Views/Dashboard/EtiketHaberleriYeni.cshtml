@@ -1,0 +1,46 @@
+﻿@model List<HaberCl>
+@using Haber.COM;
+    @{
+        ViewBag.Title = ViewBag.etiketAdi2 + " etiketine ilişkin haberler";
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+
+    <h2>EtiketHaberleriYeni</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].HaberID)</td>
+            <td>@Html.LabelFor(x => x[0].HaberBaslik)</td>
+            <td>@Html.LabelFor(x => x[0].HaberIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].HaberGirisTarihi)</td>
+            <td>@Html.LabelFor(x => x[0].HaberYazari.YazarAdSoyad)</td>
+            <td>@Html.LabelFor(x => x[0].HaberKategori.KategoriAdi)</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var haber in Model)
+            {
+            <tr>
+                <td>@haber.HaberID</td>
+                <td>@haber.HaberBaslik</td>
+                <td>@haber.HaberIcerik</td>
+                <td>@haber.HaberGirisTarihi</td>
+                <td>@haber.HaberYazari.YazarAdSoyad</td>
+                <td>@haber.HaberKategori.KategoriAdi</td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "HaberDuzenleme", new { id = haber.HaberID })
+                    </div>
+                </td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "HaberSil", new { id = haber.HaberID })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

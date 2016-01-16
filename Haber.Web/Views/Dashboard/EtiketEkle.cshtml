@@ -1,0 +1,31 @@
+﻿@model Etiket
+    @using Haber.COM;
+@{
+    ViewBag.Title = "Etiket Ekle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Etiket Ekle</h2>
+
+@using (Html.BeginForm())
+{
+        string hata = (string)ViewBag.hata;
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x=>x.EtiketAdi)</td>
+            <td>@Html.TextBoxFor(x=>x.EtiketAdi)</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="btnEtiketEkle" value="Etiket Ekle" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                
+                @Html.Label(hata,hata.ToString())
+            </td>
+        </tr>
+    </table>
+}

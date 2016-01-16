@@ -1,0 +1,128 @@
+﻿@model HaberCl
+@using Haber.COM;
+@{
+    ViewBag.Title = "Haber Düzenleme";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Haber Düzenleme</h2>
+@using (Html.BeginForm("HaberDuzenleme","Dashboard",FormMethod.Post,new { enctype = "multipart/form-data" }) )
+{
+    <table>
+        <tr>
+
+            <td>@Html.LabelFor(x => x.HaberBaslik)</td>
+            <td>
+                <input type="text" name="haberBaslik" value="@Model.HaberBaslik" />
+                <input type="hidden" name="haberID" value="@Model.HaberID" />
+            </td>
+        </tr>
+        <tr>
+
+            <td>@Html.LabelFor(x => x.HaberIcerik)</td>
+            <td><input type="text" name="haberIcerik" value="@Model.HaberIcerik" /></td>
+        </tr>
+
+        <tr>
+
+            <td>@Html.LabelFor(x => x.HaberKategori.KategoriAdi)</td>
+            <td>
+                <select name="kategoriID">
+                    @foreach (var kategori in (List<Kategori>)ViewBag.kategoriler)
+                {
+                    if (Model.HaberKategori.KategoriID == kategori.KategoriID)
+                    {
+                            <option value="@kategori.KategoriID" selected="selected">@kategori.KategoriAdi</option>
+                        }
+                        else
+                        {
+                            <option value="@kategori.KategoriID">@kategori.KategoriAdi</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.HaberGirisTarihi)</td>
+            <td>
+                @Html.TextBoxFor(x => x.HaberGirisTarihi)
+            </td>
+
+        </tr>
+        <tr>
+            @if (Model.HaberEtiketleri == null || Model.HaberEtiketleri.Count()== 0)
+            {
+                
+                <td>@Html.LabelFor(x => x.HaberEtiketleri)</td>
+                <td><input type="text" name="haberEtiketi" value="" /></td>
+            }
+            else
+            {
+                <td>@Html.LabelFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+                <td>
+                    @Html.TextBoxFor(x => x.HaberEtiketleri[0].EtiketAdi)
+                    <input type="hidden" name="haberEtiketi" value="@Model.HaberEtiketleri[0].EtiketAdi" />
+                </td>
+            }
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.HaberYazari.YazarAdSoyad)
+            </td>
+            <td>
+                <select name="yazarID">
+                    @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
+                {
+                    if (Model.HaberYazari.YazarID == yazar.YazarID)
+                    {
+                            <option selected="selected" value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                        }
+                        else
+                        {
+                            <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+
+            <td>@Html.LabelFor(x => x.HaberDurumu)</td>
+            <td>
+                @Html.CheckBoxFor(x => x.HaberDurumu, new { @checked = "checked" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.HaberResimleri) 1
+                <input type="hidden" name="resimListe" value="@Model.HaberResimleri" />
+            </td>
+            <td>
+                <input type="file" name="files" id="files1" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.HaberResimleri) 2
+            </td>
+            <td>
+                <input type="file" name="files" id="files2" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.HaberResimleri) 3
+            </td>
+            <td>
+                <input type="file" name="files" id="files3" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" name="btnHaberDuzenle" value="Kaydet" />
+            </td>
+        </tr>
+    </table>
+}

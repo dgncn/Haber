@@ -1,0 +1,47 @@
+﻿@model List<Kategori>
+@using Haber.COM;
+    @{
+        ViewBag.Title = "Kategori Düzenleme";
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+
+    <h2>Kategori Düzenleme Sayfası</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].KategoriID)</td>
+            <td>@Html.LabelFor(x => x[0].KategoriAdi)</td>
+            <td>@Html.LabelFor(x => x[0].KategoriAciklama)</td>
+            <td>@Html.LabelFor(x => x[0].Haberler)</td>
+            <td>@Html.Label("KategoriDuzenleme","Kategori Düzenleme İşlemleri")</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategori in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(kategori.KategoriID.ToString(), "KategoriDuzenleme", new { id = kategori.KategoriID })</td>
+                <td>@Html.ActionLink(kategori.KategoriAdi, "KategoriHaberleriYeni", new { id = kategori.KategoriID })</td>
+                <td>@kategori.KategoriAciklama</td>
+                <td>@Html.ActionLink(kategori.KategoriAdi + " Haberleri", "KategoriHaberleriYeni", new { id = kategori.KategoriID })</td>
+
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "KategoriDuzenleme", new { id = kategori.KategoriID})
+                    </div>
+                </td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "KategoriSil", new { id = kategori.KategoriID })
+                    </div>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="6">
+                <b><span>@ViewBag.hata2</span></b>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@model Etiket
+@using Haber.COM;
+@{
+    ViewBag.Title = "EtiketDuzenleme";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>EtiketDuzenleme</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.EtiketAdi)
+                <input type="hidden" name="etiketID" value="@Model.EtiketID" />
+            </td>
+            <td>@Html.TextBoxFor(x => x.EtiketAdi)</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" name="btnEtiketDuzenle" value="Kaydet" />
+            </td>
+        </tr>
+    </table>
+
+}

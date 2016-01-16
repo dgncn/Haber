@@ -1,0 +1,36 @@
+﻿@model Yazar
+@using Haber.COM;
+@{
+    ViewBag.Title = "Yazar Ekleme";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Yazar Ekleme Sayfası</h2>
+@using (Html.BeginForm())
+{
+
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.YazarAdSoyad)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.YazarAdSoyad)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="btnYazarEkle" value="Kaydet" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,41 @@
+﻿@model List<Yorum>
+@using Haber.COM;
+@{
+    ViewBag.Title = "Yorum Listesi";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Yorum Listesi</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].YorumID)</td>
+            <td>@Html.LabelFor(x => x[0].YorumIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].YorumYazmaTarihi)</td>
+            <td>@Html.LabelFor(x => x[0].YorumDurumu)</td>
+            <td>@Html.LabelFor(x => x[0].YorumHaberi.HaberID)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var yorum in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(yorum.YorumID.ToString(),"YorumDuzenleme",new { id = yorum.YorumID })</td>
+                <td>@yorum.YorumIcerik</td>
+                <td>@yorum.YorumYazmaTarihi</td>
+                <td>
+                    @if (yorum.YorumDurumu)
+                    {
+                        <input type="checkbox" checked name="Aktiflik" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="Aktiflik" />
+                    }
+                </td>
+                <td>@Html.ActionLink(yorum.YorumHaberi.HaberID.ToString(),"HaberDuzenleme",new { id = yorum.YorumHaberi.HaberID })</td>
+            </tr>
+        }
+    </tbody>
+</table>

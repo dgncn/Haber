@@ -1,0 +1,92 @@
+﻿@model Haber.COM.HaberCl
+@using Haber.COM;
+@{
+    ViewBag.Title = "HaberEkle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Haber Ekle</h2>
+
+@using (Html.BeginForm("HaberEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <thead>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HaberBaslik)</td>
+                <td>@Html.TextBoxFor(x => x.HaberBaslik)</td>
+            </tr>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HaberIcerik)</td>
+                <td>@Html.TextBoxFor(x => x.HaberIcerik)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.HaberKategori)</td>
+                <td>
+                    <select name="kategoriID">
+                        @foreach (var kategori in (List<Kategori>)ViewBag.kategoriler)
+                        {
+                            <option value="@kategori.KategoriID">@kategori.KategoriAdi</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HaberYazari)</td>
+                <td>
+                    <select name="yazarid">
+                        @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
+                        {
+                            <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+                <td>@Html.TextBoxFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+            </tr>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HaberDurumu)</td>
+                <td>
+                    @Html.CheckBoxFor(x => x.HaberDurumu, new { @checked = "checked" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => Model.HaberResimleri) 1
+                </td>
+                <td>
+                    <input type="file" name="files" id="files1" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => Model.HaberResimleri) 2
+                </td>
+                <td>
+                    <input type="file" name="files" id="files2" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => Model.HaberResimleri) 3
+                </td>
+                <td>
+                    <input type="file" name="files" id="files3" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnHaberEkle" value="Kaydet" /></td>
+            </tr>
+        </thead>
+    </table>
+}

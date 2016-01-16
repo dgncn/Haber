@@ -1,0 +1,34 @@
+﻿@model Kategori
+@using Haber.COM;
+@{
+    ViewBag.Title = "KategoriDuzenleme";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>KategoriDuzenleme</h2>
+@using (Html.BeginForm())
+{
+
+
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.KategoriAdi)
+                <input type="hidden" name="kategoriID" value="@Model.KategoriID" />
+            </td>
+            <td>@Html.TextBoxFor(x => x.KategoriAdi)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(x => x.KategoriAciklama)</td>
+            <td>@Html.TextBoxFor(x => x.KategoriAciklama)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" name="btnKategoriDuzenle" value="Kaydet" />
+            </td>
+        </tr>
+    </table>
+
+}

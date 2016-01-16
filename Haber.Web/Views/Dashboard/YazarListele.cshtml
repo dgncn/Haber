@@ -1,0 +1,28 @@
+﻿@model List<Yazar>
+@using Haber.COM;
+    @{
+        ViewBag.Title = "Yazar Listesi";
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+
+    <h2>Yazar Listesi</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x=>x[0].YazarID)</td>
+            <td>@Html.LabelFor(x => x[0].YazarAdSoyad)</td>
+            <td>@Html.LabelFor(x => x[0].YazarHaberListesi)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var yazar in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(yazar.YazarID.ToString(),"YazarDuzenleme",new { id = yazar.YazarID })</td>
+                <td>@Html.ActionLink(yazar.YazarAdSoyad, "YazarHaberleriYeni",new { id = yazar.YazarID })</td>
+                <td>@Html.ActionLink(yazar.YazarAdSoyad + " Haberleri", "YazarHaberleriYeni", new { id = yazar.YazarID })</td>
+            </tr>
+        }
+    </tbody>
+</table>

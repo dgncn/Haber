@@ -1,0 +1,275 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    @*<link href="~/Content/css/bootstrap.min.css" rel="stylesheet">*@
+    <!-- for fontawesome icon css file -->
+    <!-- for content animate css file -->
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    @*<link href="~/Content/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- google fonts  -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- for news ticker css file -->
+    <link href="~/Content/css/li-scroller.css" rel="stylesheet">
+    <!-- slick slider css file -->
+    <link href="~/Content/css/slick.css" rel="stylesheet">
+    <!-- for fancybox slider -->
+    <link href="~/Content/css/jquery.fancybox.css" rel="stylesheet">
+    <!-- website theme file -->
+    <!-- <link href="~/Content/css/theme-red.css" rel="stylesheet"> -->
+
+    <link href="~/Content/css/theme.css" rel="stylesheet">
+    <!-- main site css file -->
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <!-- =========================
+      //////////////This Theme Design and Developed //////////////////////
+      //////////// by www.wpfreeware.com======================-->
+    <!-- Preloader -->
+    @*<div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>*@
+    <!-- End Preloader -->
+
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+    <div class="container">
+        <!-- start header section -->
+        <header id="header">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="header_top">
+                        <div class="header_top_left">
+                            <ul class="top_nav">
+                                <li><a href="home.html">Anasayfa</a></li>
+                                <li><a href="#">Hakkında</a></li>
+                                <li><a href="contact.html">ILETISIM</a></li>
+                                <li><a href="~/Dashboard">Dash</a></li>
+                            </ul>
+                        </div>
+                        <div class="header_top_right">
+                            <p>@DateTime.Now.ToShortDateString() - @DateTime.Now.ToShortTimeString()</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="header_bottom">
+                        <div class="logo_area">
+                            <!-- for your img logo format
+                            <a href="home.html" class="logo">
+                              <img src="~/Gallery/img/logo.jpg" alt="logo">
+                            </a> -->
+                            <!-- for your text logo format -->
+                            <a href="#" class="logo">
+                                Haber <span>Besle</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header><!-- End header section -->
+        <!-- start nav section -->
+        <section id="navArea">
+            <!-- Start navbar -->
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav main_nav">
+                        <li class="active">
+                            <a href="home.html">
+                                <span class="fa fa-home desktop-home"></span>
+                                <span class="mobile-show">Anasayfa</span>
+                            </a>
+                        </li>
+                        @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
+                        {
+                            <li><a href="#">@kategori.KategoriAdi</a></li>
+                        }
+                        <li><a href="#">Teknoloji</a></li>
+                        
+                        <li><a href="#">Laptop</a></li>
+                        <li><a href="#">Tablet</a></li>
+                        <li><a href="contact.html">Bize ULASIN</a></li>
+                        <li><a href="404.html">404 Hata Sayfası</a></li>
+                        <!-- #region AcilirMenu -->
+                        @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobil</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Android</a></li>
+                                    <li><a href="#">Samsung</a></li>
+                                    <li><a href="#">Nokia</a></li>
+                                    <li><a href="#">Blackberry Mobile</a></li>
+                                    <li><a href="#">Huawei</a></li>
+                                </ul>
+                            </li>*@
+                        <!-- #endregion -->
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </nav>
+        </section><!-- End nav section -->
+
+        <section id="newsSection">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- start news sticker -->
+                    
+                    @RenderSection("sonHaberlerkucuk", required: false)
+                    <!-- End news sticker -->
+                </div>
+            </div>
+        </section>
+        <!-- start slider section -->
+        <section id="sliderSection">
+            <div class="row">
+                @RenderSection("slider", required: false)
+                @RenderSection("SonGonderilen", required: false)
+
+                <section id="contentSection">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="left_content">
+
+                                @RenderSection("IsDunyasi", required: false)
+
+                                <!-- start 2 style category design -->
+                                <div class="fashion_technology_area">
+
+                                    @RenderSection("Moda", required: false)
+
+                                    @RenderSection("Teknoloji", required: false)
+
+                                </div>
+
+                                @RenderSection("Fotografcilik", required: false)
+
+                                @RenderSection("Oyunlar", required: false)
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <aside class="right_content">
+
+                                @RenderSection("EnCokOkunanlar", required: false)
+
+                                @RenderSection("sidebar", required: false)
+                            </aside>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================End content body section=============== -->
+            </div> <!-- /.container -->
+            <!-- =========================
+              //////////////This Theme Design and Developed //////////////////////
+              //////////// by www.wpfreeware.com======================-->
+
+
+            @RenderBody()
+
+        </section><!-- End slider section -->
+
+    </div>
+
+    <div class="container body-content">
+
+        <hr />
+
+
+        <footer id="footer">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="footer_widget wow fadeInLeftBig">
+                            <h2>Flickr Resimleri</h2>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="footer_widget wow fadeInDown">
+                            <h2>Etiket</h2>
+                            <ul class="tag_nav">
+                                <li><a href="#">Oyun</a></li>
+                                <li><a href="#">Spor</a></li>
+                                <li><a href="#">Moda</a></li>
+                                <li><a href="#">İş Dünyası</a></li>
+                                <li><a href="#">Yaşam</a></li>
+                                <li><a href="#">Teknoloji</a></li>
+                                <li><a href="#">Fotoğraf</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="footer_widget wow fadeInRightBig">
+                            <h2>ILETISIM</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <address>
+                                Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <p class="copyright">
+                    Tüm Hakları Saklıdır <a href="home.html">Haber Besle</a>
+                </p>
+                <p class="developer">Developed By <a href="http://wpfreeware.com">WpFreeware</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="~/scripts/js/bootstrap.min.js"></script>
+
+    <script src="~/scripts/js/jquery.li-scroller.1.0.js"></script>
+    @* <script src="~/scripts/js/jquery.li-scroller.1.0.js"></script>*@
+    <!-- for news slider -->
+    <script src="~/scripts/js/jquery.newsTicker.min.js"></script>
+    <!-- for fancybox slider -->
+    <script src="~/scripts/js/jquery.fancybox.pack.js"></script>
+    <!-- custom js file include -->
+    <script src="~/scripts/js/custom.js"></script>
+    <!-- For content animatin  -->
+    <script src="~/scripts/js/wow.min.js"></script>
+    <!-- bootstrap js file -->
+    <!-- slick slider js file -->
+    <script src="~/scripts/js/slick.min.js"></script>
+    <!-- news ticker jquery file -->
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+</body>
+</html>

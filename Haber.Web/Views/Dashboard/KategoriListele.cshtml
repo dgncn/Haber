@@ -1,0 +1,31 @@
+﻿@model List<Kategori>
+@using Haber.COM;
+
+@{
+    ViewBag.Title = "Kategori Listesi";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Kategori Listesi</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].KategoriID)</td>
+            <td>@Html.LabelFor(x => x[0].KategoriAdi)</td>
+            <td>@Html.LabelFor(x => x[0].KategoriAciklama)</td>
+            <td>@Html.LabelFor(x=>x[0].Haberler)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategori in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(kategori.KategoriID.ToString(),"KategoriDuzenleme",new { id = kategori.KategoriID })</td>
+                <td>@Html.ActionLink(kategori.KategoriAdi, "KategoriHaberleriYeni",new { id = kategori.KategoriID })</td>
+                <td>@kategori.KategoriAciklama</td>
+                <td>@Html.ActionLink(kategori.KategoriAdi + " Haberleri", "KategoriHaberleriYeni",new { id = kategori.KategoriID })</td>
+            </tr>
+        }
+    </tbody>
+</table>
