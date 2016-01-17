@@ -24,6 +24,7 @@ namespace Haber.Web.Controllers
             ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
             ViewBag.yorumlar = yorumhelper.TumYorumlariListele();
             ViewBag.etiketler = etikethelper.TumEtiketleriListele();
+
             return View(haberhelper.TumHaberleriListele().OrderByDescending(x=>x.HaberGirisTarihi).Take(10).ToList());
         }
     }

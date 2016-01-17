@@ -216,7 +216,7 @@ namespace Haber.Web.Controllers
 
         }
         [HttpPost]
-        public ActionResult HaberDuzenleme(HaberCl haber, int haberID, int kategoriID, int yazarID, string haberEtiketi, IEnumerable<HttpPostedFileBase> files,List<Resim> resimListe)
+        public ActionResult HaberDuzenleme(HaberCl haber, int haberID, int kategoriID, int yazarID, string haberEtiketi, IEnumerable<HttpPostedFileBase> files, List<Resim> resimListe)
         {
 
 
@@ -226,26 +226,32 @@ namespace Haber.Web.Controllers
             var haberResimleri = haberhelper.HaberResimleriniGetir(haberhelper.HaberGetir(haberID));
             haber.HaberResimleri = haberResimleri;
 
-            if (haber.HaberEtiketleri!=null && haber.HaberEtiketleri[0].EtiketAdi == haberEtiketi)
+            if (haber.HaberEtiketleri != null && haber.HaberEtiketleri[0].EtiketAdi == haberEtiketi)
             {
 
             }
             else
             {
-                var etiket = new Etiket { EtiketAdi = haberEtiketi };
-                if (haber.HaberEtiketleri==null)
+                if (string.IsNullOrWhiteSpace(haberEtiketi) || string.IsNullOrEmpty(haberEtiketi))
                 {
                     haber.HaberEtiketleri = new List<Etiket>();
-                    haber.HaberEtiketleri.Add(etiket);
                 }
-                else if(haber.HaberEtiketleri.Count == 0)
+                else
                 {
-                    haber.HaberEtiketleri.Add(etiket);
+
+
+                    var etiket = new Etiket { EtiketAdi = haberEtiketi };
+                    if (haber.HaberEtiketleri == null)
+                    {
+                        haber.HaberEtiketleri = new List<Etiket>();
+                        haber.HaberEtiketleri.Add(etiket);
+                    }
+                    else if (haber.HaberEtiketleri.Count == 0)
+                    {
+                        haber.HaberEtiketleri.Add(etiket);
+                    }
+                    
                 }
-                //etikethelper.EtiketKaydet(etiket);
-                //List<Etiket> etiketListe = new List<Etiket>();
-                //etiketListe.Add(etiket);
-                //haber.HaberEtiketleri = etiketListe;
             }
             int i1 = 1;
             foreach (var file in files)
