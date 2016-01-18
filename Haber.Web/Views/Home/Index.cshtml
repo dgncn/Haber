@@ -128,8 +128,10 @@
                                         </a>
                                         <div class="media-body">
                                             <a href="single_page.html" class="catg_title">
-                                                @{ string abc = haber.HaberBaslik.Substring(0, 45);
-                                                    @abc}...
+                                                <span>
+                                                    @{ string abc = haber.HaberBaslik.Substring(0, 45);
+                                                        @abc}...
+                                                </span>
                                             </a>
                                         </div>
                                     </div>
@@ -143,7 +145,7 @@
                                                                     <img alt="img" src="">
                                                                 </a>
                                                                 <div class="media-body">
-                                                                    <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                                                    <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span></a>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -162,9 +164,10 @@
                                                                             <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                                                         </a>
                                                                         <div class="media-body">
-                                                                            <a href="single_page.html" class="catg_title">
+                                                                            <a href="single_page.html" class="catg_title"><span>
                                                                                 @{ string abc = haber.HaberBaslik.Substring(0, 45);
                                                                                     @abc}...
+                                                                                </span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -179,7 +182,7 @@
                                                                                                     <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                                                                                 </a>
                                                                                                 <div class="media-body">
-                                                                                                    <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                                                                                    <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span> </a>
                                                                                                 </div>
                                                                                             </div>
 
@@ -187,7 +190,7 @@
                                                                                                 }
                                                                                             }
                                                                                         }
-                                                                                        if (i == 4)
+                                                                                        if (i == 5)
                                                                                         {
                                                                                             break;
                                                                                         }
@@ -232,7 +235,7 @@
     <div class="single_post_content">
         <h2><span>Gündem</span></h2>
         <div class="single_post_content_left">
-            <ul class="business_catgnav  wow fadeInDown">
+            <ul class="business_catgnav  wow fadeInDown " >
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
@@ -284,7 +287,7 @@
                         else
                         {
                             <li>
-                                <div class="media wow fadeInDown">
+                                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
                                     <a href="single_page.html" class="media-left">
                                         @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                         {

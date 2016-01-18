@@ -5,14 +5,19 @@
     <meta charset="utf-8" />
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />*@
+        @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    
-    
+
+    <style>
+        .media-left, .media-right, .media-body {
+            display: table-cell;
+            vertical-align: top;
+        }
+    </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap -->
     @*<link href="~/Content/css/bootstrap.min.css" rel="stylesheet">*@
@@ -37,7 +42,7 @@
     <link href="~/Content/css/theme.css" rel="stylesheet">
     <!-- main site css file -->
     <link href="~/Content/css/style.css" rel="stylesheet" />
-    
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -120,7 +125,7 @@
                             <li><a href="#">@kategori.KategoriAdi</a></li>
                         }
                         <li><a href="#">Teknoloji</a></li>
-                        
+
                         <li><a href="#">Laptop</a></li>
                         <li><a href="#">Tablet</a></li>
                         <li><a href="contact.html">Bize ULASIN</a></li>
@@ -146,7 +151,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <!-- start news sticker -->
-                    
+
                     @RenderSection("sonHaberlerkucuk", required: false)
                     <!-- End news sticker -->
                 </div>
@@ -269,7 +274,7 @@
     <!-- bootstrap js file -->
     <!-- slick slider js file -->
     <script src="~/scripts/js/slick.min.js"></script>
-    
+
     <!-- news ticker jquery file -->
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>*@

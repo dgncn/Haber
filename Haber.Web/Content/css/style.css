@@ -628,7 +628,7 @@ img:hover{
 .latest_post_container {
   display: inline;
   float: left;
-  height: 470px;
+  height: 460px;
   position: relative;
   width: 100%;
 }
@@ -744,6 +744,7 @@ img:hover{
 .media-left > img {
   height: 70px;
   width: 90px;
+  margin-right:10px;
 }
 .spost_nav .media-body>a{
   font-family: "Oswald",sans-serif;
