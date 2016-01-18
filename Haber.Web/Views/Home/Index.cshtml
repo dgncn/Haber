@@ -118,7 +118,7 @@
                         if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                         {
 
-                            if (haber.HaberBaslik.Length > 50)
+                            if (haber.HaberBaslik.Length > 95)
                             {
 
                                 <li>
@@ -129,95 +129,75 @@
                                         <div class="media-body">
                                             <a href="single_page.html" class="catg_title">
                                                 <span>
-                                                    @{ string abc = haber.HaberBaslik.Substring(0, 45);
+                                                    @{ string abc = haber.HaberBaslik.Substring(0, 95);
                                                         @abc}...
                                                 </span>
                                             </a>
                                         </div>
                                     </div>
                                 </li>
-                                                    }
-                                                    else
-                                                    {
-                                                        <li>
-                                                            <div class="media">
-                                                                <a href="single_page.html" class="media-left">
-                                                                    <img alt="img" src="">
-                                                                </a>
-                                                                <div class="media-body">
-                                                                    <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
                                                         }
-                                                    }
-                                                    else
-                                                    {
-                                                        if (haber.HaberResimleri.Count > 0)
+                                                        else
                                                         {
-
-                                                            if (haber.HaberBaslik.Length > 50)
-                                                            {
-                                                                <li>
-                                                                    <div class="media">
-                                                                        <a href="single_page.html" class="media-left">
-                                                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                        </a>
-                                                                        <div class="media-body">
-                                                                            <a href="single_page.html" class="catg_title"><span>
-                                                                                @{ string abc = haber.HaberBaslik.Substring(0, 45);
-                                                                                    @abc}...
-                                                                                </span>
-                                                                            </a>
-                                                                        </div>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <a href="single_page.html" class="media-left">
+                                                                        <img alt="img" src="">
+                                                                    </a>
+                                                                    <div class="media-body">
+                                                                        <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span></a>
                                                                     </div>
+                                                                </div>
+                                                            </li>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (haber.HaberResimleri.Count > 0)
+                                                            {
 
-                                                                </li>
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        <li>
-                                                                                            <div class="media">
-                                                                                                <a href="single_page.html" class="media-left">
-                                                                                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                                                </a>
-                                                                                                <div class="media-body">
-                                                                                                    <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span> </a>
-                                                                                                </div>
-                                                                                            </div>
+                                                                if (haber.HaberBaslik.Length > 95)
+                                                                {
+                                                                    <li>
+                                                                        <div class="media">
+                                                                            <a href="single_page.html" class="media-left">
+                                                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                                            </a>
+                                                                            <div class="media-body">
+                                                                                <a href="single_page.html" class="catg_title">
+                                                                                    <span>
+                                                                                        @{ string abc = haber.HaberBaslik.Substring(0, 95);
+                                                                                            @abc}...
+                                                                                    </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
 
-                                                                                        </li>
+                                                                    </li>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <li>
+                                                                                                    <div class="media">
+                                                                                                        <a href="single_page.html" class="media-left">
+                                                                                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                                                                        </a>
+                                                                                                        <div class="media-body">
+                                                                                                            <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </li>
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                                if (i == 5)
+                                                                                                {
+                                                                                                    break;
                                                                                                 }
                                                                                             }
-                                                                                        }
-                                                                                        if (i == 5)
-                                                                                        {
-                                                                                            break;
-                                                                                        }
-                                                                                    }
 
                     <!-- #region yorum -->
-                    @*<li>
-                            <div class="media">
-                                <a href="single_page.html" class="media-left">
-                                    <img alt="img" src="img/post_img1.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a href="single_page.html" class="media-left">
-                                    <img alt="img" src="img/post_img1.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                                </div>
-                            </div>
-                        </li>*@
-
                     <!-- #endregion -->
                 </ul>
                 <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
@@ -235,7 +215,7 @@
     <div class="single_post_content">
         <h2><span>Gündem</span></h2>
         <div class="single_post_content_left">
-            <ul class="business_catgnav  wow fadeInDown " >
+            <ul class="business_catgnav  wow fadeInDown ">
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
@@ -260,6 +240,8 @@
                                 <p>
                                     @{ string abc = haber.HaberIcerik.Substring(0, 55);
                                         @abc}...
+                                    <
+                                    <
                                 </p>
                                         }
                         </figure>
@@ -319,17 +301,8 @@
                                                 }
                                             }
                 }
-                @*<li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                        </div>
-                    </div>
-                </li>*@
-                
+
+
             </ul>
         </div>
     </div>
@@ -337,65 +310,98 @@
 
 <!-- start 2 style category design -->
 
-@section Moda{
+@section Turkiye{
     <div class="fashion">
         <div class="single_post_content">
-            <h2><span>Moda</span></h2>
+            <h2><span>TÜRKİYE</span></h2>
             <ul class="business_catgnav wow fadeInDown">
-                <li>
-                    <figure class="bsbig_fig">
-                        <a href="single_page.html" class="featured_img">
-                            <img alt="img" src="img/featured_img2.jpg">
-                            <span class="overlay"></span>
-                        </a>
-                        <figcaption>
-                            <a href="single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a>
-                        </figcaption>
-                        <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
-                    </figure>
-                </li>
+
+                @{
+                    var haberListesi = (List<HaberCl>)ViewBag.haberler;
+                    var result = (from p in haberListesi
+                                  where p.HaberKategori.KategoriAdi == "Türkiye"
+                                  select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
+                    int j = 0;
+                }
+
+                    @foreach (var haber in result)
+                    {
+                        j++;
+                        <li>
+                            <figure class="bsbig_fig">
+                                <a href="single_page.html" class="featured_img">
+                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    <span class="overlay"></span>
+                                </a>
+                                <figcaption>
+                                    <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                                </figcaption>
+
+                                @if (haber.HaberIcerik.Length > 40)
+                                {
+                                    <p>
+                                        @{ string abc = haber.HaberIcerik.Substring(0, 55);
+                                            @abc}...
+                                       
+                                    </p>
+                                            }
+
+                            </figure>
+                        </li>
+
+                                                if (j == 1)
+                                                {
+                                                    break;
+                                                }
+                                            }
             </ul>
             <ul class="spost_nav">
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img1.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img1.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
-                        </div>
-                    </div>
-                </li>
+                @{
+                    int k = 0;
+                    foreach (var haber in result)
+                    {
+                        k++;
+
+                        if (k == 1)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                                    <a href="single_page.html" class="media-left">
+                                        @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                                        {
+                                            <img alt="img" src="">
+                                        }
+                                        else
+                                        {
+                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        }
+                                    </a>
+                                    <div class="media-body">
+                                        @{
+                                            if (haber.HaberBaslik.Length > 55)
+                                            {
+                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        if (k == 7)
+                        {
+                            break;
+                        }
+                    }
+                }
+
             </ul>
         </div>
     </div>
@@ -404,67 +410,102 @@
 
 @section Teknoloji{
 
-    <div class="technology">
-        <div class="single_post_content">
-            <h2><span>Teknoloji</span></h2>
-            <ul class="business_catgnav">
-                <li>
-                    <figure class="bsbig_fig wow fadeInDown">
-                        <a href="single_page.html" class="featured_img">
-                            <img alt="img" src="img/featured_img3.jpg">
-                            <span class="overlay"></span>
-                        </a>
-                        <figcaption>
-                            <a href="single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a>
-                        </figcaption>
-                        <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
-                    </figure>
-                </li>
-            </ul>
-            <ul class="spost_nav">
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img1.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img1.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="media wow fadeInDown">
-                        <a href="single_page.html" class="media-left">
-                            <img alt="img" src="img/post_img2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <div class="fashion">
+    <div class="single_post_content">
+        <h2><span>TEKNOLOJİ</span></h2>
+        <ul class="business_catgnav wow fadeInDown">
+
+            @{
+                var haberListesi = (List<HaberCl>)ViewBag.haberler;
+                var result = (from p in haberListesi
+                              where p.HaberKategori.KategoriAdi == "Teknoloji"
+                              select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
+                int j = 0;
+            }
+            <HaberCl>
+
+                @foreach (var haber in result)
+                {
+                    j++;
+                    <li>
+                        <figure class="bsbig_fig">
+                            <a href="single_page.html" class="featured_img">
+                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                <span class="overlay"></span>
+                            </a>
+                            <figcaption>
+                                <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                            </figcaption>
+
+                            @if (haber.HaberIcerik.Length > 40)
+                            {
+                                <p>
+                                    @{ string abc = haber.HaberIcerik.Substring(0, 55);
+                                        @abc}...
+
+                                </p>
+                                        }
+
+                        </figure>
+                    </li>
+
+                                            if (j == 1)
+                                            {
+                                                break;
+                                            }
+                                        }
+        </ul>
+        <ul class="spost_nav">
+            @{
+                int k = 0;
+                foreach (var haber in result)
+                {
+                    k++;
+
+                    if (k == 1)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                                <a href="single_page.html" class="media-left">
+                                    @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                                    {
+                                        <img alt="img" src="">
+                                    }
+                                    else
+                                    {
+                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    }
+                                </a>
+                                <div class="media-body">
+                                    @{
+                                        if (haber.HaberBaslik.Length > 55)
+                                        {
+                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                                            }
+                                            if (k == 7)
+                                            {
+                                                break;
+                                            }
+                                        }
+            }
+
+        </ul>
     </div>
+</div>
+
 }
 
 <!-- End 2 style category design -->
@@ -671,7 +712,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
-                    @*<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>*@<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+                    @*<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>*@<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="comments">
