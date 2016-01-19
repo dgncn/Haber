@@ -240,8 +240,7 @@
                                 <p>
                                     @{ string abc = haber.HaberIcerik.Substring(0, 55);
                                         @abc}...
-                                    <
-                                    <
+                                   
                                 </p>
                                         }
                         </figure>
@@ -337,10 +336,10 @@
                                     <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
                                 </figcaption>
 
-                                @if (haber.HaberIcerik.Length > 40)
+                                @if (haber.HaberIcerik.Length > 95)
                                 {
                                     <p>
-                                        @{ string abc = haber.HaberIcerik.Substring(0, 55);
+                                        @{ string abc = haber.HaberIcerik.Substring(0, 95);
                                             @abc}...
                                        
                                     </p>
@@ -382,9 +381,9 @@
                                     </a>
                                     <div class="media-body">
                                         @{
-                                            if (haber.HaberBaslik.Length > 55)
+                                            if (haber.HaberBaslik.Length > 95)
                                             {
-                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                             }
                                             else
                                             {
@@ -437,10 +436,10 @@
                                 <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
                             </figcaption>
 
-                            @if (haber.HaberIcerik.Length > 40)
+                            @if (haber.HaberIcerik.Length > 95)
                             {
                                 <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 55);
+                                    @{ string abc = haber.HaberIcerik.Substring(0, 95);
                                         @abc}...
 
                                 </p>
@@ -482,9 +481,9 @@
                                 </a>
                                 <div class="media-body">
                                     @{
-                                        if (haber.HaberBaslik.Length > 55)
+                                        if (haber.HaberBaslik.Length > 95)
                                         {
-                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                         }
                                         else
                                         {
