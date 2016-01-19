@@ -336,10 +336,10 @@
                                     <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
                                 </figcaption>
 
-                                @if (haber.HaberIcerik.Length > 95)
+                                @if (haber.HaberIcerik.Length > 195)
                                 {
                                     <p>
-                                        @{ string abc = haber.HaberIcerik.Substring(0, 95);
+                                        @{ string abc = haber.HaberIcerik.Substring(0, 195);
                                             @abc}...
                                        
                                     </p>
@@ -436,10 +436,10 @@
                                 <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
                             </figcaption>
 
-                            @if (haber.HaberIcerik.Length > 95)
+                            @if (haber.HaberIcerik.Length > 195)
                             {
                                 <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 95);
+                                    @{ string abc = haber.HaberIcerik.Substring(0, 195);
                                         @abc}...
 
                                 </p>
@@ -513,16 +513,27 @@
     <div class="single_post_content">
         <h2><span>Fotografçılık</span></h2>
         <ul class="photograph_nav  wow fadeInDown">
-            <li>
-                <div class="photo_grid">
-                    <figure class="effect-layla">
-                        <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img2.jpg" title="Photography Ttile 1">
-                            <img src="~/Gallery/img/photograph_img2.jpg" alt="img06" />
-                        </a>
-                    </figure>
-                </div>
-            </li>
-            <li>
+            @{ 
+                var resimListesi = (List<Resim>)ViewBag.resimler;
+                var result = (from p in resimListesi
+                              orderby p.ResimID descending
+                              select p).Take(6).ToList();
+                              
+
+            }
+            @foreach (var resim in result)
+            {
+                <li>
+                    <div class="photo_grid">
+                        <figure class="effect-layla">
+                            <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img2.jpg" title="Photography Ttile 1">
+                                <img src="~/Content/Galeri/@resim.ResimAdi" alt="img06" />
+                            </a>
+                        </figure>
+                    </div>
+                </li>
+            }
+            @*<li>
                 <div class="photo_grid">
                     <figure class="effect-layla">
                         <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img3.jpg" title="Photography Ttile 2">
@@ -566,7 +577,7 @@
                         </a>
                     </figure>
                 </div>
-            </li>
+            </li>*@
         </ul>
     </div>
 }
