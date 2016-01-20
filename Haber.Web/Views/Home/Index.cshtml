@@ -235,14 +235,22 @@
                             <figcaption>
                                 <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
                             </figcaption>
-                            @if (haber.HaberIcerik.Length > 40)
+                            @if (haber.HaberIcerik.Length > 95)
                             {
                                 <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 55);
+                                    @{ string abc = haber.HaberIcerik.Substring(0, 95);
                                         @abc}...
                                    
                                 </p>
                                         }
+                                        else if (haber.HaberIcerik.Length <= 105)
+                                        {
+                                            <p>
+                                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
+                                                    @abc}...
+
+                                            </p>
+                                                    }
                         </figure>
                     </li>
                                             if (i == 1)
@@ -548,9 +556,9 @@
 }
 <!-- End photography stye design -->
 <!-- start games category design -->
-@section Oyunlar {
-    <div class="single_post_content">
-        <h2><span>Oyunlar</span></h2>
+@section Dunya {
+    @*<div class="single_post_content">
+        <h2><span>Dünya'dan Haberler</span></h2>
         <div class="single_post_content_left">
             <ul class="business_catgnav">
                 <li>
@@ -611,7 +619,122 @@
                 </li>
             </ul>
         </div>
+    </div>*@
+
+
+<div class="single_post_content">
+    <h2><span>Gündem</span></h2>
+    <div class="single_post_content_left">
+        <ul class="business_catgnav  wow fadeInDown ">
+            @{
+                var haberListesi = (List<HaberCl>)ViewBag.haberler;
+                var result = (from p in haberListesi
+                              where p.HaberKategori.KategoriAdi == "Dünya"
+                              select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
+                int i = 0;
+            }
+            @foreach (var haber in result)
+            {
+                i++;
+                <li>
+                    <figure class="bsbig_fig">
+                        <a href="single_page.html" class="featured_img">
+                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            <span class="overlay"></span>
+                        </a>
+                        <figcaption>
+                            <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                        </figcaption>
+                        @if (haber.HaberIcerik.Length > 105)
+                        {
+                            <p>
+                                @{ string abc = haber.HaberIcerik.Substring(0, 105);
+                                    @abc}...
+
+                            </p>
+                                    }
+                                    else if (haber.HaberIcerik.Length <=105) {
+                                         <p>
+                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
+                                    @abc}...
+
+                            </p>
+                                    }
+                    </figure>
+                </li>
+                                        if (i == 1)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+        </ul>
     </div>
+    <div class="single_post_content_right">
+        <ul class="spost_nav">
+            @{
+                int j = 0;
+                foreach (var haber in result)
+                {
+                    j++;
+
+                    if (j == 1)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                                <a href="single_page.html" class="media-left">
+                                    @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                                    {
+                                        <img alt="img" src="">
+                                    }
+                                    else
+                                    {
+                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    }
+                                </a>
+                                <div class="media-body">
+                                    @{
+                                        if (haber.HaberBaslik.Length > 55)
+                                        {
+                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                                            }
+                                            if (j == 7)
+                                            {
+                                                break;
+                                            }
+                                        }
+            }
+
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 <!-- End games category design -->
 
