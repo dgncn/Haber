@@ -26,4 +26,11 @@ namespace Haber.COM
 
 
     }
+    public class EtiketSonuc
+    {
+        public int EtiketSonucID { get; set; }
+        public string EtiketSonucAdi { get; set; }
+        public int EticketSonucSayisi { get; set; }
+
+    }
 }

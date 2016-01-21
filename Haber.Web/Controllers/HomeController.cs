@@ -1,4 +1,5 @@
-﻿using Haber.Helper;
+﻿using Haber.COM;
+using Haber.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,14 @@ namespace Haber.Web.Controllers
             ViewBag.etiketler = etikethelper.TumEtiketleriListele();
             ViewBag.resimler = resimhelper.ResimListele();
 
+            var etiketListe = (List<Etiket>)ViewBag.etiketler;
+            var resultOriginal = from p in etiketListe
+                         group p by new { id = p.EtiketAdi } into ctg
+                         select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
+            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
+            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(10).ToList();
+            ViewBag.etiketResult = result;
+            ViewBag.etiketResult2 = result2;
             return View(haberhelper.TumHaberleriListele().OrderByDescending(x=>x.HaberGirisTarihi).Take(10).ToList());
         }
     }
