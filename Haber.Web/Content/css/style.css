@@ -1581,6 +1581,8 @@ figure.effect-layla:hover img {
   .nav-tabs > li {width: 32.3%;}
   .pagination > li > a, .pagination > li > span {padding: 4px 8px;}
 }
+
+
 @media(max-width:320px ){
 	.sociallink_nav li a {padding: 5px 10px;}
   .sociallink_nav li:nth-child(1) > a {padding: 5px 13px;}
