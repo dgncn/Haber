@@ -27,6 +27,9 @@ namespace Haber.COM
         [Required]
         [Display(Name ="Haber Aktiflik Durumu")]
         public bool HaberDurumu { get; set; }
+        [Required]
+        [Display(Name ="Haber Okunma Sayısı")]
+        public int HaberOkunmaSayisi { get; set; }
 
         public virtual Kategori HaberKategori { get; set; }
         public virtual Yazar HaberYazari { get; set; }

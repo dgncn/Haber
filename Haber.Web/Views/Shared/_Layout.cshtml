@@ -124,10 +124,7 @@
                                 <span class="mobile-show">Anasayfa</span>
                             </a>
                         </li>
-                        @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
-                        {
-                            <li><a href="#">@kategori.KategoriAdi</a></li>
-                        }
+                        @RenderSection("kategori",required:false)
                         <li><a href="#">Teknoloji</a></li>
 
                         <li><a href="#">Laptop</a></li>
@@ -231,7 +228,7 @@
                             <h2>Etiket</h2>
                             <ul class="tag_nav">
 
-                                @RenderSection("FooterEtiketleri")
+                                @RenderSection("FooterEtiketleri",required:false)
 
 
                                 @*<li><a href="#">Oyun</a></li>

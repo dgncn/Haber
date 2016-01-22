@@ -45,6 +45,7 @@ namespace Haber.Web.Controllers
             haber.HaberGirisTarihi = DateTime.Now;
             haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
             haber.HaberYazari = yazarhelper.YazarGetir(yazarid);
+            haber.HaberOkunmaSayisi = 0;
             int i1 = 1;
             foreach (var file in files)
             {
@@ -291,6 +292,7 @@ namespace Haber.Web.Controllers
             h.HaberYazari = haber.HaberYazari;
             h.HaberEtiketleri = haber.HaberEtiketleri;
             h.HaberResimleri = haber.HaberResimleri;
+            h.HaberOkunmaSayisi = haber.HaberOkunmaSayisi;
             context.Entry(h).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
             //id - kategori - yazar

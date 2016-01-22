@@ -1194,6 +1194,7 @@
     <Content Include="Views\Dashboard\KategoriHaberleriYeni.cshtml" />
     <Content Include="Views\Dashboard\YazarHaberleriYeni.cshtml" />
     <Content Include="Views\Dashboard\EtiketHaberleriYeni.cshtml" />
+    <Content Include="Views\Home\Kategori.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

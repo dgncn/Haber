@@ -118,10 +118,49 @@ namespace Haber.Helper
                 return result;
             }
         }
+        public List<HaberCl> KategoriyeGoreSonHaberler(Kategori kategori,int? haberSayisi = null)
+        {
+            if (kategori == null && haberSayisi==null)
+            {
+                var result = (from p in context.Haberler
+                              select p).ToList();
+
+                return result;
+            }
+            else
+            {
+
+                if (haberSayisi==null)
+                {
+                    var result = (from p in context.Haberler
+                                  where p.HaberKategori.KategoriID == kategori.KategoriID
+                                  orderby p.HaberGirisTarihi descending
+                                  select p).ToList();
+
+                    return result;
+                }
+                else
+                {
+                    int sayi = Convert.ToInt32(haberSayisi);
+                    var result = (from p in context.Haberler
+                                  where p.HaberKategori.KategoriID == kategori.KategoriID
+                                  orderby p.HaberGirisTarihi descending
+                                  select p).Take(sayi).ToList();
+
+                    return result;
+                }
+                
+            }
+        }
 
         public List<HaberCl> KategoriyeGoreHaberler()
         {
             var result = context.Haberler.ToList();
+            return result;
+        }
+        public List<HaberCl> KategoriyeGoreHaberler(int haberAdet)
+        {
+            var result = context.Haberler.Take(haberAdet).ToList();
             return result;
         }
         public List<HaberCl> YazaraGoreHaberler()
@@ -162,6 +201,6 @@ namespace Haber.Helper
                           select p).ToList();
             return result;
         }
-
+        
     }
 }

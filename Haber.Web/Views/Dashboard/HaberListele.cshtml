@@ -19,6 +19,7 @@
             <td>@Html.LabelFor(x => x[0].HaberYazari.YazarAdSoyad)</td>
             <td>@Html.LabelFor(x => x[0].HaberKategori.KategoriAdi)</td>
             <td>@Html.LabelFor(x => x[0].HaberDurumu)</td>
+            <td>@Html.LabelFor(x=>x[0].HaberOkunmaSayisi)</td>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
                 <td>@haber.HaberBaslik</td>
                 <td>@haber.HaberIcerik</td>
                 <td>@haber.HaberGirisTarihi</td>
+                
                 <td>@Html.ActionLink(haber.HaberYazari.YazarAdSoyad.ToString(), "YazarHaberleriYeni", new { id=haber.HaberYazari.YazarID })</td>
                 <td>@Html.ActionLink(haber.HaberKategori.KategoriAdi.ToString(), "KategoriHaberleriYeni", new { id=haber.HaberKategori.KategoriID })</td>
 
@@ -44,6 +46,7 @@
                         <input type="checkbox" name="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" value="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" />
                     }
                 </td>
+                <td>@haber.HaberOkunmaSayisi</td>
             </tr>
         }
     </tbody>

@@ -6,6 +6,13 @@
 
 @*<h2>Index</h2>*@
 
+@section kategori{
+    @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
+    {
+        <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
+    }
+    
+    }
 @section sonHaberlerkucuk{
     <div class="latest_newsarea">
         <span>Son Haberler</span>
@@ -818,57 +825,58 @@
 
 @section FooterEtiketleri{
     
-    @foreach (var etiket in (IEnumerable<EtiketSonuc>)ViewBag.etiketResult2)
-    {
-        int a = etiket.EticketSonucSayisi;
-        string buyukluk = "";
-        if (a==1)
+    @{
+        foreach (var etiket in (IEnumerable<EtiketSonuc>)ViewBag.etiketResult2)
         {
-            buyukluk = "cokdusuk";
-        }
-        else if(a>=2 && a<=4)
-        {
-            buyukluk = "dusuk";
-        }
-        else if(a>4 && a<=7)
-        {
-            buyukluk = "orta";
-        }
-        else if (a>7 && a<=10)
-        {
-            buyukluk = "buyuk";
-        }
-        else
-        {
-            buyukluk = "cokbuyuk";
-        }
-        switch (buyukluk)
-        {
-            
-            case "cokdusuk":
+            int a = etiket.EticketSonucSayisi;
+            string buyukluk = "";
+            if (a == 1)
+            {
+                buyukluk = "cokdusuk";
+            }
+            else if (a >= 2 && a <= 4)
+            {
+                buyukluk = "dusuk";
+            }
+            else if (a > 4 && a <= 7)
+            {
+                buyukluk = "orta";
+            }
+            else if (a > 7 && a <= 10)
+            {
+                buyukluk = "buyuk";
+            }
+            else
+            {
+                buyukluk = "cokbuyuk";
+            }
+            switch (buyukluk)
+            {
+
+                case "cokdusuk":
                 <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
-                break;
-            case "dusuk":
+                    break;
+                case "dusuk":
                 <li style="font-size:22px; display:inline">@etiket.EtiketSonucAdi</li>
-                break;
-            case "orta":
+                    break;
+                case "orta":
                 <li style="font-size:28px; display:inline">@etiket.EtiketSonucAdi</li>
-                break;
-            case "buyuk":
+                    break;
+                case "buyuk":
                 <li style="font-size:34px; display:inline">@etiket.EtiketSonucAdi</li>
-                break;
-            case "cokbuyuk":
+                    break;
+                case "cokbuyuk":
                 <li style="font-size:40px; display:inline"><b>@etiket.EtiketSonucAdi</b></li>
-                break;
-            default:
+                    break;
+                default:
                 <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
-                break;
+                        break;
+                }
+            }
         }
+
+
     }
-
-}
-
-
 
 
 
