@@ -7,22 +7,75 @@
 
 <h2>Kategori</h2>
 @section kategori{
-@foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
-{
-    <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
-}
-
-}
-<table>
-    @foreach (var haber in Model)
+    @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
     {
-        <tr>
-            <td>@haber.HaberIcerik</td>
-        </tr>
+        <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
     }
-    
-</table>
 
+}
+
+@section katHaberleri{
+
+
+    <div class="single_post_content">
+        <h2>
+            <span>Kategori Haberleri</span>
+        </h2>
+
+        <ul id="spotLi" class="spost_nav">
+            @{
+                foreach (var haber in Model)
+                {
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@haber.HaberBaslik</h4> <br />
+                                <p>
+                                    @haber.HaberIcerik
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length>155)
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@haber.HaberBaslik</h4> <br />
+                                <p>
+                                    @haber.HaberIcerik.Substring(0,155)<span>...</span>
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@haber.HaberBaslik</h4> <br />
+                                <p>
+                                    @haber.HaberIcerik
+                                </p>
+                            </div>
+                            
+                        </li>
+                    }
+                }
+            }
+
+        </ul>
+    </div>
+
+}
 
 @section sonHaberlerkucuk{
     <div class="latest_newsarea">
@@ -149,7 +202,6 @@
                                                 <span>
                                                     @{ string abc = haber.HaberBaslik.Substring(0, 95);
                                                         @abc}...
-                                                    <
                                                 </span>
                                             </a>
                                         </div>
@@ -430,12 +482,12 @@
 
 
 
-    }
+}
 
 
 
-    <!-- ==================End content body section=============== -->
-    <!-- /.container -->
-    <!-- =========================
-          //////////////This Theme Design and Developed //////////////////////
-          //////////// by www.wpfreeware.com======================-->
+<!-- ==================End content body section=============== -->
+<!-- /.container -->
+<!-- =========================
+      //////////////This Theme Design and Developed //////////////////////
+      //////////// by www.wpfreeware.com======================-->

@@ -746,6 +746,9 @@ img:hover{
   width: 90px;
   margin-right:10px;
 }
+#medi > span{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .spost_nav .media-body>a{
   font-family: "Oswald",sans-serif;
 }
@@ -1558,6 +1561,7 @@ figure.effect-layla:hover img {
   
 
 }
+
 
 @media(max-width:480px ){
 	.top_nav {text-align: center;}
