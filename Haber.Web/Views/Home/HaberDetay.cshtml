@@ -1,0 +1,342 @@
+﻿@model HaberCl
+@using Haber.COM;
+@{
+    ViewBag.Title = "HaberDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>HaberDetay</h2>
+
+@section haberDetay{
+    <div class="single_page">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Anasayfa","Index","Home")</li>
+            <li>@Html.ActionLink(Model.HaberKategori.KategoriAdi,"Kategori",new { id = Model.HaberKategori.KategoriID })</li>
+            <li class="active">@Html.ActionLink(Model.HaberBaslik,"HaberDetay",new { id = Model.HaberID })</li>
+        </ol>
+        <h1>@Model.HaberBaslik</h1>
+        <div class="post_commentbox">
+            <a href="#"><i class="fa fa-user"></i>@Model.HaberYazari.YazarAdSoyad</a>
+            <span><i class="fa fa-calendar"></i>@Model.HaberGirisTarihi</span>
+            <a href="~/Home/Kategori/@Model.HaberKategori.KategoriID"><i class="fa fa-tags"></i>@Model.HaberKategori.KategoriAdi</a>
+        </div>
+        <div class="single_page_content">
+            <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="img">
+            <p>@Model.HaberIcerik</p>
+            
+            @foreach (var etiket in Model.HaberEtiketleri)
+            {
+                <button class="btn default-btn">@etiket.EtiketAdi</button>
+            }
+            
+        </div>
+        <div class="social_link">
+            <ul class="sociallink_nav">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+        </div>
+        <div class="related_post">
+            <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+            <ul class="spost_nav wow fadeInDown animated">
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html">
+                            <img src="img/post_img1.jpg" alt="img">
+                        </a>
+                        <div class="media-body">
+                            <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html">
+                            <img src="img/post_img2.jpg" alt="img">
+                        </a>
+                        <div class="media-body">
+                            <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="media">
+                        <a class="media-left" href="single_page.html">
+                            <img src="img/post_img1.jpg" alt="img">
+                        </a>
+                        <div class="media-body">
+                            <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+}
+
+
+@section kategori{
+    @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
+    {
+        <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
+    }
+
+}
+
+@section sonHaberlerkucuk{
+    <div class="latest_newsarea">
+        <span>Son Haberler</span>
+        <ul id="ticker01" class="news_sticker">
+            @foreach (var haber in (List<Haber.COM.HaberCl>)ViewBag.haberler)
+            {
+                if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                {
+                    <li><a href="#"><img src="" alt="">@haber.HaberBaslik</a></li>
+                }
+                else
+                {
+                    if (haber.HaberResimleri.Count > 0)
+                    {
+
+                        <li><a href="#"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                    }
+                }
+
+
+            }
+
+
+
+        </ul>
+        <div class="social_area">
+            <ul class="social_nav">
+                <li class="facebook"><a href="#"></a></li>
+                <li class="twitter"><a href="#"></a></li>
+                <li class="flickr"><a href="#"></a></li>
+                <li class="pinterest"><a href="#"></a></li>
+                <li class="googleplus"><a href="#"></a></li>
+                <li class="vimeo"><a href="#"></a></li>
+                <li class="youtube"><a href="#"></a></li>
+                <li class="mail"><a href="mailto#:info@smartnews.com"></a></li>
+            </ul>
+        </div>
+    </div>
+}
+@*
+
+    @section SonGonderilen{
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="latest_post">
+                <h2><span>Son Gönderilenler</span></h2>
+                <div class="latest_post_container">
+                    <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+                    <ul class="latest_postnav">
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var haber in (List<Haber.COM.HaberCl>)ViewBag.haberler)
+                        {
+                            i++;
+                            if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                            {
+
+                                if (haber.HaberBaslik.Length > 95)
+                                {
+
+                                    <li>
+                                        <div class="media">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title">
+                                                    <span>
+                                                        @{ string abc = haber.HaberBaslik.Substring(0, 95);
+                                                            @abc}...
+                                                        <
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>
+                                                                    <div class="media">
+                                                                        <a href="single_page.html" class="media-left">
+                                                                            <img alt="img" src="">
+                                                                        </a>
+                                                                        <div class="media-body">
+                                                                            <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                if (haber.HaberResimleri.Count > 0)
+                                                                {
+
+                                                                    if (haber.HaberBaslik.Length > 95)
+                                                                    {
+                                                                        <li>
+                                                                            <div class="media">
+                                                                                <a href="single_page.html" class="media-left">
+                                                                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                                                </a>
+                                                                                <div class="media-body">
+                                                                                    <a href="single_page.html" class="catg_title">
+                                                                                        <span>
+                                                                                            @{ string abc = haber.HaberBaslik.Substring(0, 95);
+                                                                                                @abc}...
+                                                                                            <
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </li>
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <li>
+                                                                                                        <div class="media">
+                                                                                                            <a href="single_page.html" class="media-left">
+                                                                                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                                                                            </a>
+                                                                                                            <div class="media-body">
+                                                                                                                <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </li>
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                    if (i == 5)
+                                                                                                    {
+                                                                                                        break;
+                                                                                                    }
+                                                                                                }
+
+                        <!-- #region yorum -->
+                        <!-- #endregion -->
+                    </ul>
+                    <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+                </div>
+            </div>
+        </div>
+    }
+*@
+
+@section EnCokOkunanlar{
+    <div class="single_sidebar">
+        <h2><span>En Çok Okunanlar</span></h2>
+        <ul class="spost_nav">
+            <li>
+                <div class="media wow fadeInDown">
+                    <a href="single_page.html" class="media-left">
+                        <img alt="img" src="img/post_img1.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media wow fadeInDown">
+                    <a href="single_page.html" class="media-left">
+                        <img alt="img" src="img/post_img2.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media wow fadeInDown">
+                    <a href="single_page.html" class="media-left">
+                        <img alt="img" src="img/post_img1.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media wow fadeInDown">
+                    <a href="single_page.html" class="media-left">
+                        <img alt="img" src="img/post_img2.jpg">
+                    </a>
+                    <div class="media-body">
+                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+}
+
+
+@section FooterEtiketleri{
+
+    @{
+        foreach (var etiket in (IEnumerable<Haber.COM.EtiketSonuc>)ViewBag.etiketResult2)
+        {
+            int a = etiket.EticketSonucSayisi;
+            string buyukluk = "";
+            if (a == 1)
+            {
+                buyukluk = "cokdusuk";
+            }
+            else if (a >= 2 && a <= 4)
+            {
+                buyukluk = "dusuk";
+            }
+            else if (a > 4 && a <= 7)
+            {
+                buyukluk = "orta";
+            }
+            else if (a > 7 && a <= 10)
+            {
+                buyukluk = "buyuk";
+            }
+            else
+            {
+                buyukluk = "cokbuyuk";
+            }
+            switch (buyukluk)
+            {
+
+                case "cokdusuk":
+                        <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                    break;
+                case "dusuk":
+                    <li style="font-size:22px; display:inline">@etiket.EtiketSonucAdi</li>
+                    break;
+                case "orta":
+                    <li style="font-size:28px; display:inline">@etiket.EtiketSonucAdi</li>
+                    break;
+                case "buyuk":
+                    <li style="font-size:34px; display:inline">@etiket.EtiketSonucAdi</li>
+                    break;
+                case "cokbuyuk":
+                    <li style="font-size:40px; display:inline"><b>@etiket.EtiketSonucAdi</b></li>
+                    break;
+                default:
+                    <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                    break;
+            }
+        }
+
+
+    }
+
+}

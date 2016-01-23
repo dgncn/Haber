@@ -65,5 +65,37 @@ namespace Haber.Web.Controllers
             }
 
         }
+        public ActionResult HaberDetay(int? id)
+        {
+            ViewbagListesi();
+            var etiketListe = (List<Etiket>)ViewBag.etiketler;
+            var resultOriginal = from p in etiketListe
+                                 group p by new { id = p.EtiketAdi } into ctg
+                                 select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
+            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
+            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(40).ToList();
+            ViewBag.etiketResult = result;
+            ViewBag.etiketResult2 = result2;
+            var haberListesi = (List<HaberCl>)ViewBag.haberler;
+            var HaberVarMi = (from p in haberListesi
+                          where p.HaberID == id
+                          select p).FirstOrDefault();
+            if (HaberVarMi != null)
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var haber = haberhelper.HaberGetir(id);
+                    return View(haber);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Kategori</h2>
 @section kategori{
     @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
     {
@@ -33,7 +32,7 @@
                                 <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@haber.HaberBaslik</h4> <br />
+                                <h4>@Html.ActionLink(haber.HaberBaslik,"HaberDetay",new { id = haber.HaberID })</h4> 
                                 <p>
                                     @haber.HaberIcerik
                                 </p>
@@ -47,7 +46,7 @@
                                 <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@haber.HaberBaslik</h4> <br />
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
                                     @haber.HaberIcerik.Substring(0,155)<span>...</span>
                                 </p>
@@ -61,7 +60,7 @@
                                 <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@haber.HaberBaslik</h4> <br />
+                                <h4>@haber.HaberBaslik</h4> 
                                 <p>
                                     @haber.HaberIcerik
                                 </p>
@@ -332,28 +331,10 @@
     <div class="single_sidebar">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
-            <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
-            <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
+            <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="category">
-                <ul>
-                    <li class="cat-item"><a href="#">Spor</a></li>
-                    <li class="cat-item"><a href="#">Moda</a></li>
-                    <li class="cat-item"><a href="#">İş Dünyası</a></li>
-                    <li class="cat-item"><a href="#">Teknoloji</a></li>
-                    <li class="cat-item"><a href="#">Oyun</a></li>
-                    <li class="cat-item"><a href="#">Yaşam</a></li>
-                    <li class="cat-item"><a href="#">Fotoğrafçılık</a></li>
-                </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="video">
-                <div class="vide_area">
-                    @*<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>*@<iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe><iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="comments">
+            <div role="tabpanel" class="tab-pane active" id="comments">
                 <ul class="spost_nav">
                     <li>
                         <div class="media wow fadeInDown">
@@ -401,7 +382,7 @@
     </div>
     <!-- End tab section -->
     <!-- Category Archive -->
-    <div class="single_sidebar wow fadeInDown">
+    @*<div class="single_sidebar wow fadeInDown">
         <h2><span>Kategori ARSIVI</span></h2>
         <select class="catgArchive">
             <option>Seçiniz</option>
@@ -420,7 +401,7 @@
             <li><a href="#">Giriş</a></li>
             <li><a href="#">Yaşam</a></li>
         </ul>
-    </div>
+    </div>*@
     <!-- End sponsor add -->
 }
 
