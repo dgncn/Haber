@@ -1,9 +1,11 @@
-﻿@model List<HaberCl>
+﻿@model List<Haber.COM.HaberCl>
 @using Haber.COM;
 @{
-    ViewBag.Title = "Kategori";
+    ViewBag.Title = "Etiket";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Etiket</h2>
 
 @section kategori{
     @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
@@ -18,7 +20,7 @@
 
     <div class="single_post_content">
         <h2>
-            <span>Kategori Haberleri</span>
+            <span>Etiket Haberleri</span>
         </h2>
 
         <ul id="spotLi" class="spost_nav">
@@ -32,14 +34,14 @@
                                 <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik,"HaberDetay",new { id = haber.HaberID })</h4> 
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
                                     @haber.HaberIcerik
                                 </p>
                             </div>
                         </li>
                     }
-                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length>155)
+                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
                     {
                         <li>
                             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -48,7 +50,7 @@
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
-                                    @haber.HaberIcerik.Substring(0,155)<span>...</span>
+                                    @haber.HaberIcerik.Substring(0, 155)<span>...</span>
                                 </p>
                             </div>
                         </li>
@@ -60,12 +62,12 @@
                                 <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4> 
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
                                     @haber.HaberIcerik
                                 </p>
                             </div>
-                            
+
                         </li>
                     }
                 }
@@ -383,25 +385,25 @@
     <!-- End tab section -->
     <!-- Category Archive -->
     @*<div class="single_sidebar wow fadeInDown">
-        <h2><span>Kategori ARSIVI</span></h2>
-        <select class="catgArchive">
-            <option>Seçiniz</option>
-            <option>Yaşam</option>
-            <option>Spor</option>
-            <option>Teknoloji</option>
-        </select>
-    </div>
-    <!-- End category Archive -->
-    <!-- sponsor add -->
-    <div class="single_sidebar wow fadeInDown">
-        <h2><span>LINKLER</span></h2>
-        <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Rss</a></li>
-            <li><a href="#">Giriş</a></li>
-            <li><a href="#">Yaşam</a></li>
-        </ul>
-    </div>*@
+            <h2><span>Kategori ARSIVI</span></h2>
+            <select class="catgArchive">
+                <option>Seçiniz</option>
+                <option>Yaşam</option>
+                <option>Spor</option>
+                <option>Teknoloji</option>
+            </select>
+        </div>
+        <!-- End category Archive -->
+        <!-- sponsor add -->
+        <div class="single_sidebar wow fadeInDown">
+            <h2><span>LINKLER</span></h2>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Rss</a></li>
+                <li><a href="#">Giriş</a></li>
+                <li><a href="#">Yaşam</a></li>
+            </ul>
+        </div>*@
     <!-- End sponsor add -->
 }
 
@@ -464,11 +466,3 @@
 
 
 }
-
-
-
-<!-- ==================End content body section=============== -->
-<!-- /.container -->
-<!-- =========================
-      //////////////This Theme Design and Developed //////////////////////
-      //////////// by www.wpfreeware.com======================-->

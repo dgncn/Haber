@@ -21,7 +21,14 @@
             <a href="~/Home/Kategori/@Model.HaberKategori.KategoriID"><i class="fa fa-tags"></i>@Model.HaberKategori.KategoriAdi</a>
         </div>
         <div class="single_page_content">
-            <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="img">
+            @if (Model.HaberResimleri == null || Model.HaberResimleri.Count == 0)
+            {
+                <img class="img-center" src="" alt="Resim yok">
+            }
+            else
+            {
+                <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="img">
+            }
             <p>@Model.HaberIcerik</p>
             
             @foreach (var etiket in Model.HaberEtiketleri)
@@ -95,14 +102,14 @@
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
-                    <li><a href="#"><img src="" alt="">@haber.HaberBaslik</a></li>
+                    <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
                 }
                 else
                 {
                     if (haber.HaberResimleri.Count > 0)
                     {
 
-                        <li><a href="#"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                        <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
                     }
                 }
 

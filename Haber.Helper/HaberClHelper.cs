@@ -48,6 +48,7 @@ namespace Haber.Helper
         }
         public List<HaberCl> EtiketeGoreHaberler(int? etiketID)
         {
+            List<HaberCl> hbListe = null;
             if (etiketID == null)
             {
                 var result = context.Haberler.ToList();
@@ -55,12 +56,22 @@ namespace Haber.Helper
             }
             else
             {
+                
                 var result = context.Etiketler.FirstOrDefault(x => x.EtiketID == etiketID).EtiketHaberleri;
-                return result;
+
+                if (result.Count>0)
+                {
+                    hbListe = new List<HaberCl>();
+                    foreach (var haber in result)
+                    {
+                        hbListe.Add(haber);
+                    }
+                }
 
                 //var result2 = context.Haberler.Where(x => x.HaberEtiketleri[0].EtiketID == etiketID).ToList();
                 //return result2;
             }
+            return hbListe;
 
         }
         public List<HaberCl> EtiketeGoreHaberler()
@@ -70,6 +81,21 @@ namespace Haber.Helper
             return result;
 
         }
+        //public List<HaberCl> EtiketeGoreHaberler(string etiketAdi)
+        //{
+        //    List<HaberCl> etikethaberListesi = new List<HaberCl>();
+        //    var result = context.Etiketler.Where(x => x.EtiketAdi == etiketAdi).ToList();
+        //    foreach (var etiket in result)
+        //    {
+        //        foreach (var haber in etiket.EtiketHaberleri)
+        //        {
+        //            etikethaberListesi.Add(haber);
+        //        }
+               
+
+        //    }
+        //    return etikethaberListesi;
+        //}
 
         //public void HaberAttach(HaberCl haber)
         //{

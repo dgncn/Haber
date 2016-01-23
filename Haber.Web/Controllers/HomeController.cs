@@ -25,6 +25,15 @@ namespace Haber.Web.Controllers
             ViewBag.yorumlar = yorumhelper.TumYorumlariListele();
             ViewBag.etiketler = etikethelper.TumEtiketleriListele();
             ViewBag.resimler = resimhelper.ResimListele();
+
+            var etiketListe = (List<Etiket>)ViewBag.etiketler;
+            var resultOriginal = from p in etiketListe
+                                 group p by new { id = p.EtiketAdi } into ctg
+                                 select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
+            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
+            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(40).ToList();
+            ViewBag.etiketResult = result;
+            ViewBag.etiketResult2 = result2;
         }
         public ActionResult Index()
         {
@@ -32,27 +41,13 @@ namespace Haber.Web.Controllers
 
             ViewbagListesi();
 
-            var etiketListe = (List<Etiket>)ViewBag.etiketler;
-            var resultOriginal = from p in etiketListe
-                                 group p by new { id = p.EtiketAdi } into ctg
-                                 select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
-            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
-            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(40).ToList();
-            ViewBag.etiketResult = result;
-            ViewBag.etiketResult2 = result2;
+            
             return View(haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList());
         }
         public ActionResult Kategori(int? id)
         {
             ViewbagListesi();
-            var etiketListe = (List<Etiket>)ViewBag.etiketler;
-            var resultOriginal = from p in etiketListe
-                                 group p by new { id = p.EtiketAdi } into ctg
-                                 select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
-            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
-            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(40).ToList();
-            ViewBag.etiketResult = result;
-            ViewBag.etiketResult2 = result2;
+            
             if (id == null)
             {
                 var result1 = haberhelper.KategoriyeGoreHaberler(10);
@@ -68,14 +63,7 @@ namespace Haber.Web.Controllers
         public ActionResult HaberDetay(int? id)
         {
             ViewbagListesi();
-            var etiketListe = (List<Etiket>)ViewBag.etiketler;
-            var resultOriginal = from p in etiketListe
-                                 group p by new { id = p.EtiketAdi } into ctg
-                                 select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
-            var result = resultOriginal.OrderByDescending(x => x.EticketSonucSayisi).Take(10).ToList();
-            var result2 = resultOriginal.OrderBy(x => Guid.NewGuid()).Take(40).ToList();
-            ViewBag.etiketResult = result;
-            ViewBag.etiketResult2 = result2;
+            
             var haberListesi = (List<HaberCl>)ViewBag.haberler;
             var HaberVarMi = (from p in haberListesi
                           where p.HaberID == id
@@ -96,6 +84,45 @@ namespace Haber.Web.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+        public ActionResult Etiket(string id)
+        {
+            ViewbagListesi();
+            var etiketList = (List<Etiket>)ViewBag.etiketler;
+            var etiketVarMi = (from p in etiketList
+                              where p.EtiketAdi == id
+                              select p).FirstOrDefault();
+            var etiketListesi = (from p in etiketList
+                                 where p.EtiketAdi == id
+                                 select p).ToList();
+            List<HaberCl> hbrList = new List<HaberCl>();
+            if (etiketVarMi != null)
+            {
+                if (id == null || id=="")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    
+                    foreach (var etiket in etiketListesi)
+                    {
+                        var haberListe = haberhelper.EtiketeGoreHaberler(etiket.EtiketID);
+                        if (haberListe!=null && haberListe.Count>0)
+                        {
+
+                            hbrList.AddRange(haberListe);
+                        }
+                    }
+                    
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            var EtiketHaberListesi = hbrList.OrderBy(x => x.HaberGirisTarihi).ToList();
+            return View(EtiketHaberListesi);
         }
     }
 }

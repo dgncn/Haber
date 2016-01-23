@@ -21,14 +21,14 @@
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
-                    <li><a href="#"><img src="" alt="">@haber.HaberBaslik</a></li>
+                    <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
                 }
                 else
                 {
                     if (haber.HaberResimleri.Count > 0)
                     {
 
-                        <li><a href="#"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                        <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
                     }
                 }
 
@@ -63,11 +63,11 @@
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
                     <div class="single_iteam">
-                        <a href="single_page.html">
+                        <a href="~/Home/HaberDetay/@haber.HaberID">
                             <img src="" alt="img">
-                        </a>
+                        </a>~/Home/HaberDetay/@haber.HaberID
                         <div class="slider_article">
-                            <h2><a class="slider_tittle" href="single_page.html">@haber.HaberBaslik</a></h2>
+                            <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                             <p>@haber.HaberIcerik</p>
                         </div>
                     </div>
@@ -75,34 +75,34 @@
                 else
                 {
                     <div class="single_iteam">
-                        <a href="single_page.html">
+                        <a href="~/Home/HaberDetay/@haber.HaberID">
                             <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
                         </a>
                         <div class="slider_article">
-                            <h2><a class="slider_tittle" href="single_page.html">@haber.HaberBaslik</a></h2>
+                            <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                             <p>@haber.HaberIcerik</p>
                         </div>
                     </div>
                 }
             }
             <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img2.jpg" alt="img"></a>
+                <a href="#"><img src="~/Gallery/img/slider_img2.jpg" alt="img"></a>
                 <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                    <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
                     <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
                 </div>
             </div>
             <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img3.jpg" alt="img"></a>
+                <a href="#"> <img src="~/Gallery/img/slider_img3.jpg" alt="img"></a>
                 <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                    <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
                     <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
                 </div>
             </div>
             <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img1.jpg" alt="img"></a>
+                <a href="#"> <img src="~/Gallery/img/slider_img1.jpg" alt="img"></a>
                 <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                    <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
                     <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
                 </div>
             </div>
@@ -130,11 +130,11 @@
 
                                 <li>
                                     <div class="media">
-                                        <a href="single_page.html" class="media-left">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                             <img alt="img" src="">
                                         </a>
                                         <div class="media-body">
-                                            <a href="single_page.html" class="catg_title">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
                                                 <span>
                                                     @{ string abc = haber.HaberBaslik.Substring(0, 95);
                                                         @abc}...
@@ -148,11 +148,11 @@
                                                         {
                                                             <li>
                                                                 <div class="media">
-                                                                    <a href="single_page.html" class="media-left">
+                                                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                                                         <img alt="img" src="">
                                                                     </a>
                                                                     <div class="media-body">
-                                                                        <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span></a>
+                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -167,11 +167,11 @@
                                                                 {
                                                                     <li>
                                                                         <div class="media">
-                                                                            <a href="single_page.html" class="media-left">
+                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                                                                 <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                                                             </a>
                                                                             <div class="media-body">
-                                                                                <a href="single_page.html" class="catg_title">
+                                                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
                                                                                     <span>
                                                                                         @{ string abc = haber.HaberBaslik.Substring(0, 95);
                                                                                             @abc}...
@@ -186,11 +186,11 @@
                                                                                             {
                                                                                                 <li>
                                                                                                     <div class="media">
-                                                                                                        <a href="single_page.html" class="media-left">
+                                                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                                                                                             <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                                                                                         </a>
                                                                                                         <div class="media-body">
-                                                                                                            <a href="single_page.html" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
                                                                                                         </div>
                                                                                                     </div>
 
@@ -235,12 +235,12 @@
                     i++;
                     <li>
                         <figure class="bsbig_fig">
-                            <a href="single_page.html" class="featured_img">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
                                 <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                 <span class="overlay"></span>
                             </a>
                             <figcaption>
-                                <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                                <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
                             </figcaption>
                             @if (haber.HaberIcerik.Length > 95)
                             {
@@ -284,7 +284,7 @@
                         {
                             <li>
                                 <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                    <a href="single_page.html" class="media-left">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                         @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                         {
                                             <img alt="img" src="">
@@ -298,11 +298,11 @@
                                         @{
                                             if (haber.HaberBaslik.Length > 55)
                                             {
-                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
                                             }
                                             else
                                             {
-                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                             }
                                         }
                                     </div>
@@ -343,12 +343,12 @@
                         j++;
                         <li>
                             <figure class="bsbig_fig">
-                                <a href="single_page.html" class="featured_img">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
                                     <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                     <span class="overlay"></span>
                                 </a>
                                 <figcaption>
-                                    <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                                    <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
                                 </figcaption>
 
                                 @if (haber.HaberIcerik.Length > 195)
@@ -384,7 +384,7 @@
                         {
                             <li>
                                 <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                    <a href="single_page.html" class="media-left">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                         @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                         {
                                             <img alt="img" src="">
@@ -398,11 +398,11 @@
                                         @{
                                             if (haber.HaberBaslik.Length > 95)
                                             {
-                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                             }
                                             else
                                             {
-                                                <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                             }
                                         }
                                     </div>
@@ -443,12 +443,12 @@
                     j++;
                     <li>
                         <figure class="bsbig_fig">
-                            <a href="single_page.html" class="featured_img">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
                                 <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                 <span class="overlay"></span>
                             </a>
                             <figcaption>
-                                <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                                <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
                             </figcaption>
 
                             @if (haber.HaberIcerik.Length > 195)
@@ -484,7 +484,7 @@
                     {
                         <li>
                             <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                <a href="single_page.html" class="media-left">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                     @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                     {
                                         <img alt="img" src="">
@@ -498,11 +498,11 @@
                                     @{
                                         if (haber.HaberBaslik.Length > 95)
                                         {
-                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                         }
                                         else
                                         {
-                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                         }
                                     }
                                 </div>
@@ -582,12 +582,12 @@
                 i++;
                 <li>
                     <figure class="bsbig_fig">
-                        <a href="single_page.html" class="featured_img">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
                             <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                             <span class="overlay"></span>
                         </a>
                         <figcaption>
-                            <a href="single_page.html">@haber.HaberBaslik.Trim()</a>
+                            <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
                         </figcaption>
                         @if (haber.HaberIcerik.Length > 105)
                         {
@@ -630,7 +630,7 @@
                     {
                         <li>
                             <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                <a href="single_page.html" class="media-left">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
                                     @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                     {
                                         <img alt="img" src="">
@@ -644,11 +644,11 @@
                                     @{
                                         if (haber.HaberBaslik.Length > 55)
                                         {
-                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
                                         }
                                         else
                                         {
-                                            <a href="single_page.html" class="catg_title">@haber.HaberBaslik</a>
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                         }
                                     }
                                 </div>
@@ -677,41 +677,41 @@
         <ul class="spost_nav">
             <li>
                 <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
+                    <a href="#" class="media-left">
                         <img alt="img" src="img/post_img1.jpg">
                     </a>
                     <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
+                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
+                    <a href="#" class="media-left">
                         <img alt="img" src="img/post_img2.jpg">
                     </a>
                     <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
+                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
+                    <a href="#" class="media-left">
                         <img alt="img" src="img/post_img1.jpg">
                     </a>
                     <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
+                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
+                    <a href="#" class="media-left">
                         <img alt="img" src="img/post_img2.jpg">
                     </a>
                     <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
+                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
                     </div>
                 </div>
             </li>
@@ -733,41 +733,21 @@
                 <ul class="spost_nav">
                     <li>
                         <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
+                            <a href="#" class="media-left">
                                 <img alt="img" src="img/post_img1.jpg">
                             </a>
                             <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
+                                <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
+                            <a href="#" class="media-left">
                                 <img alt="img" src="img/post_img2.jpg">
                             </a>
                             <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img1.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img2.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
+                                <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
                             </div>
                         </div>
                     </li>
@@ -835,22 +815,22 @@
             {
 
                 case "cokdusuk":
-                <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "dusuk":
-                <li style="font-size:22px; display:inline">@etiket.EtiketSonucAdi</li>
+                <li style="font-size:22px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "orta":
-                <li style="font-size:28px; display:inline">@etiket.EtiketSonucAdi</li>
+                <li style="font-size:28px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "buyuk":
-                <li style="font-size:34px; display:inline">@etiket.EtiketSonucAdi</li>
+                <li style="font-size:34px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "cokbuyuk":
-                <li style="font-size:40px; display:inline"><b>@etiket.EtiketSonucAdi</b></li>
+                <li style="font-size:40px; display:inline"><b>@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</b></li>
                     break;
                 default:
-                <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
                         break;
                 }
             }
