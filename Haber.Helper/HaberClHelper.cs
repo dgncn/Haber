@@ -178,7 +178,7 @@ namespace Haber.Helper
                 
             }
         }
-        public List<HaberCl> KategoriyeGoreSonHaberler(Kategori kategori, int istenilenHaberSayisi = 0, int? haberBaslangicIndexi = null)
+        public List<HaberCl> KategoriyeGoreSonHaberler(Kategori kategori,  int? haberBaslangicIndexi = null, int istenilenHaberSayisi = 0)
         {
             if (kategori == null && istenilenHaberSayisi == null && haberBaslangicIndexi == null)
             {
@@ -299,16 +299,30 @@ namespace Haber.Helper
             if (benzerHaberler == null || benzerHaberler.Count == 0)
             {
                 benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, 3);
+                return benzerHaberler;
             }
             else if(benzerHaberler.Count==1)
             {
-                benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count,2);
+                var haberListesi = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count,2);
+                benzerHaberler.AddRange(haberListesi);
+                return benzerHaberler;
             }
             else if (benzerHaberler.Count==2)
             {
-                benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count, 1);
+                var haberListesi = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count, 1);
+                benzerHaberler.AddRange(haberListesi);
+                return benzerHaberler;
             }
-            return benzerHaberler;
+            else if(benzerHaberler.Count==3)
+            {
+                return benzerHaberler;
+            }
+            else
+            {
+                benzerHaberler.RemoveRange(3, benzerHaberler.Count - 3);
+                return benzerHaberler;
+            }
+            
         }
         
     }
