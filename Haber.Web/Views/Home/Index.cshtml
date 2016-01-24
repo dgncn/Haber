@@ -10,8 +10,8 @@
     {
         <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
     }
-    
-    }
+
+}
 @section sonHaberlerkucuk{
     <div class="latest_newsarea">
         <span>Son Haberler</span>
@@ -232,33 +232,33 @@
                 @foreach (var haber in result)
                 {
                     i++;
-                    <li>
-                        <figure class="bsbig_fig">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
-                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                <span class="overlay"></span>
-                            </a>
-                            <figcaption>
-                                <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
-                            </figcaption>
-                            @if (haber.HaberIcerik.Length > 95)
+                <li>
+                    <figure class="bsbig_fig">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
+                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            <span class="overlay"></span>
+                        </a>
+                        <figcaption>
+                            <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
+                        </figcaption>
+                        @if (haber.HaberIcerik.Length > 95)
                             {
-                                <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 95);
-                                        @abc}...
-                                   
-                                </p>
+                            <p>
+                                @{ string abc = haber.HaberIcerik.Substring(0, 95);
+                                    @abc}...
+
+                            </p>
                                         }
                                         else if (haber.HaberIcerik.Length <= 105)
                                         {
-                                            <p>
-                                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
-                                                    @abc}...
+                            <p>
+                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
+                                                @abc}...
 
-                                            </p>
+                            </p>
                                                     }
-                        </figure>
-                    </li>
+                    </figure>
+                </li>
                                             if (i == 1)
                                             {
                                                 break;
@@ -281,32 +281,32 @@
                         }
                         else
                         {
-                            <li>
-                                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                        @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                <li>
+                    <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                            @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                         {
-                                            <img alt="img" src="">
+                                        <img alt="img" src="">
                                         }
                                         else
                                         {
-                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                         }
-                                    </a>
-                                    <div class="media-body">
-                                        @{
+                        </a>
+                        <div class="media-body">
+                            @{
                                             if (haber.HaberBaslik.Length > 55)
                                             {
-                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
                                             }
                                             else
                                             {
-                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                             }
-                                        }
-                                    </div>
-                                </div>
-                            </li>
+                            }
+                        </div>
+                    </div>
+                </li>
                                                 }
                                                 if (j == 7)
                                                 {
@@ -337,30 +337,32 @@
                     int j = 0;
                 }
 
-                    @foreach (var haber in result)
+                @foreach (var haber in result)
                     {
                         j++;
-                        <li>
-                            <figure class="bsbig_fig">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
-                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                    <span class="overlay"></span>
-                                </a>
-                                <figcaption>
-                                    <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
-                                </figcaption>
+                <li>
+                    <figure class="bsbig_fig">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
+                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            <span class="overlay"></span>
+                        </a>
+                        <figcaption>
+                            <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
+                        </figcaption>
 
-                                @if (haber.HaberIcerik.Length > 195)
+                        @if (haber.HaberIcerik.Length > 195)
                                 {
-                                    <p>
-                                        @{ string abc = haber.HaberIcerik.Substring(0, 195);
-                                            @abc}...
-                                       
-                                    </p>
+                                <p>
+                                    @{ string abc = haber.HaberIcerik.Substring(0, 195);
+                                        @abc}...
+
+                                    <
+
+                                </p>
                                             }
 
-                            </figure>
-                        </li>
+                    </figure>
+                </li>
 
                                                 if (j == 1)
                                                 {
@@ -381,32 +383,32 @@
                         }
                         else
                         {
-                            <li>
-                                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                        @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                <li>
+                    <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                            @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                         {
-                                            <img alt="img" src="">
+                                        <img alt="img" src="">
                                         }
                                         else
                                         {
-                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                         }
-                                    </a>
-                                    <div class="media-body">
-                                        @{
+                        </a>
+                        <div class="media-body">
+                            @{
                                             if (haber.HaberBaslik.Length > 95)
                                             {
-                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                             }
                                             else
                                             {
-                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                             }
-                                        }
-                                    </div>
-                                </div>
-                            </li>
+                            }
+                        </div>
+                    </div>
+                </li>
                         }
                         if (k == 7)
                         {
@@ -424,52 +426,53 @@
 @section Teknoloji{
 
     <div class="fashion">
-    <div class="single_post_content">
-        <h2><span>TEKNOLOJİ</span></h2>
-        <ul class="business_catgnav wow fadeInDown">
+        <div class="single_post_content">
+            <h2><span>TEKNOLOJİ</span></h2>
+            <ul class="business_catgnav wow fadeInDown">
 
-            @{
+                @{
                 var haberListesi = (List<HaberCl>)ViewBag.haberler;
                 var result = (from p in haberListesi
                               where p.HaberKategori.KategoriAdi == "Teknoloji"
                               select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                 int j = 0;
-            }
-            <HaberCl>
+                }
+                <HaberCl>
+                    <HaberCl>
 
-                @foreach (var haber in result)
+                        @foreach (var haber in result)
                 {
                     j++;
-                    <li>
-                        <figure class="bsbig_fig">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
-                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                <span class="overlay"></span>
-                            </a>
-                            <figcaption>
-                                <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
-                            </figcaption>
+                <li>
+                    <figure class="bsbig_fig">
+                        <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
+                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            <span class="overlay"></span>
+                        </a>
+                        <figcaption>
+                            <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
+                        </figcaption>
 
-                            @if (haber.HaberIcerik.Length > 195)
+                        @if (haber.HaberIcerik.Length > 195)
                             {
-                                <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 195);
-                                        @abc}...
+                            <p>
+                                @{ string abc = haber.HaberIcerik.Substring(0, 195);
+                                    @abc}...
 
-                                </p>
+                            </p>
                                         }
 
-                        </figure>
-                    </li>
+                    </figure>
+                </li>
 
                                             if (j == 1)
                                             {
                                                 break;
                                             }
                                         }
-        </ul>
-        <ul class="spost_nav">
-            @{
+            </ul>
+            <ul class="spost_nav">
+                @{
                 int k = 0;
                 foreach (var haber in result)
                 {
@@ -481,43 +484,43 @@
                     }
                     else
                     {
-                        <li>
-                            <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                    @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+            <li>
+                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                        @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                     {
-                                        <img alt="img" src="">
+                                    <img alt="img" src="">
                                     }
                                     else
                                     {
-                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                     }
-                                </a>
-                                <div class="media-body">
-                                    @{
+                    </a>
+                    <div class="media-body">
+                        @{
                                         if (haber.HaberBaslik.Length > 95)
                                         {
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 95)</a>
                                         }
                                         else
                                         {
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                         }
-                                    }
-                                </div>
-                            </div>
-                        </li>
+                        }
+                    </div>
+                </div>
+            </li>
                                             }
                                             if (k == 7)
                                             {
                                                 break;
                                             }
                                         }
-            }
+                }
 
-        </ul>
+            </ul>
+        </div>
     </div>
-</div>
 
 }
 
@@ -527,36 +530,46 @@
     <div class="single_post_content">
         <h2><span>GALERİ</span></h2>
         <ul class="photograph_nav  wow fadeInDown">
-            @{ 
+            @{
                 var resimListesi = (List<Resim>)ViewBag.resimler;
                 var result = (from p in resimListesi
                               orderby p.ResimID descending
                               select p).Take(6).ToList();
-                              
+
 
             }
-            @foreach (var resim in result)
+            <Resim>
+                @foreach (var resim in result)
             {
+            <li>
+                <div class="photo_grid">
+                    <figure class="effect-layla">
+                        <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img2.jpg" title="Photography Ttile 1">
+                            <img src="~/Content/Galeri/@resim.ResimAdi" alt="img06" />
+                        </a>
+                    </figure>
+                </div>
+            </li>
+            }
+                @*
+                    <li>
+                        <div class="photo_grid">
+                            <figure class="effect-layla">
+                                <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img3.jpg" title="Photography Ttile 6">
+                                    <img src="~/Gallery/img/photograph_img3.jpg" alt="img06" />
+                                </a>
+                            </figure>
+                        </div>
+                    </li>*@
                 <li>
                     <div class="photo_grid">
                         <figure class="effect-layla">
-                            <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img2.jpg" title="Photography Ttile 1">
-                                <img src="~/Content/Galeri/@resim.ResimAdi" alt="img06" />
+                            <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img3.jpg" title="Photography Ttile 6">
+                                <img src="~/Gallery/img/photograph_img3.jpg" alt="img06" />
                             </a>
                         </figure>
                     </div>
                 </li>
-            }
-            @*
-            <li>
-                <div class="photo_grid">
-                    <figure class="effect-layla">
-                        <a class="fancybox-buttons" data-fancybox-group="button" href="img/photograph_img3.jpg" title="Photography Ttile 6">
-                            <img src="~/Gallery/img/photograph_img3.jpg" alt="img06" />
-                        </a>
-                    </figure>
-                </div>
-            </li>*@
         </ul>
     </div>
 }
@@ -565,57 +578,58 @@
 @section Dunya {
 
 
-<div class="single_post_content">
-    <h2><span>Gündem</span></h2>
-    <div class="single_post_content_left">
-        <ul class="business_catgnav  wow fadeInDown ">
-            @{
+    <div class="single_post_content">
+        <h2><span>Gündem</span></h2>
+        <div class="single_post_content_left">
+            <ul class="business_catgnav  wow fadeInDown ">
+                @{
                 var haberListesi = (List<HaberCl>)ViewBag.haberler;
                 var result = (from p in haberListesi
                               where p.HaberKategori.KategoriAdi == "Dünya"
                               select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                 int i = 0;
-            }
-            @foreach (var haber in result)
+                }
+                <HaberCl>
+                    @foreach (var haber in result)
             {
                 i++;
-                <li>
-                    <figure class="bsbig_fig">
-                        <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
-                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                            <span class="overlay"></span>
-                        </a>
-                        <figcaption>
-                            <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
-                        </figcaption>
-                        @if (haber.HaberIcerik.Length > 105)
+            <li>
+                <figure class="bsbig_fig">
+                    <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
+                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                        <span class="overlay"></span>
+                    </a>
+                    <figcaption>
+                        <a href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik.Trim()</a>
+                    </figcaption>
+                    @if (haber.HaberIcerik.Length > 105)
                         {
-                            <p>
-                                @{ string abc = haber.HaberIcerik.Substring(0, 105);
-                                    @abc}...
+                        <p>
+                            @{ string abc = haber.HaberIcerik.Substring(0, 105);
+                                @abc}...
 
-                            </p>
+                        </p>
                                     }
                                     else if (haber.HaberIcerik.Length <=105) {
-                                         <p>
-                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
-                                    @abc}...
+                        <p>
+                            @{ string abc = haber.HaberIcerik.Substring(0, 60);
+                                            @abc}...
 
-                            </p>
+                        </p>
                                     }
-                    </figure>
-                </li>
+                </figure>
+            </li>
                                         if (i == 1)
                                         {
                                             break;
                                         }
                                     }
 
-        </ul>
-    </div>
-    <div class="single_post_content_right">
-        <ul class="spost_nav">
-            @{
+            </ul>
+        </div>
+        <div class="single_post_content_right">
+            <ul class="spost_nav">
+                @{
                 int j = 0;
                 foreach (var haber in result)
                 {
@@ -627,44 +641,44 @@
                     }
                     else
                     {
-                        <li>
-                            <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                    @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+            <li>
+                <div class="media wow fadeInDown animated" style="visibility:visible;animation-name:fadeInDown;">
+                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                        @if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                                     {
-                                        <img alt="img" src="">
+                                    <img alt="img" src="">
                                     }
                                     else
                                     {
-                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
                                     }
-                                </a>
-                                <div class="media-body">
-                                    @{
+                    </a>
+                    <div class="media-body">
+                        @{
                                         if (haber.HaberBaslik.Length > 55)
                                         {
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik.Substring(0, 55)</a>
                                         }
                                         else
                                         {
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
                                         }
-                                    }
-                                </div>
-                            </div>
-                        </li>
+                        }
+                    </div>
+                </div>
+            </li>
                                             }
                                             if (j == 7)
                                             {
                                                 break;
                                             }
                                         }
-            }
+                }
 
 
-        </ul>
+            </ul>
+        </div>
     </div>
-</div>
 
 
 }
@@ -674,48 +688,40 @@
     <div class="single_sidebar">
         <h2><span>En Çok Okunanlar</span></h2>
         <ul class="spost_nav">
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="#" class="media-left">
-                        <img alt="img" src="img/post_img1.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="#" class="media-left">
-                        <img alt="img" src="img/post_img2.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="#" class="media-left">
-                        <img alt="img" src="img/post_img1.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="#" class="media-left">
-                        <img alt="img" src="img/post_img2.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+            @{
+
+                foreach (var haber in (List<HaberCl>)ViewBag.enCokOkunanlarListesi)
+                {
+                    if (haber.HaberResimleri==null || haber.HaberResimleri.Count==0)
+                    {
+                        <li>
+                        <div class="media wow fadeInDown">
+                            <a href="#" class="media-left">
+                                <img alt="Resim yok" src="">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="media wow fadeInDown">
+                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" class="media-left">
+                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                </a>
+                                <div class="media-body">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            }
+    </ul>
+</div>
 
 }
 
@@ -727,7 +733,7 @@
             <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
         </ul>
         <div class="tab-content">
-            
+
             <div role="tabpanel" class="tab-pane active" id="comments">
                 <ul class="spost_nav">
                     <li>
@@ -784,7 +790,7 @@
 
 
 @section FooterEtiketleri{
-    
+
     @{
         foreach (var etiket in (IEnumerable<EtiketSonuc>)ViewBag.etiketResult2)
         {
@@ -814,29 +820,29 @@
             {
 
                 case "cokdusuk":
-                <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
+                        <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "dusuk":
-                <li style="font-size:22px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
+                    <li style="font-size:22px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "orta":
-                <li style="font-size:28px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
+                    <li style="font-size:28px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "buyuk":
-                <li style="font-size:34px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
+                    <li style="font-size:34px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "cokbuyuk":
-                <li style="font-size:40px; display:inline"><b>@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</b></li>
+                    <li style="font-size:40px; display:inline"><b>@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</b></li>
                     break;
                 default:
-                <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi,"Etiket",new { id = etiket.EtiketSonucAdi })</li>
-                        break;
-                }
+                    <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
             }
         }
-
-
     }
+
+
+}
 
 
 

@@ -282,46 +282,39 @@
     <div class="single_sidebar">
         <h2><span>En Çok Okunanlar</span></h2>
         <ul class="spost_nav">
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
-                        <img alt="img" src="img/post_img1.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
-                        <img alt="img" src="img/post_img2.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
-                        <img alt="img" src="img/post_img1.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="media wow fadeInDown">
-                    <a href="single_page.html" class="media-left">
-                        <img alt="img" src="img/post_img2.jpg">
-                    </a>
-                    <div class="media-body">
-                        <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
-                    </div>
-                </div>
-            </li>
+            @{
+
+                foreach (var haber in (List<HaberCl>)ViewBag.enCokOkunanlarListesi)
+                {
+                    if (haber.HaberResimleri==null || haber.HaberResimleri.Count==0)
+                    {
+                        <li>
+                        <div class="media wow fadeInDown">
+                            <a href="#" class="media-left">
+                                <img alt="Resim yok" src="">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                            </div>
+                        </div>
+                    </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="media wow fadeInDown">
+                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" class="media-left">
+                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                </a>
+                                <div class="media-body">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            }
+           
         </ul>
     </div>
 

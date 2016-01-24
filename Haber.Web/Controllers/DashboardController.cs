@@ -298,6 +298,7 @@ namespace Haber.Web.Controllers
             //id - kategori - yazar
             return RedirectToAction("HaberDuzenle");
         }
+        
 
         public ActionResult HaberSil(int id)
         {

@@ -25,7 +25,11 @@ namespace Haber.Web.Controllers
             ViewBag.yorumlar = yorumhelper.TumYorumlariListele();
             ViewBag.etiketler = etikethelper.TumEtiketleriListele();
             ViewBag.resimler = resimhelper.ResimListele();
-
+            var haberList = (List<HaberCl>)ViewBag.haberler;
+            var enCokOkunanlar = (from p in haberList
+                                  orderby p.HaberOkunmaSayisi descending
+                                  select p).Take(6).ToList();
+            ViewBag.enCokOkunanlarListesi = enCokOkunanlar;
             var etiketListe = (List<Etiket>)ViewBag.etiketler;
             var resultOriginal = from p in etiketListe
                                  group p by new { id = p.EtiketAdi } into ctg
@@ -56,7 +60,7 @@ namespace Haber.Web.Controllers
             }
             else
             {
-                var result1 = haberhelper.KategoriyeGoreHaberler(kategorihelper.KategoriGetir(id));
+                var result1 = haberhelper.KategoriyeGoreSonHaberler1(kategorihelper.KategoriGetir(id));
                 return View(result1);
             }
 
@@ -91,8 +95,14 @@ namespace Haber.Web.Controllers
                             benzerHaberListesi.AddRange(benzerhbrListesi);
                         }
                     }
+                    HaberVarMi.HaberOkunmaSayisi++;
+                    haberhelper.HaberOkSayisiGuncelle(HaberVarMi);
+
+
+
                     ViewBag.benzerhaberler = benzerHaberListesi;
                     var haber = haberhelper.HaberGetir(id);
+                    
                     return View(haber);
                 }
             }
@@ -137,7 +147,7 @@ namespace Haber.Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-            var EtiketHaberListesi = hbrList.OrderBy(x => x.HaberGirisTarihi).ToList();
+            var EtiketHaberListesi = hbrList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
             return View(EtiketHaberListesi);
         }
     }

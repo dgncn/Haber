@@ -144,7 +144,7 @@ namespace Haber.Helper
                 return result;
             }
         }
-        public List<HaberCl> KategoriyeGoreSonHaberler(Kategori kategori,int? haberSayisi = null)
+        public List<HaberCl> KategoriyeGoreSonHaberler1(Kategori kategori,int? haberSayisi = null)
         {
             if (kategori == null && haberSayisi==null)
             {
@@ -324,6 +324,14 @@ namespace Haber.Helper
             }
             
         }
-        
+
+        public void HaberOkSayisiGuncelle(HaberCl guncelKaydedilecekHaber)
+        {
+            HaberCl orijinalGuncellenecekhaber;
+            orijinalGuncellenecekhaber = HaberGetir(guncelKaydedilecekHaber.HaberID);
+            orijinalGuncellenecekhaber.HaberOkunmaSayisi = guncelKaydedilecekHaber.HaberOkunmaSayisi;
+            context.Entry(orijinalGuncellenecekhaber).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+        }
     }
 }
