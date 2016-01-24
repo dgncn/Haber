@@ -35,6 +35,7 @@ namespace Haber.Web.Controllers
             ViewBag.etiketResult = result;
             ViewBag.etiketResult2 = result2;
         }
+
         public ActionResult Index()
         {
 
@@ -55,7 +56,7 @@ namespace Haber.Web.Controllers
             }
             else
             {
-                var result1 = haberhelper.KategoriyeGoreSonHaberler(kategorihelper.KategoriGetir(id));
+                var result1 = haberhelper.KategoriyeGoreHaberler(kategorihelper.KategoriGetir(id));
                 return View(result1);
             }
 
@@ -63,11 +64,15 @@ namespace Haber.Web.Controllers
         public ActionResult HaberDetay(int? id)
         {
             ViewbagListesi();
+
+
             
+
             var haberListesi = (List<HaberCl>)ViewBag.haberler;
             var HaberVarMi = (from p in haberListesi
                           where p.HaberID == id
                           select p).FirstOrDefault();
+            
             if (HaberVarMi != null)
             {
                 if (id == null)
@@ -76,6 +81,17 @@ namespace Haber.Web.Controllers
                 }
                 else
                 {
+                    List<HaberCl> benzerHaberListesi = new List<HaberCl>();
+                    foreach (var etiket in HaberVarMi.HaberEtiketleri)
+                    {
+                        List<HaberCl> benzerhbrListesi = haberhelper.BenzerHaberleriGetir(etiket.EtiketAdi,HaberVarMi);
+                        if (benzerhbrListesi != null && benzerhbrListesi.Count > 0)
+                        {
+
+                            benzerHaberListesi.AddRange(benzerhbrListesi);
+                        }
+                    }
+                    ViewBag.benzerhaberler = benzerHaberListesi;
                     var haber = haberhelper.HaberGetir(id);
                     return View(haber);
                 }

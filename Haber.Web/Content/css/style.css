@@ -255,6 +255,7 @@ img:hover{
 .top_nav li a:hover{
   background-color: #689F38;
 }
+
 .header_top_right{
   float: left;
   display: inline;
@@ -1108,16 +1109,20 @@ figure.effect-layla:hover img {
 .tag_nav{}
 .tag_nav li{}
 .tag_nav li a {
-  border-bottom: 1px solid #ddd;
+  
   color: #ccc;
-  display: block;
-  padding: 6px 6px 6px 0;
+  display: inline;
+ /* padding: 6px 6px 6px 0;*/
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 .tag_nav li a:hover{
-  padding-left: 10px;
+  /*padding-left: 10px;*/
+  color:#fff;
+  background-color:#689F38;
+  border: 1px solid #689F38;
+  border-radius:3px;
 }
 .footer_bottom{
   float: left;

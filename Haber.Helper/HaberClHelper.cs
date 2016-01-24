@@ -178,6 +178,66 @@ namespace Haber.Helper
                 
             }
         }
+        public List<HaberCl> KategoriyeGoreSonHaberler(Kategori kategori, int istenilenHaberSayisi = 0, int? haberBaslangicIndexi = null)
+        {
+            if (kategori == null && istenilenHaberSayisi == null && haberBaslangicIndexi == null)
+            {
+                var result = (from p in context.Haberler
+                              select p).ToList();
+
+                return result;
+            }
+            else
+            {
+
+                if (haberBaslangicIndexi == null || haberBaslangicIndexi==0)
+                {
+                    if (istenilenHaberSayisi == null || istenilenHaberSayisi == 0)
+                    {
+                        var result = (from p in context.Haberler
+                                      where p.HaberKategori.KategoriID == kategori.KategoriID
+                                      orderby p.HaberGirisTarihi descending
+                                      select p).ToList();
+
+                        return result;
+                    }
+                    else
+                    {
+                        int sayi = Convert.ToInt32(istenilenHaberSayisi);
+                        var result = (from p in context.Haberler
+                                      where p.HaberKategori.KategoriID == kategori.KategoriID
+                                      orderby p.HaberGirisTarihi descending
+                                      select p).Take(sayi).ToList();
+
+                        return result;
+                    }
+                }
+                else
+                {
+                    if (istenilenHaberSayisi == null || istenilenHaberSayisi == 0)
+                    {
+                        var result = (from p in context.Haberler
+                                      where p.HaberKategori.KategoriID == kategori.KategoriID
+                                      orderby p.HaberGirisTarihi descending
+                                      select p).ToList();
+
+                        return result;
+                    }
+                    else
+                    {
+                        int haberBaslangicIndex = Convert.ToInt32(haberBaslangicIndexi);
+                        int sayi = Convert.ToInt32(istenilenHaberSayisi);
+                        var result = (from p in context.Haberler
+                                      where p.HaberKategori.KategoriID == kategori.KategoriID
+                                      orderby p.HaberGirisTarihi descending
+                                      select p).Skip(haberBaslangicIndex).Take(sayi).ToList();
+
+                        return result;
+                    }
+                }
+
+            }
+        }
 
         public List<HaberCl> KategoriyeGoreHaberler()
         {
@@ -226,6 +286,29 @@ namespace Haber.Helper
                           where p.ResimHaber.HaberID == haber.HaberID
                           select p).ToList();
             return result;
+        }
+        public List<HaberCl> BenzerHaberleriGetir(string icerik,HaberCl haber)
+        {
+            var benzerHaberler = (from p in context.Haberler
+                                  where p.HaberBaslik.Contains(icerik) ||
+                                  p.HaberIcerik.Contains(icerik)
+                                  select p).ToList();
+
+            /*p.HaberEtiketleri[0].EtiketAdi.Contains(icerik)*/
+
+            if (benzerHaberler == null || benzerHaberler.Count == 0)
+            {
+                benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, 3);
+            }
+            else if(benzerHaberler.Count==1)
+            {
+                benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count,2);
+            }
+            else if (benzerHaberler.Count==2)
+            {
+                benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, benzerHaberler.Count, 1);
+            }
+            return benzerHaberler;
         }
         
     }

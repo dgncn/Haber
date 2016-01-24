@@ -440,27 +440,26 @@
             {
 
                 case "cokdusuk":
-                    <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                    <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "dusuk":
-                    <li style="font-size:22px; display:inline">@etiket.EtiketSonucAdi</li>
+                    <li style="font-size:22px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "orta":
-                    <li style="font-size:28px; display:inline">@etiket.EtiketSonucAdi</li>
+                    <li style="font-size:28px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "buyuk":
-                    <li style="font-size:34px; display:inline">@etiket.EtiketSonucAdi</li>
+                    <li style="font-size:34px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
                 case "cokbuyuk":
-                    <li style="font-size:40px; display:inline"><b>@etiket.EtiketSonucAdi</b></li>
+                    <li style="font-size:40px; display:inline"><b>@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</b></li>
                     break;
                 default:
-                    <li style="font-size:16px; display:inline">@etiket.EtiketSonucAdi</li>
+                    <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
                     break;
             }
         }
     }
-
 
 
 }
