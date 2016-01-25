@@ -125,45 +125,62 @@
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
-                    <div class="single_iteam">
-                        <a href="~/Home/HaberDetay/@haber.HaberID">
-                            <img src="" alt="img">
-                        </a>
-                        <div class="slider_article">
-                            <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                            <p>@haber.HaberIcerik</p>
+                    if (haber.HaberIcerik.Length > 150)
+                    {
+                        <div class="single_iteam">
+                            <a href="~/Home/HaberDetay/@haber.HaberID">
+                                <img src="" alt="img">
+                            </a>~/Home/HaberDetay/@haber.HaberID
+                            <div class="slider_article">
+                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                <p>@haber.HaberIcerik.Substring(0, 150)<span>...</span></p>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="single_iteam">
+                            <a href="~/Home/HaberDetay/@haber.HaberID">
+                                <img src="" alt="img">
+                            </a>~/Home/HaberDetay/@haber.HaberID
+                            <div class="slider_article">
+                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                <p>@haber.HaberIcerik</p>
+                            </div>
+                        </div>
+                    }
                 }
                 else
                 {
-                    <div class="single_iteam">
-                        <a href="~/Home/HaberDetay/@haber.HaberID">
-                            <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                        </a>
-                        <div class="slider_article">
-                            <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                            <p>@haber.HaberIcerik</p>
+                    if (haber.HaberIcerik.Length > 150)
+                    {
+                        <div class="single_iteam">
+                            <a href="~/Home/HaberDetay/@haber.HaberID">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                            </a>
+                            <div class="slider_article">
+                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                <p>@haber.HaberIcerik.Substring(0, 150)<span>...</span></p>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="single_iteam">
+                            <a href="~/Home/HaberDetay/@haber.HaberID">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                            </a>
+                            <div class="slider_article">
+                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                <p>@haber.HaberIcerik</p>
+                            </div>
+                        </div>
+                    }
+
                 }
             }
             <div class="single_iteam">
                 <a href="single_page.html"> <img src="~/Gallery/img/slider_img2.jpg" alt="img"></a>
-                <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
-                </div>
-            </div>
-            <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img3.jpg" alt="img"></a>
-                <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
-                </div>
-            </div>
-            <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img1.jpg" alt="img"></a>
                 <div class="slider_article">
                     <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
                     <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
@@ -194,13 +211,12 @@
                                 <li>
                                     <div class="media">
                                         <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                            <img alt="img" src="">
+                                            <img alt="Resim yok" src="">
                                         </a>
                                         <div class="media-body">
                                             <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
                                                 <span>
-                                                    @{ string abc = haber.HaberBaslik.Substring(0, 95);
-                                                        @abc}...
+                                                   @haber.HaberBaslik.Substring(0, 95)<span>...</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -212,7 +228,7 @@
                                                             <li>
                                                                 <div class="media">
                                                                     <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                        <img alt="img" src="">
+                                                                        <img alt="Resim yok" src="">
                                                                     </a>
                                                                     <div class="media-body">
                                                                         <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
@@ -236,8 +252,7 @@
                                                                             <div class="media-body">
                                                                                 <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
                                                                                     <span>
-                                                                                        @{ string abc = haber.HaberBaslik.Substring(0, 95);
-                                                                                            @abc}...
+                                                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
                                                                                     </span>
                                                                                 </a>
                                                                             </div>

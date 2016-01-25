@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Disqus Comments Helper for WebMatrix - Start Here</title>
+    <link href="content/Site.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="content/images/webx-icon.png" alt="WebMatrix" />
+            <img src="content/images/disqus-logo.png" height="21" width="96" alt="Disqus Logo"/>
+            <h1>
+                Microsoft WebMatrix Helpers</h1>
+            <h2>
+                Disqus Comments Helper - Start Here</h2>
+        </div>
+        <div class="content">
+            <div class="navLinks">
+                <a href="startHere.htm">Start Here</a> | <a href="reference.htm">Helper Reference</a>
+            </div>
+            <h3>
+                Introduction</h3>
+            <p>
+                Microsoft WebMatrix provides an easy way to get started with web development, and
+                together with new Razor syntax for ASP.NET Web Pages it includes everything you
+                need to get your web site up, running and integrated with many other sites and networks,
+                in a short period of time. The WebMatrix helpers are designed to make your life
+                easier when creating web sites. They provide you a simple and consistent way of
+                performing common web development tasks that otherwise would require a great deal
+                of custom coding. With a few lines of code you should be able to secure your web
+                site using membership, store information in Windows Azure Storage, integrate your
+                site with Amazon, among others things.
+            </p>
+            <p>
+                The <strong>Disqus Helper</strong>  for WebMatrix provides an easy way to integrate Disqus on your WebMatrix site.
+                 With a few lines of code you'll able to show Disqus threads in your pages and let your users interact through your site.                
+            </p>
+ 
+            <h3>
+                Getting Started in 60 Seconds </h3>
+            <p>
+                These steps will guide you on how to display the Amazon Checkout button.
+            </p>
+            <ol>               
+                
+                <li>Add the following line to the <strong>_AppStart.cshtml</strong> page of your WebMatrix
+                    Site (if the file does not already exist, create it in the root of the website). <br/>
+					<b>Note</b>: Your forum shortname is available under Basic Settings on the <a href="http://disqus.com/admin/settings/">Disqus settings panel.</a>.
+                    <pre class="code">
+@{
+  Disqus.Initialize("{forumShortName}");    
+}
+					</pre>
+                </li>
+                <li>In any WebMatrix page, add the following code to display the Checkout button:
+					<pre class="code">
+
+@Disqus.ShowComments("{pageId}")
+
+                    </pre>
+                </li>
+            </ol>
+              <p>
+                Learn more on WebMatrix, ASP.NET Web Pages and the Razor Syntax <a href="http://www.microsoft.com/web/webmatrix/learn/">
+                    with the WebMatrix tutorials</a>.
+            </p>
+        </div>
+        <ul class="footer">
+            <li>We're always looking for <a href="mailto:webapp@microsoft.com">bugs, feedback and
+                suggestions!</a></li>
+            <li>&copy; 2010-2011 Microsoft Corporation. Powered by IIS Express.</li>
+        </ul>
+    </div>
+</body>
+</html>

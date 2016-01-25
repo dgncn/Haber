@@ -52,16 +52,32 @@
                 @{
                     foreach (var haber in (List<HaberCl>)ViewBag.benzerhaberler)
                     {
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                                </a>
-                                <div class="media-body">
-                                    <a class="catg_title" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a>
+                        if (haber.HaberResimleri.Count == 0 || haber.HaberResimleri == null)
+                        {
+                            <li>
+                                <div class="media">
+                                    <a class="media-left" href="">
+                                        <img src="" alt="Resim yok">
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="catg_title" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="media">
+                                    <a class="media-left" href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="catg_title" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
                     }
                 }
             </ul>
