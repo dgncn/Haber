@@ -97,7 +97,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Disqus.cshtml" />
     <None Include="App_Code\Twitter.cshtml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -953,14 +952,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Disqus\Docs\content\images\disqus-logo.png" />
-    <Content Include="Disqus\Docs\content\images\webx-bkg.png" />
-    <Content Include="Disqus\Docs\content\images\webx-content-bkg.jpg" />
-    <Content Include="Disqus\Docs\content\images\webx-icon.png" />
-    <Content Include="Disqus\Docs\content\images\wm-mysite-settings.png" />
-    <Content Include="Disqus\Docs\content\images\wm-site-settings.png" />
-    <Content Include="Disqus\Docs\content\Site.css" />
-    <Content Include="Disqus\Docs\startHere.htm" />
     <Content Include="Gallery\img\addbanner_728x90_V1.jpg" />
     <Content Include="Gallery\img\add_img.jpg" />
     <Content Include="Gallery\img\background.jpg" />
