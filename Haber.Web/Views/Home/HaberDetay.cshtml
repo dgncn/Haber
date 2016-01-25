@@ -83,31 +83,65 @@
                 }
             </ul>
         </div>
+        @{
+            foreach (var yorum in Model.Yorumlar)
+            {
+                <div class="col-lg-8 col-md-8 col-sm-8" style="display: inline;float: left;margin-top: 0px;width: 100%;margin-bottom: 20px; ">
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="height:100px; background-color:#bababa">
+                        @yorum.YorumYazari
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8" style="height:100px;background-color:#676767">
+                        @yorum.YorumIcerik
+                    </div>
+                </div>
+            }
 
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-             */
-            /*
-            var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function () {  // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
+        }
+        <div class="related_post2">
+            <h2>Yorum Yap</h2>
+            <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" />
+            @using (Html.BeginForm())
+            {
+                
+                int id = Model.HaberID;
 
-                s.src = '//dgncn.disqus.com/embed.js';
+                    <textarea class="form-control" name="txtYorum" id="txtYorum"></textarea>
+                    <input type="submit" class="btn btn-default"  name="txtYorumGonder" value="Yorum Ekle" />
+            }
+        </div>
 
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-        <div style="width:auto;height:100px"></div>
 
+
+
+
+        @*
+    <!-- #region DISQUS -->
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        /*
+        var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function () {  // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+
+            s.src = '//dgncn.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <div style="width:auto;height:100px"></div>
+    <!-- #endregion -->
+        *@
 </div>
 
 }

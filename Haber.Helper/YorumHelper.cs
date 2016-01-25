@@ -40,21 +40,9 @@ namespace Haber.Helper
         {
             var yorum = YorumGetir(id);
 
-            //var result = (from p in context.Haberler
-            //              where p.Yorumlar[0].YorumID == id
-            //              select p).FirstOrDefault();
-
-            //if (result != null)
-            //{
-            //    int a = -1;
-            //    return a;
-            //}
-            //else
-            //{
+           
                 context.Yorumlar.Remove(yorum);
                 return context.SaveChanges();
-            //}
-
 
         }
     }

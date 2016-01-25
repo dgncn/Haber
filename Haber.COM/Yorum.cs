@@ -14,6 +14,9 @@ namespace Haber.COM
         [Display(Name ="Yorum ID")]
         public int YorumID { get; set; }
         [Required]
+        [Display(Name ="YorumYazari")]
+        public string YorumYazari { get; set; }
+        [Required]
         [Display(Name ="Yorum İçeriği")]
         public string YorumIcerik { get; set; }
         [Required]

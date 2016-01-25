@@ -1342,6 +1342,13 @@ figure.effect-layla:hover img {
   width: 100%;
   margin-bottom: 20px;  
 }
+.related_post2{
+    display: inline;
+  float: left;
+  margin-top: 0px;
+  width: 100%;
+  margin-bottom: 20px; 
+}
 .related_post > h2 {
   border-bottom: 1px solid #e3e3e3;
   padding-bottom: 5px;

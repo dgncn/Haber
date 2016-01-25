@@ -333,5 +333,13 @@ namespace Haber.Helper
             context.Entry(orijinalGuncellenecekhaber).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
+        public void HabereYorumEkle(HaberCl haber,Yorum yorum)
+        {
+            haber.Yorumlar.Add(yorum);
+            var h = HaberGetir(haber.HaberID);
+            h.Yorumlar = haber.Yorumlar;
+            context.Entry(h).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+        }
     }
 }

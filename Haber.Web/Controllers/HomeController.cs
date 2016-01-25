@@ -65,6 +65,9 @@ namespace Haber.Web.Controllers
             }
 
         }
+
+        
+
         public ActionResult HaberDetay(int? id)
         {
             ViewbagListesi();
@@ -111,6 +114,19 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [HttpPost]
+        public ActionResult HaberDetay(string txtYorum,int id)
+        {
+            HaberCl haber = haberhelper.HaberGetir(id);
+            Yorum yorum = new Yorum();
+            yorum.YorumDurumu = false;
+            yorum.YorumIcerik = txtYorum;
+            yorum.YorumYazari = "Misafir";
+            yorum.YorumYazmaTarihi = DateTime.Now;
+            haberhelper.HabereYorumEkle(haber, yorum);
+            return RedirectToAction("HaberDetay");
+        }
+
         public ActionResult Etiket(string id)
         {
             ViewbagListesi();
