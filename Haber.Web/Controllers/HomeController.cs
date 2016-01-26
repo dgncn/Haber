@@ -175,5 +175,10 @@ namespace Haber.Web.Controllers
             var EtiketHaberListesi = hbrList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
             return View(EtiketHaberListesi);
         }
+
+        public ActionResult Hakkinda()
+        {
+            return View();
+        }
     }
 }

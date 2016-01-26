@@ -731,55 +731,22 @@
                     @{
                         foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
                         {
-                                <li>
-                                    <div class="media wow fadeInDown">
-                                        <a href="#" class="media-left">
-                                            <span>@yorum.YorumYazari - @yorum.YorumYazmaTarihi</span>
-                                        </a>
-                                        <div class="media-body">
-                                            <a href="~/Home/HaberDetay/@yorum.YorumHaberi.HaberID#yorumlar" class="catg_title">@yorum.YorumIcerik</a>
-                                        </div>
+                            <li>
+                                <div class="media wow fadeInDown">
+                                    <a href="#" class="media-left">
+                                        <span>@yorum.YorumYazari - @yorum.YorumYazmaTarihi</span>
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="~/Home/HaberDetay/@yorum.YorumHaberi.HaberID#yorumlar" class="catg_title">@yorum.YorumIcerik</a>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
                         }
                     }
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="#" class="media-left">
-                                <img alt="img" src="img/post_img2.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                            </div>
-                        </div>
-                    </li>
-</ul>
+                </ul>
             </div>
         </div>
     </div>
-    <!-- End tab section -->
-    <!-- Category Archive -->
-    <div class="single_sidebar wow fadeInDown">
-        <h2><span>Kategori ARSIVI</span></h2>
-        <select class="catgArchive">
-            <option>Seçiniz</option>
-            <option>Yaşam</option>
-            <option>Spor</option>
-            <option>Teknoloji</option>
-        </select>
-    </div>
-    <!-- End category Archive -->
-    <!-- sponsor add -->
-    <div class="single_sidebar wow fadeInDown">
-        <h2><span>LINKLER</span></h2>
-        <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Rss</a></li>
-            <li><a href="#">Giriş</a></li>
-            <li><a href="#">Yaşam</a></li>
-        </ul>
-    </div>
-    <!-- End sponsor add -->
 }
 
 

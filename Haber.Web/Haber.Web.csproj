@@ -1167,6 +1167,9 @@
     <Content Include="Views\Home\Kategori.cshtml" />
     <Content Include="Views\Home\HaberDetay.cshtml" />
     <Content Include="Views\Home\Etiket.cshtml" />
+    <Content Include="Views\Dashboard\HakkindaListele.cshtml" />
+    <Content Include="Views\Dashboard\HakkindaEkle.cshtml" />
+    <Content Include="Views\Dashboard\HakkindaDuzenleme.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

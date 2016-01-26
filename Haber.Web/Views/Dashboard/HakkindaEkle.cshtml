@@ -1,0 +1,31 @@
+﻿@model Haber.COM.Hakkimizda
+@using Haber.COM;
+@{
+    ViewBag.Title = "Hakkinda Ekle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Hakkinda Ekle</h2>
+
+@using (Html.BeginForm("HakkindaEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <thead>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HakBaslik)</td>
+                <td>@Html.TextBoxFor(x => x.HakBaslik)</td>
+            </tr>
+            <tr>
+
+                <td>@Html.LabelFor(x => x.HakIcerik)</td>
+                <td>@Html.TextBoxFor(x => x.HakIcerik)</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnHakEkle" value="Kaydet" /></td>
+            </tr>
+        </thead>
+    </table>
+}

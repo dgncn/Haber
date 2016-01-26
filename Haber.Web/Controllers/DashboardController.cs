@@ -21,6 +21,7 @@ namespace Haber.Web.Controllers
         EtiketHelper etikethelper = new EtiketHelper(context);
         YorumHelper yorumhelper = new YorumHelper(context);
         ResimHelper resimhelper = new ResimHelper(context);
+        HakkindaHelper hakkindahelper = new HakkindaHelper(context);
         static List<Etiket> yenietiketListesi = new List<Etiket>();
         // GET: Dashboard
         public ActionResult Index()
@@ -845,6 +846,90 @@ namespace Haber.Web.Controllers
                     return RedirectToAction("EtiketHaberleri");
                 }
             }
+
+        }
+
+        public ActionResult HakkindaListele()
+        {
+            var result = hakkindahelper.TumHakkindaListesi();
+            return View(result);
+        }
+        //public ActionResult HakkindaDuzenle(int id)
+        //{
+        //    var hakkinda = hakkindahelper.HakkindaGetir(id);
+        //    return View(hakkinda);
+        //}
+        public ActionResult HakkindaEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HakkindaEkle(Hakkimizda hak)
+        {
+
+            hak.HakEklenmeTarihi = DateTime.Now;
+            hakkindahelper.HakkindaEkle(hak);
+            return RedirectToAction("HakkindaListele");
+            
+        }
+        public ActionResult HakkindaDuzenleme(int? id)
+        {
+            
+            bool bosMu = string.IsNullOrEmpty(id.ToString());
+            if (bosMu)
+            {
+                return RedirectToAction("HakkindaListele");
+            }
+            else
+            {
+                var result = (from p in context.Hakkimizda
+                              where p.HakID == id
+                              select p).FirstOrDefault();
+                if (result != null)
+                {
+                    var hak= hakkindahelper.HakkindaGetir(id);
+                   
+                    return View(hak);
+                }
+                else
+                {
+                    return RedirectToAction("HakkindaListele");
+                }
+
+            }
+
+        }
+        [HttpPost]
+        public ActionResult HakkindaDuzenleme(Hakkimizda hakkinda)
+        {
+
+            
+            var hak = hakkindahelper.HakkindaGetir(hakkinda.HakID);
+            //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
+
+            hak.HakBaslik = hakkinda.HakBaslik;
+            hak.HakIcerik = hakkinda.HakIcerik;
+            hak.HakEklenmeTarihi = hakkinda.HakEklenmeTarihi;
+            context.Entry(hak).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            
+            return RedirectToAction("HakkindaListele");
+        }
+
+        public ActionResult HakkindaSil(int? id)
+        {
+            if (id==null || id==0)
+            {
+                return View("HakkindaListele");
+            }
+            else
+            {
+                var h = hakkindahelper.HakkindaGetir(id);
+                hakkindahelper.HakkindaSil(h);
+                return RedirectToAction("HakkindaListele");
+            }
+            
 
         }
 

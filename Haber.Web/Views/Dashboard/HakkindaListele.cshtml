@@ -1,0 +1,48 @@
+﻿@model List<Hakkimizda>
+@using Haber.COM;
+@{
+    ViewBag.Title = "Hakkinda Listeleme Sayfası";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Hakkinda Listeleme Sayfası</h2>
+
+
+@Html.ActionLink("Yeni Kayıt Ekle", "HakkindaEkle")
+
+<h2 class="text-info">Hakkında Listesi</h2>
+
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].HakID)</td>
+            <td>@Html.LabelFor(x => x[0].HakBaslik)</td>
+            <td>@Html.LabelFor(x => x[0].HakIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].HakEklenmeTarihi)</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var hakkinda in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(hakkinda.HakID.ToString(), "HakkindaDuzenleme", new { id = hakkinda.HakID })</td>
+                <td>@hakkinda.HakBaslik</td>
+                <td>@hakkinda.HakIcerik</td>
+                <td>@hakkinda.HakEklenmeTarihi</td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "HakkindaDuzenleme", new { id = hakkinda.HakID })
+                    </div>
+                </td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "HakkindaSil", new { id = hakkinda.HakID })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

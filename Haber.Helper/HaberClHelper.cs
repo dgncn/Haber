@@ -33,18 +33,6 @@ namespace Haber.Helper
 
             return context.SaveChanges();
 
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    context.Haberler.Attach(haber);
-            //    context.Entry(haber).Property(x => x.HaberEtiketleri).IsModified = true;
-            //    return context.SaveChanges();
-
-            //}
-
         }
         public List<HaberCl> EtiketeGoreHaberler(int? etiketID)
         {
@@ -81,29 +69,7 @@ namespace Haber.Helper
             return result;
 
         }
-        //public List<HaberCl> EtiketeGoreHaberler(string etiketAdi)
-        //{
-        //    List<HaberCl> etikethaberListesi = new List<HaberCl>();
-        //    var result = context.Etiketler.Where(x => x.EtiketAdi == etiketAdi).ToList();
-        //    foreach (var etiket in result)
-        //    {
-        //        foreach (var haber in etiket.EtiketHaberleri)
-        //        {
-        //            etikethaberListesi.Add(haber);
-        //        }
-               
 
-        //    }
-        //    return etikethaberListesi;
-        //}
-
-        //public void HaberAttach(HaberCl haber)
-        //{
-        //    context.Haberler.Attach(haber);
-        //    HaberCl h= context.Entry(haber).s;
-        //    context.Entry(haber).Property(x => x.HaberEtiketleri[0]).IsModified = true;
-        //    context.SaveChanges();
-        //}
 
         public HaberCl HaberGetir(int? id)
         {

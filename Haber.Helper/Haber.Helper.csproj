@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="EtiketHelper.cs" />
     <Compile Include="HaberClHelper.cs" />
+    <Compile Include="HakkindaHelper.cs" />
     <Compile Include="KategoriHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResimHelper.cs" />
