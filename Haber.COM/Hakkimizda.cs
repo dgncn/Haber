@@ -22,5 +22,8 @@ namespace Haber.COM
         [Required]
         [Display(Name ="Hakkımızda İçerik Eklenme Tarihi")]
         public DateTime HakEklenmeTarihi { get; set; }
+        [Required]
+        [Display(Name ="Hakkımızda Aktiflik Durumu")]
+        public bool HakAktiflik { get; set; }
     }
 }

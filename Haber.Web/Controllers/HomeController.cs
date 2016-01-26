@@ -16,6 +16,7 @@ namespace Haber.Web.Controllers
         ResimHelper resimhelper = new ResimHelper();
         EtiketHelper etikethelper = new EtiketHelper();
         YazarHelper yazarhelper = new YazarHelper();
+        HakkindaHelper hakkindahelper = new HakkindaHelper();
         // GET: Home
         public void ViewbagListesi()
         {
@@ -176,9 +177,13 @@ namespace Haber.Web.Controllers
             return View(EtiketHaberListesi);
         }
 
-        public ActionResult Hakkinda()
+        public ActionResult Hakkimizda()
         {
-            return View();
+            var result = hakkindahelper.TumHakkindaListesi();
+            var hakkinda = (from p in result
+                            where p.HakAktiflik == true
+                            select p).SingleOrDefault();
+            return View(hakkinda);
         }
     }
 }
