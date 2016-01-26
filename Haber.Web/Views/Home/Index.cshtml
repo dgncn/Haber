@@ -728,16 +728,21 @@
 
             <div role="tabpanel" class="tab-pane active" id="comments">
                 <ul class="spost_nav">
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="#" class="media-left">
-                                <img alt="img" src="img/post_img1.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                            </div>
-                        </div>
-                    </li>
+                    @{
+                        foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
+                        {
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="#" class="media-left">
+                                            <span>@yorum.YorumYazari - @yorum.YorumYazmaTarihi</span>
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="~/Home/HaberDetay/@yorum.YorumHaberi.HaberID#yorumlar" class="catg_title">@yorum.YorumIcerik</a>
+                                        </div>
+                                    </div>
+                                </li>
+                        }
+                    }
                     <li>
                         <div class="media wow fadeInDown">
                             <a href="#" class="media-left">
@@ -748,7 +753,7 @@
                             </div>
                         </div>
                     </li>
-                </ul>
+</ul>
             </div>
         </div>
     </div>

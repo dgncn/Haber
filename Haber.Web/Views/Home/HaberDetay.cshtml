@@ -83,32 +83,38 @@
                 }
             </ul>
         </div>
-        @{
-            foreach (var yorum in Model.Yorumlar)
+        <div class="related_post2">
+            <h2>Yorum Yap</h2>
+            
+            @using (Html.BeginForm())
             {
-                <div class="col-lg-8 col-md-8 col-sm-8" style="display: inline;float: left;margin-top: 0px;width: 100%;margin-bottom: 20px; ">
-                    <div class="col-lg-4 col-md-4 col-sm-4" style="height:100px; background-color:#bababa">
+                <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" />
+                int id = Model.HaberID;
+
+                <textarea class="form-control" name="txtYorum" id="txtYorum"></textarea>
+                    <input type="submit" class="btn btn-default" name="txtYorumGonder" value="Yorum Ekle" />
+            }
+        </div>
+
+        @{
+                var result = Model.Yorumlar;
+                var result2 = (from p in result
+                               orderby p.YorumYazmaTarihi descending
+                               select p).ToList();
+                foreach (var yorum in result2)
+                {
+                <div id="yorumlar" class="col-lg-8 col-md-8 col-sm-8 container" style="display: inline;float: left;margin-top: 0px;width: 100%;margin-bottom: 20px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 container" style="height:100px; background-color:#bababa">
                         @yorum.YorumYazari
                     </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8" style="height:100px;background-color:#676767">
+                    <div class="col-lg-8 col-md-8 col-sm-8 container" style="height:100px;background-color:#676767">
                         @yorum.YorumIcerik
                     </div>
                 </div>
             }
 
         }
-        <div class="related_post2">
-            <h2>Yorum Yap</h2>
-            <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" />
-            @using (Html.BeginForm())
-            {
-                
-                int id = Model.HaberID;
-
-                    <textarea class="form-control" name="txtYorum" id="txtYorum"></textarea>
-                    <input type="submit" class="btn btn-default"  name="txtYorumGonder" value="Yorum Ekle" />
-            }
-        </div>
+        
 
 
 

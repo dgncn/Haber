@@ -31,6 +31,11 @@ namespace Haber.Web.Controllers
                                   select p).Take(6).ToList();
             ViewBag.enCokOkunanlarListesi = enCokOkunanlar;
             var etiketListe = (List<Etiket>)ViewBag.etiketler;
+            var yorumListe = (List<Yorum>)ViewBag.yorumlar;
+            var yorumListe2 = (from p in yorumListe
+                               orderby p.YorumYazmaTarihi descending
+                               select p).ToList();
+            ViewBag.yorumListe2 = yorumListe2;
             var resultOriginal = from p in etiketListe
                                  group p by new { id = p.EtiketAdi } into ctg
                                  select new EtiketSonuc { EtiketSonucAdi = ctg.Key.id, EticketSonucSayisi = ctg.Count() };
@@ -115,13 +120,17 @@ namespace Haber.Web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult HaberDetay(string txtYorum,int id)
+        public ActionResult HaberDetay(string txtYorum,int id,string txtName)
         {
+            if (txtName==null)
+            {
+                txtName = "Misafir";
+            }
             HaberCl haber = haberhelper.HaberGetir(id);
             Yorum yorum = new Yorum();
             yorum.YorumDurumu = false;
             yorum.YorumIcerik = txtYorum;
-            yorum.YorumYazari = "Misafir";
+            yorum.YorumYazari = txtName;
             yorum.YorumYazmaTarihi = DateTime.Now;
             haberhelper.HabereYorumEkle(haber, yorum);
             return RedirectToAction("HaberDetay");
