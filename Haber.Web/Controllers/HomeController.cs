@@ -179,6 +179,10 @@ namespace Haber.Web.Controllers
 
         public ActionResult Hakkimizda()
         {
+            ViewbagListesi();
+            var haberList = (List<HaberCl>)ViewBag.haberler;
+            var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
+            ViewBag.haberSonList = haberList;
             var result = hakkindahelper.TumHakkindaListesi();
             var hakkinda = (from p in result
                             where p.HakAktiflik == true

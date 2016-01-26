@@ -9,9 +9,9 @@
 @section haberDetay{
     <div class="single_page">
         <ol class="breadcrumb">
-            <li>@Html.ActionLink("Anasayfa","Index","Home")</li>
-            <li>@Html.ActionLink(Model.HaberKategori.KategoriAdi,"Kategori",new { id = Model.HaberKategori.KategoriID })</li>
-            <li class="active">@Html.ActionLink(Model.HaberBaslik,"HaberDetay",new { id = Model.HaberID })</li>
+            <li>@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+            <li>@Html.ActionLink(Model.HaberKategori.KategoriAdi, "Kategori", new { id = Model.HaberKategori.KategoriID })</li>
+            <li class="active">@Html.ActionLink(Model.HaberBaslik, "HaberDetay", new { id = Model.HaberID })</li>
         </ol>
         <h1>@Model.HaberBaslik</h1>
         <div class="post_commentbox">
@@ -92,62 +92,82 @@
                 int id = Model.HaberID;
 
                 <textarea class="form-control" name="txtYorum" id="txtYorum"></textarea>
-                    <input type="submit" class="btn btn-default" name="txtYorumGonder" value="Yorum Ekle" />
+                    <input type="submit" class="btn btn-primary" name="txtYorumGonder" value="Yorum Ekle" />
             }
         </div>
 
         @{
-                var result = Model.Yorumlar;
-                var result2 = (from p in result
-                               orderby p.YorumYazmaTarihi descending
-                               select p).ToList();
-                foreach (var yorum in result2)
-                {
-                <div id="yorumlar" class="col-lg-8 col-md-8 col-sm-8 container" style="display: inline;float: left;margin-top: 0px;width: 100%;margin-bottom: 20px;">
-                    <div class="col-lg-4 col-md-4 col-sm-4 container" style="height:100px; background-color:#bababa">
-                        @yorum.YorumYazari
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8 container" style="height:100px;background-color:#676767">
-                        @yorum.YorumIcerik
-                    </div>
-                </div>
-            }
+            var result = Model.Yorumlar;
+            var result2 = (from p in result
+                           orderby p.YorumYazmaTarihi descending
+                           select p).ToList();
 
+            
+                <style>
+                    .thumbnail {
+                        padding: 0px;
+                    }
+
+                    .panel {
+                        position: relative;
+                    }
+
+                        .panel > .panel-heading:after, .panel > .panel-heading:before {
+                            position: absolute;
+                            top: 11px;
+                            left: -16px;
+                            right: 100%;
+                            width: 0;
+                            height: 0;
+                            display: block;
+                            content: " ";
+                            border-color: transparent;
+                            border-style: solid solid outset;
+                            pointer-events: none;
+                        }
+
+                        .panel > .panel-heading:after {
+                            border-width: 7px;
+                            border-right-color: #f7f7f7;
+                            margin-top: 1px;
+                            margin-left: 2px;
+                        }
+
+                        .panel > .panel-heading:before {
+                            border-right-color: #ddd;
+                            border-width: 8px;
+                        }
+                </style>
+
+
+                <div class="container">
+                    <div class="row">
+                        <!-- /col-sm-12 -->
+                    </div><!-- /row -->
+                    <div class="row">
+
+                        @foreach (var yorum in result2)
+                        {
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                <div class="thumbnail">
+                                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                </div><!-- /thumbnail -->
+                            </div><!-- /col-sm-1 -->
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <strong>@yorum.YorumYazari</strong> <span class="text-muted">@yorum.YorumYazmaTarihi.ToShortDateString() - @yorum.YorumYazmaTarihi.ToShortTimeString()</span>
+                                    </div>
+                                    <div class="panel-body">
+                                        @yorum.YorumIcerik
+                                    </div><!-- /panel-body -->
+                                </div><!-- /panel panel-default -->
+                            </div><!-- /col-sm-5 -->
+                        }
+                    </div><!-- /container -->
+                </div>
         }
         
-
-
-
-
-
-        @*
-    <!-- #region DISQUS -->
-
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-         */
-        /*
-        var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function () {  // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-
-            s.src = '//dgncn.disqus.com/embed.js';
-
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-    <div style="width:auto;height:100px"></div>
-    <!-- #endregion -->
-        *@
 </div>
 
 }

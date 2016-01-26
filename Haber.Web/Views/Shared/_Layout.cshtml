@@ -83,7 +83,7 @@
                         <div class="header_top_left">
                             <ul class="top_nav">
                                 <li>@Html.ActionLink("Anasayfa","Index","Home")</li>
-                                <li><a href="#">Hakkında</a></li>
+                                <li>@Html.ActionLink("Hakkımızda", "Hakkimizda","Home")</li>
                                 <li><a href="#">ILETISIM</a></li>
                                 <li>@Html.ActionLink("Yönetim Paneli","Index","Dashboard")</li>
                             </ul>
@@ -149,6 +149,7 @@
         <!-- start slider section -->
         <section id="sliderSection">
             <div class="row">
+                @RenderSection("hakkimizda", required: false)
                 @RenderSection("slider", required: false)
                 @RenderSection("SonGonderilen", required: false)
 

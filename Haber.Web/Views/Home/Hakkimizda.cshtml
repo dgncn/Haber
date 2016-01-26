@@ -4,6 +4,118 @@
     ViewBag.Title = "Hakkimizda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section hakkimizda{
 
-<h2>Hakkimizda</h2>
+    <h2>Hakkımızda</h2>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h3>@Model.HakBaslik</h3>
 
+        <div>
+            <p>
+                @Model.HakIcerik
+            </p>
+        </div>
+    </div>
+}
+
+@section kategori{
+    @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
+    {
+        <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
+    }
+
+}
+@section sonHaberlerkucuk{
+    <div class="latest_newsarea">
+        <span>Son Haberler</span>
+        <ul id="ticker01" class="news_sticker">
+            @foreach (var haber in (List<HaberCl>)ViewBag.haberSonList)
+            {
+                if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                {
+                    <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
+                }
+                else
+                {
+                    if (haber.HaberResimleri.Count > 0)
+                    {
+
+                        <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                    }
+                }
+
+
+            }
+
+
+
+        </ul>
+        <div class="social_area">
+            <ul class="social_nav">
+                <li class="facebook"><a href="#"></a></li>
+                <li class="twitter"><a href="#"></a></li>
+                <li class="flickr"><a href="#"></a></li>
+                <li class="pinterest"><a href="#"></a></li>
+                <li class="googleplus"><a href="#"></a></li>
+                <li class="vimeo"><a href="#"></a></li>
+                <li class="youtube"><a href="#"></a></li>
+                <li class="mail"><a href="mailto#:info@smartnews.com"></a></li>
+            </ul>
+        </div>
+    </div>
+}
+
+@section FooterEtiketleri{
+
+    @{
+        foreach (var etiket in (IEnumerable<EtiketSonuc>)ViewBag.etiketResult2)
+        {
+            int a = etiket.EticketSonucSayisi;
+            string buyukluk = "";
+            if (a == 1)
+            {
+                buyukluk = "cokdusuk";
+            }
+            else if (a >= 2 && a <= 4)
+            {
+                buyukluk = "dusuk";
+            }
+            else if (a > 4 && a <= 7)
+            {
+                buyukluk = "orta";
+            }
+            else if (a > 7 && a <= 10)
+            {
+                buyukluk = "buyuk";
+            }
+            else
+            {
+                buyukluk = "cokbuyuk";
+            }
+            switch (buyukluk)
+            {
+
+                case "cokdusuk":
+                    <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
+                case "dusuk":
+                    <li style="font-size:22px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
+                case "orta":
+                    <li style="font-size:28px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
+                case "buyuk":
+                    <li style="font-size:34px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
+                case "cokbuyuk":
+                    <li style="font-size:40px; display:inline"><b>@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</b></li>
+                    break;
+                default:
+                    <li style="font-size:16px; display:inline">@Html.ActionLink(etiket.EtiketSonucAdi, "Etiket", new { id = etiket.EtiketSonucAdi })</li>
+                    break;
+            }
+        }
+    }
+
+
+}

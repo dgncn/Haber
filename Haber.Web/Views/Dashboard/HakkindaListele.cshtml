@@ -19,6 +19,7 @@
             <td>@Html.LabelFor(x => x[0].HakID)</td>
             <td>@Html.LabelFor(x => x[0].HakBaslik)</td>
             <td>@Html.LabelFor(x => x[0].HakIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].HakAktiflik)</td>
             <td>@Html.LabelFor(x => x[0].HakEklenmeTarihi)</td>
             <td></td>
         </tr>
@@ -31,6 +32,17 @@
                 <td>@Html.ActionLink(hakkinda.HakID.ToString(), "HakkindaDuzenleme", new { id = hakkinda.HakID })</td>
                 <td>@hakkinda.HakBaslik</td>
                 <td>@hakkinda.HakIcerik</td>
+                <td>
+                    @if (hakkinda.HakAktiflik)
+
+                    {
+                        <input type="checkbox" name="chkHakAktif" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="chkHakAktif" />
+                    }
+                </td>
                 <td>@hakkinda.HakEklenmeTarihi</td>
                 <td>
                     <div class="btn btn-default">
