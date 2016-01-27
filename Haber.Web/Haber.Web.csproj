@@ -1171,6 +1171,10 @@
     <Content Include="Views\Dashboard\HakkindaEkle.cshtml" />
     <Content Include="Views\Dashboard\HakkindaDuzenleme.cshtml" />
     <Content Include="Views\Home\Hakkimizda.cshtml" />
+    <Content Include="Views\Home\Iletisim.cshtml" />
+    <Content Include="Views\Dashboard\IletisimListele.cshtml" />
+    <Content Include="Views\Dashboard\IletisimEkle.cshtml" />
+    <Content Include="Views\Dashboard\IletisimDuzenleme.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -62,7 +62,7 @@
 
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>Kullanıcı Adı</p>
                         <a href="##"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -81,11 +81,11 @@
                     <li class="header">Navigasyon</li>
                     <li class="active treeview">
                         <a href="##">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-dashboard"></i> <span>Yönetim</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="##"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li class="active"><a href="#index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-circle-o"></i> Anasayfa</a></li>
+                            <li class="active"><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-circle-o"></i> Yönetim Paneli</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -165,7 +165,18 @@
                         <ul class="treeview-menu">
                             <li><a href="~/Dashboard/HakkindaEkle"><i class="fa fa-circle-o"></i> Hakkımızda Ekle</a></li>
                             <li><a href="~/Dashboard/HakkindaListele"><i class="fa fa-circle-o"></i> Hakkımızda Listele</a></li>
-                            <li><a href="~/Dashboard/HakkindaDuzenleme"><i class="fa fa-circle-o"></i> Hakkımızda Düzenle</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="##">
+                            <i class="fa fa-table"></i>
+                            <span>İletişim</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="~/Dashboard/IletisimEkle"><i class="fa fa-circle-o"></i> İletişim Ekle</a></li>
+                            <li><a href="~/Dashboard/IletisimListele"><i class="fa fa-circle-o"></i> İletişim Listele</a></li>
                         </ul>
                     </li>
 

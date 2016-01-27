@@ -52,13 +52,13 @@ namespace Haber.Web.Controllers
 
             ViewbagListesi();
 
-            
+
             return View(haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList());
         }
         public ActionResult Kategori(int? id)
         {
             ViewbagListesi();
-            
+
             if (id == null)
             {
                 var result1 = haberhelper.KategoriyeGoreHaberler(10);
@@ -72,20 +72,20 @@ namespace Haber.Web.Controllers
 
         }
 
-        
+
 
         public ActionResult HaberDetay(int? id)
         {
             ViewbagListesi();
 
 
-            
+
 
             var haberListesi = (List<HaberCl>)ViewBag.haberler;
             var HaberVarMi = (from p in haberListesi
-                          where p.HaberID == id
-                          select p).FirstOrDefault();
-            
+                              where p.HaberID == id
+                              select p).FirstOrDefault();
+
             if (HaberVarMi != null)
             {
                 if (id == null)
@@ -97,7 +97,7 @@ namespace Haber.Web.Controllers
                     List<HaberCl> benzerHaberListesi = new List<HaberCl>();
                     foreach (var etiket in HaberVarMi.HaberEtiketleri)
                     {
-                        List<HaberCl> benzerhbrListesi = haberhelper.BenzerHaberleriGetir(etiket.EtiketAdi,HaberVarMi);
+                        List<HaberCl> benzerhbrListesi = haberhelper.BenzerHaberleriGetir(etiket.EtiketAdi, HaberVarMi);
                         if (benzerhbrListesi != null && benzerhbrListesi.Count > 0)
                         {
 
@@ -111,7 +111,7 @@ namespace Haber.Web.Controllers
 
                     ViewBag.benzerhaberler = benzerHaberListesi;
                     var haber = haberhelper.HaberGetir(id);
-                    
+
                     return View(haber);
                 }
             }
@@ -121,9 +121,9 @@ namespace Haber.Web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult HaberDetay(string txtYorum,int id,string txtName)
+        public ActionResult HaberDetay(string txtYorum, int id, string txtName)
         {
-            if (txtName==null)
+            if (txtName == null)
             {
                 txtName = "Misafir";
             }
@@ -142,31 +142,31 @@ namespace Haber.Web.Controllers
             ViewbagListesi();
             var etiketList = (List<Etiket>)ViewBag.etiketler;
             var etiketVarMi = (from p in etiketList
-                              where p.EtiketAdi == id
-                              select p).FirstOrDefault();
+                               where p.EtiketAdi == id
+                               select p).FirstOrDefault();
             var etiketListesi = (from p in etiketList
                                  where p.EtiketAdi == id
                                  select p).ToList();
             List<HaberCl> hbrList = new List<HaberCl>();
             if (etiketVarMi != null)
             {
-                if (id == null || id=="")
+                if (id == null || id == "")
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    
+
                     foreach (var etiket in etiketListesi)
                     {
                         var haberListe = haberhelper.EtiketeGoreHaberler(etiket.EtiketID);
-                        if (haberListe!=null && haberListe.Count>0)
+                        if (haberListe != null && haberListe.Count > 0)
                         {
 
                             hbrList.AddRange(haberListe);
                         }
                     }
-                    
+
                 }
             }
             else
@@ -186,8 +186,30 @@ namespace Haber.Web.Controllers
             var result = hakkindahelper.TumHakkindaListesi();
             var hakkinda = (from p in result
                             where p.HakAktiflik == true
-                            select p).SingleOrDefault();
-            return View(hakkinda);
+                            select p).ToList();
+            if (hakkinda.Count > 1)
+            {
+                var hak = hakkinda[0];
+                return View(hak);
+            }
+            else
+            {
+                if (hakkinda == null || hakkinda.Count==0)
+                {
+                    var n = new Hakkimizda { HakBaslik = "", HakIcerik = "", HakEklenmeTarihi = DateTime.Now, HakAktiflik = false };
+                    return View(n);
+                }
+                else
+                {
+                    var hak = hakkinda[0];
+                    return View(hak);
+                }
+            }
+        }
+
+        public ActionResult Iletisim()
+        {
+            return View();
         }
     }
 }

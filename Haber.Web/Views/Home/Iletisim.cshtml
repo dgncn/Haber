@@ -1,0 +1,50 @@
+﻿@model Iletisim
+@using Haber.COM;
+    @{
+        ViewBag.Title = "Iletisim";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Iletisim</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+        </div>
+        <form role="form" action="" method="post">
+            <div class="col-lg-6">
+                <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Doldurulması gereken alanlar</strong></div>
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.IltAdSoyad)
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Ad Soyad" required>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.email)
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Eposta adresi" required>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.IltIcerik)
+                    <div class="input-group">
+                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deger">4+3?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="deger" id="deger" required>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
+                    </div>
+                </div>
+                <input type="submit" name="submit" id="btnIltEkle" value="Submit" class="btn btn-info pull-right">
+            </div>
+        </form>
+        <hr class="featurette-divider hidden-lg">
+    </div>

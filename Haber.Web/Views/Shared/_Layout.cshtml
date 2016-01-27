@@ -149,15 +149,16 @@
         <!-- start slider section -->
         <section id="sliderSection">
             <div class="row">
-                @RenderSection("hakkimizda", required: false)
+                
                 @RenderSection("slider", required: false)
                 @RenderSection("SonGonderilen", required: false)
 
                 <section id="contentSection">
                     <div class="row">
+                        
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="left_content">
-
+                                @RenderSection("hakkimizda", required: false)
                                 @RenderSection("Gundem", required: false)
 
                                 <!-- start 2 style category design -->

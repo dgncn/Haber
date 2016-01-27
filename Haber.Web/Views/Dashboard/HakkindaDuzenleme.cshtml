@@ -23,7 +23,10 @@
             <td>@Html.LabelFor(x => x.HakIcerik)</td>
             <td><input type="text" name="hakIcerik" value="@Model.HakIcerik" /></td>
         </tr>
-
+        <tr>
+            <td>@Html.LabelFor(x=>x.HakAktiflik)</td>
+            <td>@Html.CheckBoxFor(x=>x.HakAktiflik,new { @checked = "checked" })</td>
+        </tr>
         
         <tr>
             <td>@Html.LabelFor(x => x.HakEklenmeTarihi)</td>

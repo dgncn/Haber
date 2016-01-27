@@ -727,24 +727,24 @@
                 
                 
         <!-- Container, Row, and Column used for illustration purposes -->
-        
+        <style>
+            .deneme2{ margin-top:0px;}
+        </style>
                     <!-- Fluid width widget -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <span class="glyphicon glyphicon-comment"></span>
-                                Recent Comments
+                               Son Yorumlar
                             </h3>
                         </div>
                         <div class="panel-body">
                             <ul class="media-list">
                                 @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
                                 {
-                                        <li class="media">
+                                        <li class="media deneme2">
                                             <div class="media-left">
-                                                <img src="http://placehold.it/60x60" class="img-circle">
                                             </div>
-                                            <div class="media-body" style="width:100%;"> 
+                                            <div class="media-body" style="width:100%;margin-bottom:3px;"> 
                                                 <h4 class="media-heading">
                                                     @yorum.YorumYazari
                                                     @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;

@@ -1,0 +1,52 @@
+﻿@model List<Iletisim>
+@using Haber.COM;
+@{
+    ViewBag.Title = "IletisimListele";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>IletisimListele</h2>
+
+@Html.ActionLink("Yeni Kayıt Ekle", "IletisimEkle")
+
+<h2 class="text-info">İletişim Listesi</h2>
+
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(x => x[0].IletisimID)</td>
+            <td>@Html.LabelFor(x => x[0].IltAdSoyad)</td>
+            <td>@Html.LabelFor(x => x[0].email)</td>
+            <td>@Html.LabelFor(x => x[0].IltGondermeTarihi)</td>
+            <td>@Html.LabelFor(x => x[0].IltIcerik)</td>
+            <td>@Html.LabelFor(x => x[0].IltKonu)</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var iletisim in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(iletisim.IletisimID.ToString(), "IletisimDuzenleme", new { id = iletisim.IletisimID })</td>
+                <td>@iletisim.IltAdSoyad</td>
+                <td>@iletisim.email</td>
+                <td>@iletisim.IltGondermeTarihi</td>
+                <td>@iletisim.IltIcerik</td>
+                <td>@iletisim.IltKonu</td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Düzenle", "IletisimDuzenleme", new { id = iletisim.IletisimID })
+                    </div>
+                </td>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Sil", "IletisimSil", new { id = iletisim.IletisimID })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

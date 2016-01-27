@@ -53,6 +53,7 @@
     <Compile Include="Etiket.cs" />
     <Compile Include="HaberCl.cs" />
     <Compile Include="Hakkimizda.cs" />
+    <Compile Include="Iletisim.cs" />
     <Compile Include="Kategori.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resim.cs" />

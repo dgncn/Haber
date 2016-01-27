@@ -1,0 +1,39 @@
+﻿@model Iletisim
+@using Haber.COM;
+    @{
+        ViewBag.Title = "IletisimEkle";
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+
+    <h2>Iletisim Ekle</h2>
+
+
+    @using (Html.BeginForm("IletisimEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table>
+            <thead>
+                <tr>
+
+                    <td>@Html.LabelFor(x => x.IltAdSoyad)</td>
+                    <td>@Html.TextBoxFor(x => x.IltAdSoyad)</td>
+                </tr>
+                <tr>
+
+                    <td>@Html.LabelFor(x => x.email)</td>
+                    <td>@Html.TextBoxFor(x => x.email)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.IltIcerik)</td>
+                    <td>@Html.TextBoxFor(x => x.IltIcerik)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.IltKonu)</td>
+                    <td>@Html.TextBoxFor(x => x.IltKonu)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="btnHakEkle" value="Kaydet" /></td>
+                </tr>
+            </thead>
+        </table>
+    }

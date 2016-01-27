@@ -19,7 +19,7 @@
             <span><i class="fa fa-calendar"></i>@Model.HaberGirisTarihi</span>
             <a href="~/Home/Kategori/@Model.HaberKategori.KategoriID"><i class="fa fa-tags"></i>@Model.HaberKategori.KategoriAdi</a>
             <a href="#"><i class="fa fa-eye"></i>@Model.HaberOkunmaSayisi</a>
-             <a href="~/Home/HaberDetay/@Model.HaberID#disqus_thread"><i class="fa fa-tags"></i>Yorumlar</a>
+             <a href="~/Home/HaberDetay/@Model.HaberID#yorumlar"><i class="fa fa-tags"></i>Yorumlar</a>
         </div>
         <div class="single_page_content">
             @if (Model.HaberResimleri == null || Model.HaberResimleri.Count == 0)
@@ -144,7 +144,7 @@
                     <div class="row">
                         <!-- /col-sm-12 -->
                     </div><!-- /row -->
-                    <div class="row">
+                    <div class="row" id="yorumlar">
 
                         @foreach (var yorum in result2)
                         {

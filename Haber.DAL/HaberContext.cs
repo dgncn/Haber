@@ -20,6 +20,7 @@ namespace Haber.DAL
         public DbSet<Yorum> Yorumlar { get; set; }
         public DbSet<Etiket> Etiketler { get; set; }
         public DbSet<Hakkimizda> Hakkimizda { get; set; }
+        public DbSet<Iletisim> Iletisim { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -22,6 +22,7 @@ namespace Haber.Web.Controllers
         YorumHelper yorumhelper = new YorumHelper(context);
         ResimHelper resimhelper = new ResimHelper(context);
         HakkindaHelper hakkindahelper = new HakkindaHelper(context);
+        IletisimHelper iletisimhelper = new IletisimHelper(context);
         static List<Etiket> yenietiketListesi = new List<Etiket>();
         // GET: Dashboard
         public ActionResult Index()
@@ -848,17 +849,13 @@ namespace Haber.Web.Controllers
             }
 
         }
-
+        #endregion
         public ActionResult HakkindaListele()
         {
             var result = hakkindahelper.TumHakkindaListesi();
             return View(result);
         }
-        //public ActionResult HakkindaDuzenle(int id)
-        //{
-        //    var hakkinda = hakkindahelper.HakkindaGetir(id);
-        //    return View(hakkinda);
-        //}
+       
         public ActionResult HakkindaEkle()
         {
             return View();
@@ -911,6 +908,7 @@ namespace Haber.Web.Controllers
             hak.HakBaslik = hakkinda.HakBaslik;
             hak.HakIcerik = hakkinda.HakIcerik;
             hak.HakEklenmeTarihi = hakkinda.HakEklenmeTarihi;
+            hak.HakAktiflik = hakkinda.HakAktiflik;
             context.Entry(hak).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
             
@@ -933,9 +931,88 @@ namespace Haber.Web.Controllers
 
         }
 
+        public ActionResult IletisimListele()
+        {
+            var result = iletisimhelper.TumIletisimListesi();
+            return View(result);
+        }
+        public ActionResult IletisimDuzenleme(int? id)
+        {
+            bool bosMu = string.IsNullOrEmpty(id.ToString());
+            if (bosMu)
+            {
+                return RedirectToAction("IletisimListele");
+            }
+            else
+            {
+                var result = (from p in context.Iletisim
+                              where p.IletisimID == id
+                              select p).FirstOrDefault();
+                if (result != null)
+                {
+                    var ilt = iletisimhelper.IletisimGetir(id);
+
+                    return View(ilt);
+                }
+                else
+                {
+                    return RedirectToAction("IletisimListele");
+                }
+
+            }
+
+        }
+        [HttpPost]
+        public ActionResult IletisimDuzenleme(Iletisim iletisim)
+        {
+            
+
+            var ilt = iletisimhelper.IletisimGetir(iletisim.IletisimID);
+            //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
+
+            ilt.IltAdSoyad = iletisim.IltAdSoyad;
+            ilt.email= iletisim.email;
+           // ilt.IltGondermeTarihi = iletisim.IltGondermeTarihi;
+            ilt.IltIcerik= iletisim.IltIcerik;
+            ilt.IltKonu = iletisim.IltKonu;
+            context.Entry(ilt).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+
+            return RedirectToAction("IletisimListele");
+        }
+        public ActionResult IletisimEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult IletisimEkle(Iletisim ile)
+        {
+
+            ile.IltGondermeTarihi = DateTime.Now;
+            iletisimhelper.IletisimEkle(ile);
+            return RedirectToAction("IletisimListele");
+
+        }
+
+        public ActionResult IletisimSil(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return View("IletisimListele");
+            }
+            else
+            {
+                var i = iletisimhelper.IletisimGetir(id);
+                iletisimhelper.IletisimSil(i);
+                return RedirectToAction("IletisimListele");
+            }
+
+
+        }
     }
 
 
-    #endregion
+    
 
 }
