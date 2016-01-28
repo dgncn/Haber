@@ -1175,6 +1175,7 @@
     <Content Include="Views\Dashboard\IletisimListele.cshtml" />
     <Content Include="Views\Dashboard\IletisimEkle.cshtml" />
     <Content Include="Views\Dashboard\IletisimDuzenleme.cshtml" />
+    <Content Include="Views\Home\IletisimTamamlandi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

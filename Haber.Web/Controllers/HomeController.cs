@@ -17,6 +17,7 @@ namespace Haber.Web.Controllers
         EtiketHelper etikethelper = new EtiketHelper();
         YazarHelper yazarhelper = new YazarHelper();
         HakkindaHelper hakkindahelper = new HakkindaHelper();
+        IletisimHelper iletisimhelper = new IletisimHelper();
         // GET: Home
         public void ViewbagListesi()
         {
@@ -209,6 +210,42 @@ namespace Haber.Web.Controllers
 
         public ActionResult Iletisim()
         {
+            ViewbagListesi();
+            var haberList = (List<HaberCl>)ViewBag.haberler;
+            var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
+            ViewBag.haberSonList = haberList;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Iletisim(Iletisim iletisim,int deger)
+        {
+            ViewbagListesi();
+            var haberList = (List<HaberCl>)ViewBag.haberler;
+            var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
+            ViewBag.haberSonList = haberList;
+            try
+            {
+                iletisim.IltGondermeTarihi = DateTime.Now;
+                if (deger==7)
+                {
+                    iletisimhelper.IletisimEkle(iletisim);
+                    ViewBag.mesaj = "Mesajınız başarıyla alındı. Teşekkürler, kısa zamanda sizinle iletişime geçeceğiz.";
+                }
+                else
+                {
+                    return RedirectToAction("Iletisim");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ViewBag.mesaj = "Bir hata gerçekleşti. Daha sonra lütfen tekrar deneyin.";
+            }
+            return View("IletisimTamamlandi");
+        }
+        public ActionResult IletisimTamamlandi()
+        {
+            ViewbagListesi();
             return View();
         }
     }

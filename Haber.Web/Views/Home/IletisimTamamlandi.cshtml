@@ -1,70 +1,19 @@
-﻿@model Iletisim
-@using Haber.COM;
+﻿@using Haber.COM;
 @{
-    ViewBag.Title = "İletisim";
+    ViewBag.Title = "IletisimTamamlandi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section iletisimForm{
+<h2>IletisimTamamlandi</h2>
+
+@section iletisimTamam{
     
-<h2>İletisim</h2>
-@using (Html.BeginForm("Iletisim", "Home", FormMethod.Post))
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            </div>
-        </div>
-        <form role="form" action="" method="post">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltAdSoyad)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.IltAdSoyad, new { @type = "text", @placeholder = "Ad Soyad", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.email)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.email, new { @type = "email", @placeholder = "Eposta", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltKonu)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.IltKonu, new { @type = "text", @placeholder = "Konu", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltIcerik)
-                    <div class="input-group">
-                        @Html.TextAreaFor(x => x.IltIcerik, new { @placeholder = "Mesajınız", @required = "required", @rows = "5", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="deger">4+3 = ?</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="deger" id="deger" required>
-
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <input type="submit" name="submit" id="btnIltEkle" value="Gönder" class="btn btn-info pull-right">
-            </div>
-        </form>
-        <hr class="featurette-divider hidden-lg">
-    </div>
-
-}
-
+@ViewBag.mesaj
     }
 
+
 @section kategori{
-    @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
+    @foreach (var kategori in (List<Kategori>)ViewBag.kategoriler)
     {
         <li><a href="~/Home/Kategori/@kategori.KategoriID">@kategori.KategoriAdi</a></li>
     }
