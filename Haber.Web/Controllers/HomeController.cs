@@ -183,7 +183,7 @@ namespace Haber.Web.Controllers
             ViewbagListesi();
             var haberList = (List<HaberCl>)ViewBag.haberler;
             var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
-            ViewBag.haberSonList = haberList;
+            ViewBag.haberSonList = haberSonList;
             var result = hakkindahelper.TumHakkindaListesi();
             var hakkinda = (from p in result
                             where p.HakAktiflik == true
@@ -213,7 +213,7 @@ namespace Haber.Web.Controllers
             ViewbagListesi();
             var haberList = (List<HaberCl>)ViewBag.haberler;
             var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
-            ViewBag.haberSonList = haberList;
+            ViewBag.haberSonList = haberSonList;
             return View();
         }
         [HttpPost]
@@ -222,7 +222,7 @@ namespace Haber.Web.Controllers
             ViewbagListesi();
             var haberList = (List<HaberCl>)ViewBag.haberler;
             var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
-            ViewBag.haberSonList = haberList;
+            ViewBag.haberSonList = haberSonList;
             try
             {
                 iletisim.IltGondermeTarihi = DateTime.Now;

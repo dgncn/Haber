@@ -88,10 +88,10 @@
             
             @using (Html.BeginForm())
             {
-                <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" />
+                <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" required />
                 int id = Model.HaberID;
 
-                <textarea class="form-control" name="txtYorum" id="txtYorum"></textarea>
+                <textarea class="form-control" name="txtYorum" id="txtYorum" placeholder="Yorumunuz" required></textarea>
                     <input type="submit" class="btn btn-primary" name="txtYorumGonder" value="Yorum Ekle" />
             }
         </div>
