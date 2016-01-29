@@ -11,6 +11,7 @@ namespace Haber.COM
     {
         public string Name { get; set; }
         public string SurName { get; set; }
+        public DateTime EklenmeTarihi { get; set; }
     }
     public class HaberRole: IdentityRole
     {

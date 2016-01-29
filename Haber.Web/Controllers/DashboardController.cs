@@ -12,7 +12,8 @@ using System.IO;
 
 namespace Haber.Web.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
+    [Authorize(Roles ="SuperAdmin")]
     public class DashboardController : Controller
     {
         static HaberContext context = new HaberContext();
@@ -851,6 +852,9 @@ namespace Haber.Web.Controllers
 
         }
         #endregion
+
+        #region Hakkında Sayfaları
+
         public ActionResult HakkindaListele()
         {
             var result = hakkindahelper.TumHakkindaListesi();
@@ -932,6 +936,11 @@ namespace Haber.Web.Controllers
 
         }
 
+        #endregion
+        
+        #region İletişim Sayfaları
+
+        
         public ActionResult IletisimListele()
         {
             var result = iletisimhelper.TumIletisimListesi();
@@ -1011,9 +1020,13 @@ namespace Haber.Web.Controllers
 
 
         }
+        #endregion
+
+
+
     }
 
 
-    
+
 
 }

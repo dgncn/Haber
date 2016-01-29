@@ -22,6 +22,42 @@ namespace Haber.Web
             RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
             RoleManager<HaberRole> roleManager = new RoleManager<HaberRole>(roleStore);
 
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            UserManager<HaberUser> userManager = new UserManager<HaberUser>(userStore);
+
+            if (!roleManager.RoleExists("SuperAdmin"))
+            {
+                HaberRole suRole = new HaberRole("SuperAdmin", "Sistem Ana Yöneticisi");
+                roleManager.Create(suRole);
+
+            }
+            var user = userManager.FindByName("SuperUser");
+            if (user == null)
+            {
+               HaberUser huser = new HaberUser
+                {
+                    Name = "Super",
+                    SurName = "User",
+                    UserName = "SuperUser",
+                    EklenmeTarihi = DateTime.Now
+                };
+
+                IdentityResult ir = userManager.Create(huser, "123456");
+                if (ir.Succeeded)
+                {
+                    userManager.AddToRole(huser.Id, "SuperAdmin");
+                }
+
+
+            }
+            else
+            {
+                if (!userManager.IsInRole(user.Id,"SuperAdmin"))
+                {
+                    userManager.AddToRole(user.Id, "SuperAdmin");
+                }
+            }
+
             if (!roleManager.RoleExists("Admin"))
             {
                 HaberRole adminRole = new HaberRole("Admin", "Yönetici");
@@ -32,6 +68,11 @@ namespace Haber.Web
             {
                 HaberRole userRole = new HaberRole("User", "Okuyucu, yorum yazan");
                 roleManager.Create(userRole);
+            }
+            if (!roleManager.RoleExists("News Writer"))
+            {
+                HaberRole newsRole = new HaberRole("News Writer", "Haber yazarı");
+                roleManager.Create(newsRole);
             }
         }
     }
