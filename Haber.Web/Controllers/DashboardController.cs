@@ -12,6 +12,7 @@ using System.IO;
 
 namespace Haber.Web.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class DashboardController : Controller
     {
         static HaberContext context = new HaberContext();

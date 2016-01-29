@@ -90,6 +90,9 @@
                         </div>
                         <div class="header_top_right">
                             <p>@DateTime.Now.ToShortDateString() - @DateTime.Now.ToShortTimeString()</p>
+                            <!-- Login -->
+                            @Html.Partial("_LayoutLogin");
+                            <!-- Login end-->
                         </div>
                     </div>
                 </div>
@@ -158,6 +161,8 @@
                         
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="left_content">
+                                @RenderSection("register", required: false)
+                                @RenderSection("login", required: false)
                                 @RenderSection("hakkimizda", required: false)
                                 @RenderSection("iletisimForm", required: false)
                                 @RenderSection("iletisimTamam", required: false)

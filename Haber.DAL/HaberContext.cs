@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Haber.COM;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Haber.DAL
 {
-    public class HaberContext : DbContext
+    public class HaberContext : IdentityDbContext<HaberUser>
     {
         public HaberContext() : base("HaberDBConStr")
         { }

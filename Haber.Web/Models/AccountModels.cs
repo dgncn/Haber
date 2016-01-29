@@ -10,11 +10,11 @@ namespace Haber.Web.Models
     {
         [Required]
         [Display(Name = "Adınız")]
-        public string Ad { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Soyadınız")]
-        public string Soyad { get; set; }
+        public string SurName { get; set; }
 
         [Required]
         [Display(Name = "Kullanıcı adı")]

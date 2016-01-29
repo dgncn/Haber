@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Haber.DAL;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Haber.COM;
 namespace Haber.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -13,9 +16,24 @@ namespace Haber.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
 
-       
+
+            HaberContext context = new HaberContext();
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            RoleManager<HaberRole> roleManager = new RoleManager<HaberRole>(roleStore);
+
+            if (!roleManager.RoleExists("Admin"))
+            {
+                HaberRole adminRole = new HaberRole("Admin", "Yönetici");
+                roleManager.Create(adminRole);
+            }
+
+            if (!roleManager.RoleExists("User"))
+            {
+                HaberRole userRole = new HaberRole("User", "Okuyucu, yorum yazan");
+                roleManager.Create(userRole);
+            }
+        }
     }
 
     public static class SayiToplam
@@ -49,8 +67,9 @@ namespace Haber.Web
             HaberContext context = new HaberContext();
             int etiketSayisi = context.Yorumlar.Count();
             return etiketSayisi;
-        }
-
-         
+        }    
     }
+
+
+    
 }
