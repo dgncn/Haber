@@ -1,0 +1,29 @@
+﻿@model HaberUser
+@using Haber.COM;
+@{
+    ViewBag.Title = "KullaniciDuzenleme";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>KullaniciDuzenleme</h2>
+@using (Html.BeginForm("KullaniciDuzenleme", "Dashboard", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x => x.Name)</td>
+            <td>@Html.TextBoxFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.SurName)</td>
+            <td>@Html.TextBoxFor(x => x.SurName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Email)</td>
+            <td>@Html.TextBoxFor(x => x.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.HiddenFor(x=>x.Id)</td>
+            <td><input type="submit" name="btnKullaniciDuzenle" value="Kaydet" /></td>
+        </tr>
+    </table>
+}

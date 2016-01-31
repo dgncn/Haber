@@ -34,7 +34,7 @@ namespace Haber.Web
             var user = userManager.FindByName("SuperUser");
             if (user == null)
             {
-               HaberUser huser = new HaberUser
+                HaberUser huser = new HaberUser
                 {
                     Name = "Super",
                     SurName = "User",
@@ -52,7 +52,7 @@ namespace Haber.Web
             }
             else
             {
-                if (!userManager.IsInRole(user.Id,"SuperAdmin"))
+                if (!userManager.IsInRole(user.Id, "SuperAdmin"))
                 {
                     userManager.AddToRole(user.Id, "SuperAdmin");
                 }
@@ -79,6 +79,7 @@ namespace Haber.Web
 
     public static class SayiToplam
     {
+
         public static int haberSayisi()
         {
             HaberContext context = new HaberContext();
@@ -108,9 +109,31 @@ namespace Haber.Web
             HaberContext context = new HaberContext();
             int etiketSayisi = context.Yorumlar.Count();
             return etiketSayisi;
-        }    
+        }
     }
 
+    public static class UserInfo
+    {
+        
 
+        public  static HaberUser kullaniciBilgiAl(string userId)
+        {
+            HaberContext context = new HaberContext();
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            RoleManager<HaberRole> roleManager = new RoleManager<HaberRole>(roleStore);
+
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            UserManager<HaberUser> userManager = new UserManager<HaberUser>(userStore);
+            var kullanici = userManager.FindById(userId);
+            if (kullanici!=null)
+            {
+                return kullanici;
+            }
+            else
+            {
+                return new HaberUser { };
+            }
+        }
+    }
     
 }

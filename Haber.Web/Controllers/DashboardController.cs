@@ -9,7 +9,8 @@ using Haber.DAL;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.IO;
-
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 namespace Haber.Web.Controllers
 {
     //[Authorize(Roles ="Admin")]
@@ -26,6 +27,13 @@ namespace Haber.Web.Controllers
         HakkindaHelper hakkindahelper = new HakkindaHelper(context);
         IletisimHelper iletisimhelper = new IletisimHelper(context);
         static List<Etiket> yenietiketListesi = new List<Etiket>();
+
+
+        private UserManager<HaberUser> userManager;
+        private RoleManager<HaberRole> roleManager;
+
+        
+
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -1022,8 +1030,62 @@ namespace Haber.Web.Controllers
         }
         #endregion
 
+        public ActionResult KullaniciListesi()
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            roleManager = new RoleManager<HaberRole>(roleStore);
 
+            ViewBag.users = userManager.Users.ToList();
+            ViewBag.roles = roleManager.Roles.ToList();
 
+            return View();
+        }
+        public ActionResult KullaniciDuzenleme(string id)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            roleManager = new RoleManager<HaberRole>(roleStore);
+
+            if (id!=null)
+            {
+                var result = userManager.FindByName(id);
+                if (result!=null)
+                {
+                    return View(result);
+                }
+                else
+                {
+                    return RedirectToAction("KullaniciListesi");
+                }
+            }
+            else
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciDuzenleme(HaberUser user)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            roleManager = new RoleManager<HaberRole>(roleStore);
+            if (user==null)
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+            var huser = userManager.FindByName(user.Id);
+            huser.Name = user.Name;
+            huser.SurName = user.SurName;
+            huser.Email = user.Email;
+            context.SaveChanges();
+            return RedirectToAction("KullaniciListesi");
+
+        }
     }
 
 
