@@ -1,0 +1,41 @@
+﻿@model HaberUser
+@using Haber.COM;
+@{
+    ViewBag.Title = "KullaniciDetay";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+@using (Html.BeginForm("KullaniciRolSil", "Dashboard", FormMethod.Post))
+{
+    <h2>KullaniciDetay</h2>
+
+
+    <input type="hidden" name="userID" value="@Model.Id" />
+    <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <td>@Html.LabelFor(x => x.Id)</td>
+                <td>@Html.LabelFor(x => x.Name)</td>
+                <td>@Html.LabelFor(x => x.SurName)</td>
+                <td>@Html.LabelFor(x => x.UserName)</td>
+                <td>@Html.LabelFor(x => x.Email)</td>
+                <td>@Html.LabelFor(x => x.EklenmeTarihi)</td>
+                <td>Rol Listesi</td>
+            </tr>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Name</td>
+                <td>@Model.SurName</td>
+                <td>@Model.UserName</td>
+                <td>@Model.Email</td>
+                <td>@Model.EklenmeTarihi</td>
+                <td>
+                    @foreach (var rol in (List<string>)ViewBag.rolAdlari)
+                    {
+                        @rol
+                    }
+
+                </td>
+            </tr>
+        </thead>
+    </table>
+}

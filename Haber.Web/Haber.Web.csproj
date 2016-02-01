@@ -1224,6 +1224,8 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Dashboard\KullaniciListesi.cshtml" />
     <Content Include="Views\Dashboard\KullaniciDuzenleme.cshtml" />
+    <Content Include="Views\Dashboard\KullaniciDetay.cshtml" />
+    <Content Include="Views\Dashboard\KullaniciRolSil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

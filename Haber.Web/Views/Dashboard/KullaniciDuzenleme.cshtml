@@ -8,6 +8,10 @@
 <h2>KullaniciDuzenleme</h2>
 @using (Html.BeginForm("KullaniciDuzenleme", "Dashboard", FormMethod.Post))
 {
+    var roles = (List<HaberRole>)ViewBag.roles;
+    var rol = Model.Roles.ToList();
+    var rolListe = (from p in rol
+                    select p.RoleId).ToList();
     <table>
         <tr>
             <td>@Html.LabelFor(x => x.Name)</td>
@@ -22,8 +26,35 @@
             <td>@Html.TextBoxFor(x => x.Email)</td>
         </tr>
         <tr>
-            <td>@Html.HiddenFor(x=>x.Id)</td>
+            <td>@Html.LabelFor(x => x.Roles)</td>
+            <td>
+                <select name="roleID">
+
+                    @foreach (var kullanicininRolu in rolListe)
+                    {
+                        foreach (var role in roles)
+                        {
+                            if (kullanicininRolu == role.Id)
+                            {
+                                <option selected value="@role.Id">@role.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@role.Id">@role.Name</option>
+                            }
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.HiddenFor(x => x.Id)</td>
             <td><input type="submit" name="btnKullaniciDuzenle" value="Kaydet" /></td>
+        </tr>
+        <tr>
+            <td>Rol Sil</td>
+            <td><a href="@Url.Action("KullaniciRolSil","Dashboard",new { id = Model.UserName })">Kullanıcı rolünü sil</a> </td>
+
         </tr>
     </table>
 }

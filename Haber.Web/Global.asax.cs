@@ -134,6 +134,25 @@ namespace Haber.Web
                 return new HaberUser { };
             }
         }
+        public static string rolBilgisiAl(string rolAdi)
+        {
+            HaberContext context = new HaberContext();
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            RoleManager<HaberRole> roleManager = new RoleManager<HaberRole>(roleStore);
+
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            UserManager<HaberUser> userManager = new UserManager<HaberUser>(userStore);
+            var role = roleManager.FindByName(rolAdi);
+            if (role!=null)
+            {
+                return role.Id;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        
     }
     
 }

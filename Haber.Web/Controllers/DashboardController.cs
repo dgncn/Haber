@@ -1054,6 +1054,7 @@ namespace Haber.Web.Controllers
                 var result = userManager.FindByName(id);
                 if (result!=null)
                 {
+                    ViewBag.roles = roleManager.Roles.ToList();
                     return View(result);
                 }
                 else
@@ -1068,7 +1069,7 @@ namespace Haber.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult KullaniciDuzenleme(HaberUser user)
+        public ActionResult KullaniciDuzenleme(HaberUser user, string roleID)
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
             userManager = new UserManager<HaberUser>(userStore);
@@ -1078,13 +1079,87 @@ namespace Haber.Web.Controllers
             {
                 return RedirectToAction("KullaniciListesi");
             }
+            HaberRole hrole = roleManager.FindById(roleID);
+            //userManager.AddToRole(user.Id, hrole.Id);
             var huser = userManager.FindByName(user.Id);
             huser.Name = user.Name;
             huser.SurName = user.SurName;
             huser.Email = user.Email;
+            userManager.AddToRole(huser.Id,hrole.Name);
             context.SaveChanges();
             return RedirectToAction("KullaniciListesi");
 
+        }
+        public ActionResult KullaniciDetay(string id)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            //RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            //roleManager = new RoleManager<HaberRole>(roleStore);
+
+            if (id==null || id =="")
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+            else
+            {
+                HaberUser user = userManager.FindByName(id);
+                if (user!=null)
+                {
+                    ViewBag.roller = (from p in user.Roles
+                                      select p.RoleId).ToList();
+                    var roleIDs = (List<string>)ViewBag.roller;
+                    ViewBag.rolAdlari = userManager.GetRoles(user.Id);
+                    return View(user);
+                }
+                else
+                {
+                    return RedirectToAction("KullaniciListesi");
+                }
+            }
+        }
+        public void KullaniciRolSilV(HaberUser user, string id)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
+            roleManager = new RoleManager<HaberRole>(roleStore);
+
+            userManager.RemoveFromRole(user.Id, roleManager.FindById(id).Name);
+            context.SaveChanges();
+        }
+        [HttpGet]
+        public ActionResult KullaniciRolSil(string id)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            if (id==null || id=="")
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+            else
+            {
+
+                HaberUser hu = userManager.FindByName(id);
+                ViewBag.roles = userManager.GetRoles(hu.Id);
+                ViewBag.roleIds = (from p in hu.Roles
+                                   select p.RoleId).ToList();
+
+                return View(hu);
+            }
+        }
+        [HttpPost]
+        public ActionResult KullaniciRolSil(string rID, string userID)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            var user = userManager.FindById(userID);
+            if (string.IsNullOrEmpty(rID) || string.IsNullOrWhiteSpace(rID))
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+            KullaniciRolSilV(user,rID);
+            return RedirectToAction("KullaniciListesi");
         }
     }
 
