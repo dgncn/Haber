@@ -32,6 +32,12 @@ namespace Haber.Helper
             var yazar = context.Yazarlar.Find(yazarID);
             return yazar;
         }
+        public Yazar YazarGetir(string yazarAdi)
+        {
+
+            var yazar = context.Yazarlar.Where(x => x.YazarAdSoyad == yazarAdi.Trim()).SingleOrDefault();
+            return yazar;
+        }
         public void YazarKaydet(Yazar yazar)
         {
             context.Yazarlar.Add(yazar);

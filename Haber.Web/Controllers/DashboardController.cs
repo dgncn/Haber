@@ -1088,6 +1088,10 @@ namespace Haber.Web.Controllers
             huser.SurName = user.SurName;
             huser.Email = user.Email;
             userManager.AddToRole(huser.Id,hrole.Name);
+            if (hrole.Name=="News Writer")
+            {
+                yazarhelper.YazarKaydet(new Yazar { YazarAdSoyad = huser.Name + " " + huser.SurName });
+            }
             context.SaveChanges();
             return RedirectToAction("KullaniciListesi");
 
@@ -1161,6 +1165,14 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("KullaniciListesi");
             }
             KullaniciRolSilV(user,rID);
+            var yazar = "News Writer";
+            var role = roleManager.FindByName(yazar);
+            if (rID==role.Id)
+            {
+                string yazarAD = user.Name + " " + user.SurName;
+                Yazar y =yazarhelper.YazarGetir(yazarAD);
+                yazarhelper.YazarSil(y.YazarID);
+            }
             return RedirectToAction("KullaniciListesi");
         }
         public ActionResult KullaniciSil(string id)
