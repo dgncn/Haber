@@ -1072,7 +1072,7 @@ figure.effect-layla:hover img {
   height: 100%;
 }
 .single_sidebar ul li a{
-  border-bottom: 1px solid #333;
+  /*border-bottom: 1px solid #333;*/
   display: block;
 }
 .single_sidebar .spost_nav li a{

@@ -741,6 +741,7 @@
                             <ul class="media-list">
                                 @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
                                 {
+                                    var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
                                         <li class="media deneme2">
                                             <div class="media-left">
                                             </div>
@@ -755,7 +756,7 @@
                                                     </small>
                                                 </h4>
                                                 <p>
-                                                    @yorum.YorumIcerik.Substring(0,sayi2)<span></span>
+                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary">@yorum.YorumIcerik.Substring(0, sayi2)</span></a>
                                                 </p>
                                             </div>
                                         </li>

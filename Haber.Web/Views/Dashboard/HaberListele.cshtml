@@ -4,7 +4,7 @@
     ViewBag.Title = "Haber Listesi";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
-@Html.ActionLink("Yeni Kayıt Ekle", "HaberEkle")
+<div class="btn btn-default">@Html.ActionLink("Yeni Kayıt Ekle", "HaberEkle")</div>
 
 <h2 class="text-info">Haber Listesi</h2>
 
@@ -19,7 +19,7 @@
             <td>@Html.LabelFor(x => x[0].HaberYazari.YazarAdSoyad)</td>
             <td>@Html.LabelFor(x => x[0].HaberKategori.KategoriAdi)</td>
             <td>@Html.LabelFor(x => x[0].HaberDurumu)</td>
-            <td>@Html.LabelFor(x=>x[0].HaberOkunmaSayisi)</td>
+            <td>@Html.LabelFor(x => x[0].HaberOkunmaSayisi)</td>
         </tr>
     </thead>
     <tbody>
@@ -29,11 +29,20 @@
             <tr>
                 <td>@Html.ActionLink(haber.HaberID.ToString(), "HaberDuzenleme", new { id = haber.HaberID })</td>
                 <td>@haber.HaberBaslik</td>
-                <td>@haber.HaberIcerik</td>
+                <td>
+                    @if (haber.HaberIcerik.Length > 250)
+                    {
+                        @haber.HaberIcerik.Substring(0, 250)<span>...</span>
+                    }
+                    else
+                    {
+                        @haber.HaberIcerik
+                    }
+                </td>
                 <td>@haber.HaberGirisTarihi</td>
-                
-                <td>@Html.ActionLink(haber.HaberYazari.YazarAdSoyad.ToString(), "YazarHaberleriYeni", new { id=haber.HaberYazari.YazarID })</td>
-                <td>@Html.ActionLink(haber.HaberKategori.KategoriAdi.ToString(), "KategoriHaberleriYeni", new { id=haber.HaberKategori.KategoriID })</td>
+
+                <td>@Html.ActionLink(haber.HaberYazari.YazarAdSoyad.ToString(), "YazarHaberleriYeni", new { id = haber.HaberYazari.YazarID })</td>
+                <td>@Html.ActionLink(haber.HaberKategori.KategoriAdi.ToString(), "KategoriHaberleriYeni", new { id = haber.HaberKategori.KategoriID })</td>
 
                 <td>
                     @if (haber.HaberDurumu)

@@ -109,7 +109,7 @@
                            orderby p.YorumYazmaTarihi descending
                            select p).ToList();
 
-            
+
                 <style>
                     .thumbnail {
                         padding: 0px;
@@ -155,6 +155,8 @@
 
                         @foreach (var yorum in result2)
                         {
+                            var yorumIdAl = "yorum" + yorum.YorumID.ToString();
+                            var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="thumbnail">
                                     <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
@@ -162,9 +164,10 @@
                             </div><!-- /col-sm-1 -->
                             <div class="col-sm-10 col-md-10 col-lg-10">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <strong>@yorum.YorumYazari</strong> <span class="text-muted">@yorum.YorumYazmaTarihi.ToShortDateString() - @yorum.YorumYazmaTarihi.ToShortTimeString()</span>
+                                    <div class="panel-heading" id="@yorumIdAl">
+                                        <strong>@yorum.YorumYazari</strong> <span class="text-muted">@yorum.YorumYazmaTarihi.ToShortDateString() - @yorum.YorumYazmaTarihi.ToShortTimeString()</span>  <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary">#@yorumIdAl</span></a>
                                     </div>
+                                
                                     <div class="panel-body">
                                         @yorum.YorumIcerik
                                     </div><!-- /panel-body -->

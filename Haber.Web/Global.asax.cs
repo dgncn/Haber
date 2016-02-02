@@ -107,9 +107,10 @@ namespace Haber.Web
         public static int etiketSayisi()
         {
             HaberContext context = new HaberContext();
-            int etiketSayisi = context.Yorumlar.Count();
+            int etiketSayisi = context.Etiketler.Count();
             return etiketSayisi;
         }
+
     }
 
     public static class UserInfo

@@ -62,7 +62,14 @@
 
                     </div>
                     <div class="pull-left info">
-                        <p>Kullanıcı Adı</p>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p>@User.Identity.Name</p>
+                        }
+                        else
+                        {
+                            <p>Kullanıcı Adı</p>
+                        }
                         <a href="##"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -225,10 +232,10 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Haberler</span>
                                 <span class="info-box-number">
-                                    @{  int a = @SayiToplam.haberSayisi();
+                                    @{  int a = SayiToplam.haberSayisi();
                                         string deger = a.ToString();
                                     }
-                                    @Html.ActionLink(deger, "HaberListele","Dashboard")
+                                    @Html.ActionLink(deger, "HaberListele", "Dashboard")
                                 </span>
                             </div><!-- /.info-box-content -->
                         </div><!-- /.info-box -->
@@ -239,7 +246,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Yazarlar</span>
                                 <span class="info-box-number">
-                                    @{  int b = @SayiToplam.yazarSayisi();
+                                    @{  int b = SayiToplam.yazarSayisi();
                                         string degerb = b.ToString();
                                     }
                                     @Html.ActionLink(degerb, "YazarListele", "Dashboard")
@@ -256,7 +263,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Kategoriler</span>
                                 <span class="info-box-number">
-                                    @{  int c = @SayiToplam.kategoriSayisi();
+                                    @{  int c = SayiToplam.kategoriSayisi();
                                         string degerc = c.ToString();
                                     }
                                     @Html.ActionLink(degerc, "KategoriListele", "Dashboard")
@@ -270,7 +277,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Yorumlar</span>
                                 <span class="info-box-number">
-                                    @{  int d = @SayiToplam.yorumSayisi();
+                                    @{  int d = SayiToplam.yorumSayisi();
                                         string degerd = d.ToString();
                                     }
                                     @Html.ActionLink(degerd, "YorumListele", "Dashboard")
@@ -278,8 +285,23 @@
                             </div><!-- /.info-box-content -->
                         </div><!-- /.info-box -->
                     </div><!-- /.col -->
-                </div><!-- /.row -->
 
+                    <div class="clearfix visible-sm-block"></div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Etiketler</span>
+                                <span class="info-box-number">
+                                    @{  int e = SayiToplam.etiketSayisi();
+                                        string degere = e.ToString();
+                                    }
+                                    @Html.ActionLink(degere, "EtiketListele", "Dashboard")
+                                </span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
                 <div class="row">
                     <div class="col-md-12">
                     </div><!-- /.col -->
