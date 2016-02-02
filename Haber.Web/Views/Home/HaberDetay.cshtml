@@ -88,7 +88,14 @@
             
             @using (Html.BeginForm())
             {
-                <input type="text" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="" required />
+                if (User.Identity.IsAuthenticated)
+                {
+                    <input type="hidden" class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="@User.Identity.Name" required />
+                }
+                else
+                {
+                    <input type="text" disabled class="form-control" placeholder="Adınız" name="txtName" id="txtName" value="Misafir" required />
+                }
                 int id = Model.HaberID;
 
                 <textarea class="form-control" name="txtYorum" id="txtYorum" placeholder="Yorumunuz" required></textarea>

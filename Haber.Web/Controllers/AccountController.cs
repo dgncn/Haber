@@ -91,7 +91,8 @@ namespace Haber.Web.Controllers
                 user.Name = model.Name;
                 user.SurName = model.SurName;
                 user.UserName = model.UserName;
-
+                user.Email = model.Email;
+                user.EklenmeTarihi = DateTime.Now;
                 IdentityResult ir = userManager.Create(user, model.Password);
                 if (ir.Succeeded)
                 {

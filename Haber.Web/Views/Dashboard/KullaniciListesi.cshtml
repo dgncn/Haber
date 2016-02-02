@@ -15,6 +15,7 @@
             <td>@Html.LabelFor(x => x[0].SurName)</td>
             <td>@Html.LabelFor(x => x[0].UserName)</td>
             <td>@Html.LabelFor(x => x[0].Email)</td>
+            <td>@Html.LabelFor(x=>x[0].EklenmeTarihi)</td>
             <td></td>
             <td></td>
         </tr>
@@ -26,12 +27,18 @@
                 <td>@kullanici.SurName</td>
                 <td>@kullanici.UserName</td>
                 <td>@kullanici.Email</td>
+                <td>@kullanici.EklenmeTarihi</td>
                 <td>
                     <div class="btn btn-default">
                         @Html.ActionLink("Kullanıcı Bilgisi Düzenle", "KullaniciDuzenleme", new { id = kullanici.UserName })
                     </div>
                 </td>
-            </tr>
+                <td>
+                    <div class="btn btn-default">
+                        @Html.ActionLink("Kullanıcı Detay", "KullaniciDetay", new { id = kullanici.UserName })
+                </div>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -54,21 +61,30 @@
                 <td>@rol.Name</td>
                 <td>@rol.Description</td>
                 <td>
-                    @if (rol.Users.Count > 2)
+                    @if (rol.Users.Count >= 2)
                     {
-                        foreach (var user in rol.Users.Take(3))
+                        var userIDs = rol.Users.ToList();
+                        var userID = userIDs[1].UserId;
+                        foreach (var user in rol.Users.Take(2))
                         {
-                            var zuser = (HaberUser)rol.Users.Take(2).Skip(1);
                             var huser = UserInfo.kullaniciBilgiAl(user.UserId);
-                            if (user.UserId == zuser.Id)
+
+                            if (user.UserId == userID)
                             {
-                                @huser.UserName<span>...</span>
+                                if (rol.Users.Count == 2)
+                                {
+                                    @huser.UserName
+
+                                }
+                                else
+                                {
+                                    @huser.UserName<span>...</span>
+                                }
                             }
                             else
                             {
-                                @huser.UserName
+                                @huser.UserName<span>, </span>
                             }
-
                         }
                     }
                     else

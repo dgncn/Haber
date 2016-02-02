@@ -36,7 +36,7 @@ namespace Haber.Web.Controllers
             var yorumListe = (List<Yorum>)ViewBag.yorumlar;
             var yorumListe2 = (from p in yorumListe
                                orderby p.YorumYazmaTarihi descending
-                               select p).ToList();
+                               select p).Take(15).ToList();
             ViewBag.yorumListe2 = yorumListe2;
             var resultOriginal = from p in etiketListe
                                  group p by new { id = p.EtiketAdi } into ctg

@@ -338,82 +338,58 @@
 }
 
 @section sidebar{
-    <!-- start tab section -->
-    <div class="single_sidebar">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="comments">
-                <ul class="spost_nav">
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img1.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a>
-                            </div>
+     <!-- start tab section -->
+<div class="single_sidebar">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
+    </ul>
+
+
+    <!-- Container, Row, and Column used for illustration purposes -->
+    <style>
+        .deneme2 {
+            margin-top: 0px;
+        }
+    </style>
+    <!-- Fluid width widget -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Son Yorumlar
+            </h3>
+        </div>
+        <div class="panel-body">
+            <ul class="media-list">
+                @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
+                {
+                    <li class="media deneme2">
+                        <div class="media-left">
+                        </div>
+                        <div class="media-body" style="width:100%;margin-bottom:3px;">
+                            <h4 class="media-heading">
+                                @yorum.YorumYazari
+                                @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
+                                    int sayi2 = yorum.YorumIcerik.Length;}
+                                <br>
+                                <small>
+                                    yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span></span></a>
+                                </small>
+                            </h4>
+                            <p>
+                                @yorum.YorumIcerik.Substring(0, sayi2)<span></span>
+                            </p>
                         </div>
                     </li>
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img2.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img1.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media wow fadeInDown">
-                            <a href="single_page.html" class="media-left">
-                                <img alt="img" src="img/post_img2.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                                    }
+            </ul>
         </div>
     </div>
-    <!-- End tab section -->
-    <!-- Category Archive -->
-    @*<div class="single_sidebar wow fadeInDown">
-            <h2><span>Kategori ARSIVI</span></h2>
-            <select class="catgArchive">
-                <option>Seçiniz</option>
-                <option>Yaşam</option>
-                <option>Spor</option>
-                <option>Teknoloji</option>
-            </select>
-        </div>
-        <!-- End category Archive -->
-        <!-- sponsor add -->
-        <div class="single_sidebar wow fadeInDown">
-            <h2><span>LINKLER</span></h2>
-            <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Rss</a></li>
-                <li><a href="#">Giriş</a></li>
-                <li><a href="#">Yaşam</a></li>
-            </ul>
-        </div>*@
-    <!-- End sponsor add -->
+    <!-- End fluid width widget -->
+
+
+</div>
+
 }
 
 

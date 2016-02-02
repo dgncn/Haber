@@ -1,0 +1,42 @@
+﻿@model RegisterModel
+@using Haber.Web.Models;
+@{
+    ViewBag.Title = "KullaniciEkle";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<h2>KullaniciEkle</h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm("KullaniciEkle", "Dashboard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x => x.Name)</td>
+            <td>@Html.TextBoxFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.SurName)</td>
+            <td>@Html.TextBoxFor(x => x.SurName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.UserName)</td>
+            <td>@Html.TextBoxFor(x => x.UserName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Email)</td>
+            <td>@Html.TextBoxFor(x => x.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.Password)</td>
+            <td>@Html.TextBoxFor(x => x.Password)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.ConfirmPassword)</td>
+            <td>@Html.TextBoxFor(x => x.ConfirmPassword)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="btnKullaniciKaydet" value="Kaydet" /></td>
+        </tr>
+    </table>
+}

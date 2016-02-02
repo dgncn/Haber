@@ -11,6 +11,8 @@ using System.Data.Entity.Core.Objects;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Haber.Web.Models;
+
 namespace Haber.Web.Controllers
 {
     //[Authorize(Roles ="Admin")]
@@ -1037,7 +1039,7 @@ namespace Haber.Web.Controllers
             RoleStore<HaberRole> roleStore = new RoleStore<HaberRole>(context);
             roleManager = new RoleManager<HaberRole>(roleStore);
 
-            ViewBag.users = userManager.Users.ToList();
+            ViewBag.users = userManager.Users.OrderByDescending(x => x.EklenmeTarihi).ToList();
             ViewBag.roles = roleManager.Roles.ToList();
 
             return View();
@@ -1160,6 +1162,64 @@ namespace Haber.Web.Controllers
             }
             KullaniciRolSilV(user,rID);
             return RedirectToAction("KullaniciListesi");
+        }
+        public ActionResult KullaniciSil(string id)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+            if (id==null || id=="")
+            {
+                return RedirectToAction("KullaniciListesi");
+            }
+            else
+            {
+                var user = userManager.FindByName(id.Trim());
+                if (user!=null)
+                {
+                    userManager.Delete(user);
+                    context.SaveChanges();
+                    
+                }
+                    return RedirectToAction("KullaniciListesi");
+            }
+        }
+        public ActionResult KullaniciEkle()
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+
+            return View();
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult KullaniciEkle(RegisterModel model)
+        {
+            UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
+            userManager = new UserManager<HaberUser>(userStore);
+
+            if (ModelState.IsValid)
+            {
+                HaberUser user = new HaberUser();
+                user.Email = model.Email;
+                user.Name = model.Name;
+                user.SurName = model.SurName;
+                user.UserName = model.UserName;
+                user.EklenmeTarihi = DateTime.Now;
+                IdentityResult ir = userManager.Create(user, model.Password);
+                if (ir.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "User");
+                    return RedirectToAction("KullaniciListesi");
+                }
+                else
+                {
+                    ModelState.AddModelError("RegisterUser", "Kullanıcı ekleme işleminde hata.");
+                }
+            }
+            return View(model);
+
         }
     }
 

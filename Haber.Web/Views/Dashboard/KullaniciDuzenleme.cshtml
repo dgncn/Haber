@@ -43,6 +43,10 @@
                                 <option value="@role.Id">@role.Name</option>
                             }
                         }
+                        if (rolListe.Count>1)
+                        {
+                            break;
+                        }
                     }
                 </select>
             </td>
@@ -55,6 +59,9 @@
             <td>Rol Sil</td>
             <td><a href="@Url.Action("KullaniciRolSil","Dashboard",new { id = Model.UserName })">Kullanıcı rolünü sil</a> </td>
 
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Kullanıcı Sil","KullaniciSil",new { id = Model.UserName })</td>
         </tr>
     </table>
 }

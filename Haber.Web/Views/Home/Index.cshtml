@@ -751,17 +751,16 @@
                                                         int sayi2 = yorum.YorumIcerik.Length;}
                                                     <br>
                                                     <small>
-                                                        commented on <a href="#">@yorum.YorumHaberi.HaberBaslik.Substring(0,sayi)<span>...</span></a>
+                                                        yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0,sayi)<span></span></a>
                                                     </small>
                                                 </h4>
                                                 <p>
-                                                    @yorum.YorumIcerik.Substring(0,sayi2)<span>...</span>
+                                                    @yorum.YorumIcerik.Substring(0,sayi2)<span></span>
                                                 </p>
                                             </div>
                                         </li>
                                 }
                             </ul>
-                            <a href="#" class="btn btn-default btn-block">More Events »</a>
                         </div>
                     </div>
                     <!-- End fluid width widget -->
