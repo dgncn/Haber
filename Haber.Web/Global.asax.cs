@@ -110,6 +110,12 @@ namespace Haber.Web
             int etiketSayisi = context.Etiketler.Count();
             return etiketSayisi;
         }
+        public static int kullaniciSayisi()
+        {
+            HaberContext context = new HaberContext();
+            int kullaniciSayisi = context.Users.Count();
+            return kullaniciSayisi;
+        }
 
     }
 

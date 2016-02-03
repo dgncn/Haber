@@ -555,14 +555,14 @@ img:hover{
   padding: 10px 15px;
 }
 .slider_article > h2 a {
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
+  background: none repeat scroll 0 0 /*rgba(0, 0, 0, 0.4)*/ rgba(15, 15, 15, 0.84);
   color: #fff;
   font-size: 18px;
   padding: 10px;
   display: inline-block;
 }
 .slider_article > p {
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
+  background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84);
   color: #fff;
   padding: 3px;
   display: inline-block;

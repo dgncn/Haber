@@ -195,7 +195,7 @@ namespace Haber.Web.Controllers
             }
             else
             {
-                if (hakkinda == null || hakkinda.Count==0)
+                if (hakkinda == null || hakkinda.Count == 0)
                 {
                     var n = new Hakkimizda { HakBaslik = "", HakIcerik = "", HakEklenmeTarihi = DateTime.Now, HakAktiflik = false };
                     return View(n);
@@ -217,7 +217,7 @@ namespace Haber.Web.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Iletisim(Iletisim iletisim,int deger)
+        public ActionResult Iletisim(Iletisim iletisim, int deger)
         {
             ViewbagListesi();
             var haberList = (List<HaberCl>)ViewBag.haberler;
@@ -226,7 +226,7 @@ namespace Haber.Web.Controllers
             try
             {
                 iletisim.IltGondermeTarihi = DateTime.Now;
-                if (deger==7)
+                if (deger == 7)
                 {
                     iletisimhelper.IletisimEkle(iletisim);
                     ViewBag.mesaj = "Mesajınız başarıyla alındı. Teşekkürler, kısa zamanda sizinle iletişime geçeceğiz.";
@@ -235,7 +235,7 @@ namespace Haber.Web.Controllers
                 {
                     return RedirectToAction("Iletisim");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -247,6 +247,29 @@ namespace Haber.Web.Controllers
         {
             ViewbagListesi();
             return View();
+        }
+        public ActionResult Yazar(int? id)
+        {
+            ViewbagListesi();
+            if (id != null || id != 0)
+            {
+                var yazar = yazarhelper.YazarGetir(id);
+                if (yazar != null)
+                {
+                    var liste = haberhelper.YazaraGoreHaberler(yazar).OrderByDescending(x => x.HaberGirisTarihi).ToList();
+                    return View(liste);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+
         }
     }
 }

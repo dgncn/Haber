@@ -1,7 +1,7 @@
 ﻿@model HaberCl
 @using Haber.COM;
 @{
-    ViewBag.Title = "HaberDetay";
+    ViewBag.Title = Model.HaberBaslik + " Haberi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,7 +15,7 @@
         </ol>
         <h1>@Model.HaberBaslik</h1>
         <div class="post_commentbox">
-            <a href="#"><i class="fa fa-user"></i>@Model.HaberYazari.YazarAdSoyad</a>
+            <a href="~/Home/Yazar/@Model.HaberYazari.YazarID"><i class="fa fa-user"></i>@Model.HaberYazari.YazarAdSoyad</a>
             <span><i class="fa fa-calendar"></i>@Model.HaberGirisTarihi</span>
             <a href="~/Home/Kategori/@Model.HaberKategori.KategoriID"><i class="fa fa-tags"></i>@Model.HaberKategori.KategoriAdi</a>
             <a href="#"><i class="fa fa-eye"></i>@Model.HaberOkunmaSayisi</a>
@@ -165,7 +165,7 @@
                             <div class="col-sm-10 col-md-10 col-lg-10">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" id="@yorumIdAl">
-                                        <strong>@yorum.YorumYazari</strong> <span class="text-muted">@yorum.YorumYazmaTarihi.ToShortDateString() - @yorum.YorumYazmaTarihi.ToShortTimeString()</span>  <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary">#@yorumIdAl</span></a>
+                                        <strong>@yorum.YorumYazari</strong> <span class="text-muted">@yorum.YorumYazmaTarihi.ToShortDateString() - @yorum.YorumYazmaTarihi.ToShortTimeString()</span>  <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">#@yorumIdAl</span></a>
                                     </div>
                                 
                                     <div class="panel-body">

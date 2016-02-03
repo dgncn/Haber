@@ -1227,6 +1227,7 @@
     <Content Include="Views\Dashboard\KullaniciDetay.cshtml" />
     <Content Include="Views\Dashboard\KullaniciRolSil.cshtml" />
     <Content Include="Views\Dashboard\KullaniciEkle.cshtml" />
+    <Content Include="Views\Home\Yazar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

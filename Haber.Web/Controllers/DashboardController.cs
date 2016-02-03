@@ -189,14 +189,14 @@ namespace Haber.Web.Controllers
 
         public ActionResult HaberListele()
         {
-            var result = haberhelper.TumHaberleriListele();
+            var result = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).ToList();
 
             return View(result);
 
         }
         public ActionResult HaberDuzenle()
         {
-            var result = haberhelper.TumHaberleriListele();
+            var result = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).ToList();
             return View(result);
         }
         public ActionResult HaberDuzenleme(int? id)
@@ -454,7 +454,7 @@ namespace Haber.Web.Controllers
 
         public ActionResult YorumListele()
         {
-            var result = yorumhelper.TumYorumlariListele();
+            var result = yorumhelper.TumYorumlariListele().OrderByDescending(x => x.YorumYazmaTarihi).ToList();
             return View(result);
         }
         public ActionResult YorumEkle()
@@ -481,7 +481,7 @@ namespace Haber.Web.Controllers
         public ActionResult YorumDuzenle()
         {
 
-            var result = yorumhelper.TumYorumlariListele();
+            var result = yorumhelper.TumYorumlariListele().OrderByDescending(x => x.YorumYazmaTarihi).ToList();
             return View(result);
         }
 
@@ -953,7 +953,7 @@ namespace Haber.Web.Controllers
         
         public ActionResult IletisimListele()
         {
-            var result = iletisimhelper.TumIletisimListesi();
+            var result = iletisimhelper.TumIletisimListesi().OrderByDescending(x=>x.IltGondermeTarihi).ToList();
             return View(result);
         }
         public ActionResult IletisimDuzenleme(int? id)

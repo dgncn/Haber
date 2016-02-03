@@ -1,66 +1,8 @@
-﻿@model Iletisim
+﻿@model List<HaberCl>
 @using Haber.COM;
-@{
-    ViewBag.Title = "İletişim";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@section iletisimForm{
-    
-<h2>İletisim</h2>
-@using (Html.BeginForm("Iletisim", "Home", FormMethod.Post))
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            </div>
-        </div>
-        <form role="form" action="" method="post">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltAdSoyad)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.IltAdSoyad, new { @type = "text", @placeholder = "Ad Soyad", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.email)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.email, new { @type = "email", @placeholder = "Eposta", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltKonu)
-                    <div class="input-group">
-                        @Html.TextBoxFor(x => x.IltKonu, new { @type = "text", @placeholder = "Konu", @required = "required", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(x => x.IltIcerik)
-                    <div class="input-group">
-                        @Html.TextAreaFor(x => x.IltIcerik, new { @placeholder = "Mesajınız", @required = "required", @rows = "5", @class = "form-control" })
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="deger">4+3 = ?</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="deger" id="deger" required>
-
-                        <span class="input-group-addon"></span>
-                    </div>
-                </div>
-                <input type="submit" name="submit" id="btnIltEkle" value="Gönder" class="btn btn-info pull-right">
-            </div>
-        </form>
-        <hr class="featurette-divider hidden-lg">
-    </div>
-
-}
-
+    @{
+        ViewBag.Title = "Yazar " + Model[0].HaberYazari.YazarAdSoyad + " Haberleri";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
 @section kategori{
@@ -70,11 +12,74 @@
     }
 
 }
+@section katHaberleri{
+
+
+    <div class="single_post_content">
+        <h2>
+            <span>@Model[0].HaberYazari.YazarAdSoyad Haberleri</span>
+        </h2>
+
+        <ul id="spotLi" class="spost_nav">
+            @{
+                foreach (var haber in Model)
+                {
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                <p>
+                                    @haber.HaberIcerik
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                <p>
+                                    @haber.HaberIcerik.Substring(0, 155)<span>...</span>
+                                </p>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                <p>
+                                    @haber.HaberIcerik
+                                </p>
+                            </div>
+
+                        </li>
+                    }
+                }
+            }
+
+        </ul>
+    </div>
+
+}
+
 @section sonHaberlerkucuk{
     <div class="latest_newsarea">
         <span>Son Haberler</span>
         <ul id="ticker01" class="news_sticker">
-            @foreach (var haber in (List<HaberCl>)ViewBag.haberSonList)
+            @foreach (var haber in (List<Haber.COM.HaberCl>)ViewBag.haberler)
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
@@ -109,6 +114,7 @@
         </div>
     </div>
 }
+
 
 @section EnCokOkunanlar{
     <div class="single_sidebar">
@@ -151,6 +157,7 @@
     </div>
 
 }
+
 
 @section FooterEtiketleri{
 

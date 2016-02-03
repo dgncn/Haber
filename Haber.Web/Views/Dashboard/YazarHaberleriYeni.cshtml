@@ -27,7 +27,16 @@
             <tr>
                 <td>@Html.ActionLink(haber.HaberID.ToString(), "HaberDuzenleme", new { id = haber.HaberID })</td>
                 <td>@haber.HaberBaslik</td>
-                <td>@haber.HaberIcerik</td>
+                <td>
+                    @if (haber.HaberIcerik.Length > 250)
+                    {
+                        @haber.HaberIcerik.Substring(0, 250)<span>...</span>
+                    }
+                    else
+                    {
+                        @haber.HaberIcerik
+                    }
+                </td>
                 <td>@haber.HaberGirisTarihi</td>
                 <td>@Html.ActionLink(haber.HaberYazari.YazarAdSoyad.ToString(), "YazarHaberleriYeni", new { id = haber.HaberYazari.YazarID })</td>
                 <td>@Html.ActionLink(haber.HaberKategori.KategoriAdi.ToString(), "KategoriHaberleriYeni", new { id = haber.HaberKategori.KategoriID })</td>

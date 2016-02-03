@@ -7,7 +7,7 @@
 
 <h2>IletisimListele</h2>
 
-@Html.ActionLink("Yeni Kayıt Ekle", "IletisimEkle")
+<div class="btn btn-default">@Html.ActionLink("Yeni Kayıt Ekle", "IletisimEkle")</div>
 
 <h2 class="text-info">İletişim Listesi</h2>
 
@@ -34,7 +34,16 @@
                 <td>@iletisim.IltAdSoyad</td>
                 <td>@iletisim.email</td>
                 <td>@iletisim.IltGondermeTarihi</td>
-                <td>@iletisim.IltIcerik</td>
+                <td>
+                    @if (iletisim.IltIcerik.Length > 250)
+                    {
+                        @iletisim.IltIcerik.Substring(0, 250)<span>...</span>
+                    }
+                    else
+                    {
+                        @iletisim.IltIcerik
+                    }
+                </td>
                 <td>@iletisim.IltKonu</td>
                 <td>
                     <div class="btn btn-default">

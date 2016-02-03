@@ -194,7 +194,6 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="~/Dashboard/KullaniciListesi"><i class="fa fa-circle-o"></i> Kullanıcı Listesi</a></li>
-                            <li><a href="~/Dashboard/KullaniciDetay"><i class="fa fa-circle-o"></i> Kullanıcı Detay</a></li>
                             <li><a href="~/Dashboard/KullaniciEkle"><i class="fa fa-circle-o"></i> Kullanıcı Ekle</a></li>
                         </ul>
                     </li>
@@ -287,7 +286,7 @@
                     </div><!-- /.col -->
 
                     <div class="clearfix visible-sm-block"></div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
                             <div class="info-box-content">
@@ -297,6 +296,20 @@
                                         string degere = e.ToString();
                                     }
                                     @Html.ActionLink(degere, "EtiketListele", "Dashboard")
+                                </span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Kullanıcılar</span>
+                                <span class="info-box-number">
+                                    @{  int f = SayiToplam.kullaniciSayisi();
+                                        string degerf = f.ToString();
+                                    }
+                                    @Html.ActionLink(degerf, "KullaniciListesi", "Dashboard")
                                 </span>
                             </div><!-- /.info-box-content -->
                         </div><!-- /.info-box -->

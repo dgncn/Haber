@@ -67,7 +67,7 @@
                             <a href="~/Home/HaberDetay/@haber.HaberID">
                                 <img src="" alt="img">
                             </a>~/Home/HaberDetay/@haber.HaberID
-                            <div class="slider_article">
+                            <div class="slider_article" style="background-color:#0f0f0f">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <p>@haber.HaberIcerik.Substring(0, 150)<span>...</span></p>
                             </div>
@@ -96,7 +96,7 @@
                             </a>
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <p>@haber.HaberIcerik.Substring(0, 150)<span>...</span></p>
+                                <p>@haber.HaberIcerik.Substring(0, 150)<span style="color:#689F38">...</span></p>
                             </div>
                         </div>
                     }
@@ -751,12 +751,12 @@
                                                     @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
                                                         int sayi2 = yorum.YorumIcerik.Length;}
                                                     <br>
-                                                    <small>
+                                                    <small style="color:#689F38">
                                                         yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0,sayi)<span></span></a>
                                                     </small>
                                                 </h4>
                                                 <p>
-                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary">@yorum.YorumIcerik.Substring(0, sayi2)</span></a>
+                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@yorum.YorumIcerik.Substring(0, sayi2)</span></a>
                                                 </p>
                                             </div>
                                         </li>
