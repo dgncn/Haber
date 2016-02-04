@@ -55,7 +55,7 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult HaberEkle(HaberCl haber, int yazarid, int kategoriID, IEnumerable<HttpPostedFileBase> files)
         {
-
+            haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
             haber.HaberGirisTarihi = DateTime.Now;
             haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
             haber.HaberYazari = yazarhelper.YazarGetir(yazarid);
@@ -234,7 +234,7 @@ namespace Haber.Web.Controllers
         public ActionResult HaberDuzenleme(HaberCl haber, int haberID, int kategoriID, int yazarID, string haberEtiketi, IEnumerable<HttpPostedFileBase> files, List<Resim> resimListe)
         {
 
-
+            haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
             haber.HaberID = haberID;
             haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
             haber.HaberYazari = yazarhelper.YazarGetir(yazarID);

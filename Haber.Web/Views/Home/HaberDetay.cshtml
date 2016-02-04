@@ -30,7 +30,7 @@
             {
                 <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="img">
             }
-            <p>@Model.HaberIcerik</p>
+            <p>@Html.Raw(Model.HaberIcerik)</p>
             
                         @foreach (var etiket in Model.HaberEtiketleri)
                         {

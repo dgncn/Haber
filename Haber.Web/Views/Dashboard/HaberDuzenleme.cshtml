@@ -6,6 +6,9 @@
 }
 
 <h2>Haber Düzenleme</h2>
+
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+
 @using (Html.BeginForm("HaberDuzenleme","Dashboard",FormMethod.Post,new { enctype = "multipart/form-data" }) )
 {
     <table>
@@ -20,7 +23,12 @@
         <tr>
 
             <td>@Html.LabelFor(x => x.HaberIcerik)</td>
-            <td><input type="text" name="haberIcerik" value="@Model.HaberIcerik" /></td>
+            <td>
+                @Html.TextAreaFor(x => x.HaberIcerik)
+                <script>
+                    CKEDITOR.replace('HaberIcerik', { htmlEncodeOutput: true });
+                </script>
+            </td>
         </tr>
 
         <tr>

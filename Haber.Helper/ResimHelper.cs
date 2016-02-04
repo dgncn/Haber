@@ -42,5 +42,14 @@ namespace Haber.Helper
             var result = context.Haberler.Where(x => x.HaberResimleri[0].ResimID == resim.ResimID).FirstOrDefault();
             return result;
         }
+        public int ResimSil(int id)
+        {
+            var resim = ResimGetir(id);
+
+
+            context.Resimler.Remove(resim);
+            return context.SaveChanges();
+
+        }
     }
 }

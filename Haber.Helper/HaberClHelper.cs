@@ -82,11 +82,20 @@ namespace Haber.Helper
             var yorumListe = (from x in context.Yorumlar
                               where x.YorumHaberi.HaberID == haber.HaberID
                               select x).ToList();
+            var resimListe = (from y in context.Resimler
+                              where y.ResimHaber.HaberID == haber.HaberID
+                              select y).ToList();
             foreach (var yorum in yorumListe)
             {
                 YorumHelper yorumhelper = new YorumHelper(context);
                 yorumhelper.YorumSil(yorum.YorumID);
             }
+            foreach (var resim in resimListe)
+            {
+                ResimHelper resimhelper = new ResimHelper(context);
+                resimhelper.ResimSil(resim.ResimID);
+            }
+            
             context.Haberler.Remove(haber);
             context.SaveChanges();
         }
