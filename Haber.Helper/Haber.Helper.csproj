@@ -89,6 +89,7 @@
     <Compile Include="EtiketHelper.cs" />
     <Compile Include="HaberClHelper.cs" />
     <Compile Include="HakkindaHelper.cs" />
+    <Compile Include="HtmlTextHelper.cs" />
     <Compile Include="IletisimHelper.cs" />
     <Compile Include="KategoriHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

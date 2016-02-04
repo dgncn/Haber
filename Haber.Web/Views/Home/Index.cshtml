@@ -69,7 +69,9 @@
                             </a>~/Home/HaberDetay/@haber.HaberID
                             <div class="slider_article" style="background-color:#0f0f0f">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <p>@Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span></p>
+                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
+                                </div>
                             </div>
                         </div>
                     }
@@ -81,7 +83,9 @@
                             </a>~/Home/HaberDetay/@haber.HaberID
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <p>@Html.Raw(haber.HaberIcerik.Trim())</p>
+                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                </div>
                             </div>
                         </div>
                     }
@@ -96,7 +100,7 @@
                             </a>
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); color:#fff">
+                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
                                     @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
                                 </div>
                             </div>
@@ -110,7 +114,9 @@
                             </a>
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <p>@Html.Raw(haber.HaberIcerik.Trim())</p>
+                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                </div>
                             </div>
                         </div>
                     }

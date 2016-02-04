@@ -24,6 +24,17 @@
             @{
                 foreach (var haber in Model)
                 {
+                    string icerik = "";
+                    if (haber.HaberIcerik.Length > 150)
+                    {
+                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
+                    }
+                    else
+                    {
+                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
+                    }
+
+
                     if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                     {
                         <li>
@@ -32,9 +43,7 @@
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>
-                                    @haber.HaberIcerik
-                                </p>
+                                <p>@icerik<span>...</span></p>
                             </div>
                         </li>
                     }
@@ -46,9 +55,7 @@
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>
-                                    @haber.HaberIcerik.Substring(0, 155)<span>...</span>
-                                </p>
+                                <p>@icerik<span>...</span></p>
                             </div>
                         </li>
                     }
@@ -60,9 +67,7 @@
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>
-                                    @haber.HaberIcerik
-                                </p>
+                                <p>@icerik<span>...</span></p>
                             </div>
 
                         </li>
