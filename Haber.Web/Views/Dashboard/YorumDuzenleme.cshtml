@@ -6,6 +6,7 @@
 }
 
 <h2>YorumDuzenleme</h2>
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
 @using (Html.BeginForm())
 {
@@ -17,7 +18,11 @@
                 @Html.LabelFor(x => x.YorumIcerik)
                 <input type="hidden" name="yorumID" value="@Model.YorumID" />
             </td>
-            <td>@Html.TextBoxFor(x => x.YorumIcerik)</td>
+            <td>@Html.TextAreaFor(x => x.YorumIcerik)
+                <script>
+                    CKEDITOR.replace('YorumIcerik', { htmlEncodeOutput: true });
+                </script>
+            </td>
         </tr>
 
         <tr>

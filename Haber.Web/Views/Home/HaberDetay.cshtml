@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
 @section haberDetay{
     <div class="single_page">
@@ -169,7 +170,7 @@
                                     </div>
                                 
                                     <div class="panel-body">
-                                        @yorum.YorumIcerik
+                                        @Html.Raw(yorum.YorumIcerik)
                                     </div><!-- /panel-body -->
                                 </div><!-- /panel panel-default -->
                             </div><!-- /col-sm-5 -->

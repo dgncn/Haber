@@ -7,6 +7,8 @@
 
 <h2>Yorum Ekle</h2>
 
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+
 @using (Html.BeginForm())
 {
     <table>
@@ -19,31 +21,39 @@
         <tbody>
             <tr>
                 <td>@Html.LabelFor(x => x.YorumIcerik)</td>
-                <td>@Html.TextBoxFor(x => x.YorumIcerik)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(x => x.YorumDurumu)</td>
                 <td>
-                    @Html.CheckBoxFor(x => x.YorumDurumu, new { @checked = "checked" })
-                </td>
-            </tr>
+                    @Html.TextAreaFor(x => x.YorumIcerik)
+                <script>
+                    CKEDITOR.replace('YorumIcerik', { htmlEncodeOutput: true });
+                </script>
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.YorumDurumu)</td>
+            <td>
+                @Html.CheckBoxFor(x => x.YorumDurumu, new { @checked = "checked" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x => x.YorumHaberi.HaberBaslik)</td>
+            <td>
+                <select name="HaberID">
+                    @foreach (var haber in (List<HaberCl>)ViewBag.haberlistesi)
+                    {
+                        <option value="@haber.HaberID">@haber.HaberBaslik</option>
+                    }
+                </select>
+            </td>
+        </tr>
             <tr>
-                <td>@Html.LabelFor(x => x.YorumHaberi.HaberBaslik)</td>
                 <td>
-                    <select name="HaberID">
-                        @foreach (var haber in (List<HaberCl>)ViewBag.haberlistesi)
-                        {
-                            <option value="@haber.HaberID">@haber.HaberBaslik</option>
-                        }
-                    </select>
                 </td>
-            </tr>
-            <tr>
-                <td></td>
                 <td>
                     <input type="submit" name="btnYorumKaydet" value="Yorum Ekle" />
                 </td>
             </tr>
-        </tbody>
-    </table>
+</tbody>
+</table>
 }

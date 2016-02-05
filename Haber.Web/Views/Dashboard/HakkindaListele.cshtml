@@ -8,7 +8,7 @@
 <h2>Hakkinda Listeleme Sayfası</h2>
 
 
-@Html.ActionLink("Yeni Kayıt Ekle", "HakkindaEkle")
+<div class="btn btn-default" @Html.ActionLink("Yeni Kayıt Ekle", "HakkindaEkle")</div>
 
 <h2 class="text-info">Hakkında Listesi</h2>
 
@@ -31,7 +31,9 @@
             <tr>
                 <td>@Html.ActionLink(hakkinda.HakID.ToString(), "HakkindaDuzenleme", new { id = hakkinda.HakID })</td>
                 <td>@hakkinda.HakBaslik</td>
-                <td>@hakkinda.HakIcerik</td>
+                <td>
+                    @Html.Raw(hakkinda.HakIcerik)
+                </td>
                 <td>
                     @if (hakkinda.HakAktiflik)
 

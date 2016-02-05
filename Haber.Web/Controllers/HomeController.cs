@@ -3,6 +3,7 @@ using Haber.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -131,6 +132,7 @@ namespace Haber.Web.Controllers
             HaberCl haber = haberhelper.HaberGetir(id);
             Yorum yorum = new Yorum();
             yorum.YorumDurumu = false;
+            //txtYorum = WebUtility.HtmlDecode(txtYorum);
             yorum.YorumIcerik = txtYorum;
             yorum.YorumYazari = txtName;
             yorum.YorumYazmaTarihi = DateTime.Now;

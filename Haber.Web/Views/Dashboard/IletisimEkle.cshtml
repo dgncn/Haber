@@ -7,6 +7,7 @@
 
     <h2>Iletisim Ekle</h2>
 
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
     @using (Html.BeginForm("IletisimEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -24,7 +25,12 @@
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.IltIcerik)</td>
-                    <td>@Html.TextBoxFor(x => x.IltIcerik)</td>
+                    <td>
+                        @Html.TextAreaFor(x => x.IltIcerik)
+                    <script>
+                        CKEDITOR.replace('IltIcerik', { htmlEncodeOutput: true });
+                    </script>
+                    </td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.IltKonu)</td>

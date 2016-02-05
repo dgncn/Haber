@@ -7,6 +7,8 @@
 
 <h2>Hakkinda Ekle</h2>
 
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+
 @using (Html.BeginForm("HakkindaEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table>
@@ -17,9 +19,13 @@
                 <td>@Html.TextBoxFor(x => x.HakBaslik)</td>
             </tr>
             <tr>
-
                 <td>@Html.LabelFor(x => x.HakIcerik)</td>
-                <td>@Html.TextBoxFor(x => x.HakIcerik)</td>
+                <td>
+                    @Html.TextAreaFor(x => x.HakIcerik)
+                    <script>
+                        CKEDITOR.replace('HakIcerik', { htmlEncodeOutput: true });
+                    </script>
+                </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x=>x.HakAktiflik)</td>

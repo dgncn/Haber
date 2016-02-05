@@ -764,7 +764,7 @@
                                                     </small>
                                                 </h4>
                                                 <p>
-                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@yorum.YorumIcerik.Substring(0, sayi2)</span></a>
+                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2),true,true)</span></a>
                                                 </p>
                                             </div>
                                         </li>

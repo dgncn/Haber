@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Haber.Web.Models;
+using System.Net;
 
 namespace Haber.Web.Controllers
 {
@@ -69,9 +70,7 @@ namespace Haber.Web.Controllers
                     var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
                     file.SaveAs(path);
-                    // var result = resimhelper.ResimKaydet(resimAdi);
-                    // Resim r = resimhelper.ResimGetir(result);
-
+                   
 
                     Resim r = new Resim { ResimAdi = resimAdi };
                     if (haber.HaberResimleri == null)
@@ -465,6 +464,9 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult YorumEkle(Yorum yorum, int HaberID)
         {
+            yorum.YorumYazari = User.Identity.Name;
+            ViewBag.haberlistesi = haberhelper.TumHaberleriListele();
+            yorum.YorumIcerik = WebUtility.HtmlDecode(yorum.YorumIcerik);
             yorum.YorumYazmaTarihi = DateTime.Now;
             yorum.YorumHaberi = haberhelper.HaberGetir(HaberID);
             try
@@ -512,6 +514,7 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult YorumDuzenleme(Yorum yorum, int yorumID)
         {
+            yorum.YorumIcerik = WebUtility.HtmlDecode(yorum.YorumIcerik);
             var y = yorumhelper.YorumGetir(yorum.YorumID);
 
             y.YorumIcerik = yorum.YorumIcerik;
@@ -879,7 +882,7 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult HakkindaEkle(Hakkimizda hak)
         {
-
+            hak.HakIcerik = System.Net.WebUtility.HtmlDecode(hak.HakIcerik);
             hak.HakEklenmeTarihi = DateTime.Now;
             hakkindahelper.HakkindaEkle(hak);
             return RedirectToAction("HakkindaListele");
@@ -915,8 +918,8 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult HakkindaDuzenleme(Hakkimizda hakkinda)
         {
+            hakkinda.HakIcerik = WebUtility.HtmlDecode(hakkinda.HakIcerik);
 
-            
             var hak = hakkindahelper.HakkindaGetir(hakkinda.HakID);
             //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
 
@@ -985,8 +988,8 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult IletisimDuzenleme(Iletisim iletisim)
         {
-            
 
+            iletisim.IltIcerik = System.Net.WebUtility.HtmlDecode(iletisim.IltIcerik);
             var ilt = iletisimhelper.IletisimGetir(iletisim.IletisimID);
             //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
 
@@ -1008,7 +1011,7 @@ namespace Haber.Web.Controllers
         [HttpPost]
         public ActionResult IletisimEkle(Iletisim ile)
         {
-
+            ile.IltIcerik= System.Net.WebUtility.HtmlDecode(ile.IltIcerik);
             ile.IltGondermeTarihi = DateTime.Now;
             iletisimhelper.IletisimEkle(ile);
             return RedirectToAction("IletisimListele");
@@ -1164,16 +1167,23 @@ namespace Haber.Web.Controllers
             {
                 return RedirectToAction("KullaniciListesi");
             }
-            KullaniciRolSilV(user,rID);
-            var yazar = "News Writer";
-            var role = roleManager.FindByName(yazar);
-            if (rID==role.Id)
+            if (user.Roles.Count==1)
             {
-                string yazarAD = user.Name + " " + user.SurName;
-                Yazar y =yazarhelper.YazarGetir(yazarAD);
-                yazarhelper.YazarSil(y.YazarID);
+                return RedirectToAction("KullaniciListesi");
             }
-            return RedirectToAction("KullaniciListesi");
+            else
+            {
+                KullaniciRolSilV(user, rID);
+                var yazar = "News Writer";
+                var role = roleManager.FindByName(yazar);
+                if (rID == role.Id)
+                {
+                    string yazarAD = user.Name + " " + user.SurName;
+                    Yazar y = yazarhelper.YazarGetir(yazarAD);
+                    yazarhelper.YazarSil(y.YazarID);
+                }
+                return RedirectToAction("KullaniciListesi");
+            }
         }
         public ActionResult KullaniciSil(string id)
         {

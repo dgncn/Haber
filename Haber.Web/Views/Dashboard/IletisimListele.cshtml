@@ -37,11 +37,11 @@
                 <td>
                     @if (iletisim.IltIcerik.Length > 250)
                     {
-                        @iletisim.IltIcerik.Substring(0, 250)<span>...</span>
+                        @Html.Raw(iletisim.IltIcerik.Substring(0, 250))<span>...</span>
                     }
                     else
                     {
-                        @iletisim.IltIcerik
+                        @Html.Raw(iletisim.IltIcerik)
                     }
                 </td>
                 <td>@iletisim.IltKonu</td>
