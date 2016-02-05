@@ -348,7 +348,7 @@
 }
 
 @section sidebar{
-     <!-- start tab section -->
+   <!-- start tab section -->
 <div class="single_sidebar">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -373,6 +373,7 @@
             <ul class="media-list">
                 @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
                 {
+                    var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
                     <li class="media deneme2">
                         <div class="media-left">
                         </div>
@@ -382,12 +383,12 @@
                                 @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
                                     int sayi2 = yorum.YorumIcerik.Length;}
                                 <br>
-                                <small>
+                                <small style="color:#689F38">
                                     yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span></span></a>
                                 </small>
                             </h4>
                             <p>
-                                @yorum.YorumIcerik.Substring(0, sayi2)<span></span>
+                                <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2), true, true)</span></a>
                             </p>
                         </div>
                     </li>
@@ -399,6 +400,8 @@
 
 
 </div>
+
+
 
 }
 

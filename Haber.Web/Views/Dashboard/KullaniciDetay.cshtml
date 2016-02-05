@@ -1,12 +1,12 @@
 ﻿@model HaberUser
 @using Haber.COM;
 @{
-    ViewBag.Title = "KullaniciDetay";
+    ViewBag.Title = "Kullanıcı Detay";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 @using (Html.BeginForm("KullaniciRolSil", "Dashboard", FormMethod.Post))
 {
-    <h2>KullaniciDetay</h2>
+    <h2>Kullanıcı Detay</h2>
 
 
     <input type="hidden" name="userID" value="@Model.Id" />
