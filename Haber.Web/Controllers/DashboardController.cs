@@ -53,6 +53,9 @@ namespace Haber.Web.Controllers
 
             return View();
         }
+
+
+
         [HttpPost]
         public ActionResult HaberEkle(HaberCl haber, int yazarid, int kategoriID, IEnumerable<HttpPostedFileBase> files)
         {
@@ -70,7 +73,7 @@ namespace Haber.Web.Controllers
                     var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
                     file.SaveAs(path);
-                   
+
 
                     Resim r = new Resim { ResimAdi = resimAdi };
                     if (haber.HaberResimleri == null)
@@ -93,81 +96,17 @@ namespace Haber.Web.Controllers
             }
             else
             {
-
-
-                var etiketler = etikethelper.TumEtiketleriListele();
-                string haberEtiket = haber.HaberEtiketleri[0].EtiketAdi;
-                var etiket = etikethelper.EtiketGetir(haberEtiket);
-                bool etiketdbdeVarMi = etiketler.Contains(etiket);
-
-                if (etiketdbdeVarMi)
+                string etiketOrn = haber.HaberEtiketleri[0].EtiketAdi;
+                //birden fazla virgül ile ayrılan etiket ekleme
+                if (etiketOrn.Contains(','))
                 {
-
-                    Etiket[] etik = new Etiket[haber.HaberEtiketleri.Count()];
-                    for (int i = 0; i < haber.HaberEtiketleri.Count(); i++)
-                    {
-                        etik[i] = haber.HaberEtiketleri[i];
-                    }
+                    string[] etiketDizim = etiketOrn.Split(',');
                     haber.HaberEtiketleri.Clear();
-                    context.Haberler.Add(haber);
-                    context.SaveChanges();
-
-                    context.Entry(haber).State = EntityState.Unchanged;
-
-                    foreach (var etiket4 in haber.HaberEtiketleri)
+                    foreach (var etiketE in etiketDizim)
                     {
-                        context.Entry(etiket4).State = EntityState.Unchanged;
-                        EntityState a = new EntityState();
-                        a = context.Entry(etiket4).State;
+                        haber.HaberEtiketleri.Add(new Etiket { EtiketAdi = etiketE.Trim() });
                     }
-
-                    var originalHaber = context.Haberler.Find(haber.HaberID);
-
-                    var updatedHaber = originalHaber;
-
-
-                    context.Entry(updatedHaber).State = EntityState.Modified;
-                    foreach (var eti in etik)
-                    {
-                        eti.EtiketAdi = eti.EtiketAdi.Trim();
-                        updatedHaber.HaberEtiketleri.Add(eti);
-                    }
-
-
-                    context.SaveChanges();
-
-                    #region yorum
-                    ////List<Etiket> yenietiketListesi = new List<Etiket>();
-                    //yenietiketListesi = haber.HaberEtiketleri;
-                    //Etiket[] etik = new Etiket[haber.HaberEtiketleri.Count()];
-                    //for (int i = 0; i < haber.HaberEtiketleri.Count(); i++)
-                    //{
-                    //    etik[i] = haber.HaberEtiketleri[i];
-                    //}
-                    ////foreach (var etiket2 in haber.HaberEtiketleri)
-                    ////{
-                    ////    Etiket et = etiket2;
-                    ////    haber.HaberEtiketleri.Remove(etiket2);
-
-                    ////    yenietiketListesi.Add(et);
-                    ////}
-                    //haber.HaberEtiketleri.Clear();
-                    //haberhelper.HaberKaydet(haber);
-                    //var h = haberhelper.HaberGetir(haber.HaberID);
-
-
-                    //foreach (var eti in etik)
-                    //{
-                    //    haberhelper.HabereEtiketEkle(h, eti);
-                    //}
-
-                    //context.Entry(h).State = System.Data.Entity.EntityState.Modified;
-                    //context.SaveChanges();
-                    ////id - kategori - yazar
-                    //return RedirectToAction("HaberDuzenle");
-
-                    #endregion
-
+                    haberhelper.HaberKaydet(haber);
                 }
                 else
                 {
@@ -176,15 +115,47 @@ namespace Haber.Web.Controllers
                         etiket2.EtiketAdi = etiket2.EtiketAdi.Trim();
                     }
                     haberhelper.HaberKaydet(haber);
-                }
+                }                
             }
 
             return RedirectToAction("HaberDuzenle");
-
-
-
-
+            
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult HaberListele()
         {
