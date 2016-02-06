@@ -168,6 +168,7 @@ namespace Haber.Web.Controllers
 
                             hbrList.AddRange(haberListe);
                         }
+                        ViewBag.etiketAdi = etiket.EtiketAdi;
                     }
 
                 }
@@ -177,6 +178,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("Index");
             }
             var EtiketHaberListesi = hbrList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
+            
             return View(EtiketHaberListesi);
         }
 

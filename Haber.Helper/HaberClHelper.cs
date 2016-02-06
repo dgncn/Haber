@@ -269,8 +269,6 @@ namespace Haber.Helper
                                   p.HaberIcerik.Contains(icerik)
                                   select p).ToList();
 
-            /*p.HaberEtiketleri[0].EtiketAdi.Contains(icerik)*/
-
             if (benzerHaberler == null || benzerHaberler.Count == 0)
             {
                 benzerHaberler = KategoriyeGoreSonHaberler(haber.HaberKategori, 3);

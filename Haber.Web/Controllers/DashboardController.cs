@@ -122,41 +122,7 @@ namespace Haber.Web.Controllers
             
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         public ActionResult HaberListele()
         {
             var result = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).ToList();

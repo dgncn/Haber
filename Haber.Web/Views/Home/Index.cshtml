@@ -70,7 +70,7 @@
                             <div class="slider_article" style="background-color:#0f0f0f">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -123,13 +123,6 @@
 
                 }
             }
-            <div class="single_iteam">
-                <a href="#"><img src="~/Gallery/img/slider_img2.jpg" alt="img"></a>
-                <div class="slider_article">
-                    <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
-                </div>
-            </div>
         </div>
     </div>
 }

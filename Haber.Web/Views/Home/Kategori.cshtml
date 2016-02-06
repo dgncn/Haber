@@ -15,7 +15,7 @@
 
 @section katHaberleri{
 
-    
+
     <div class="single_post_content">
         <h2>
             <span>Kategori Haberleri</span>
@@ -23,41 +23,42 @@
 
         <ul id="spotLi" class="spost_nav">
             @{
-                            foreach (var haber in Model)
-                            {
-                                string icerik="";
-                                if (haber.HaberIcerik.Length>150)
-                                {
-                                    icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
-                                }
-                                else
-                                {
-                                    icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
-                                }
+                foreach (var haber in Model)
+                {
+                    string icerik = "";
+                    if (haber.HaberIcerik.Length > 150)
+                    {
+                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
+                    }
+                    else
+                    {
+                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
+                    }
 
-                                if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
-                                {
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                    {
                         <li>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik,"HaberDetay",new { id = haber.HaberID })</h4> 
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>@icerik<span>...</span></p>
                             </div>
                         </li>
                     }
-                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length>155)
+                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
                     {
                         <li>
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                </a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
                                     @icerik<span>...</span>
-                                    @*@Html.Raw(haber.HaberIcerik.Substring(0, 155).Trim())<span>...</span>*@
                                 </p>
                             </div>
                         </li>
@@ -66,16 +67,18 @@
                     {
                         <li>
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                </a>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4> 
+                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
                                 <p>
-                                   @icerik<span>...</span>
-                                @*@Html.Raw(haber.HaberIcerik.Substring(0, 155).Trim())<span>...</span>*@
+                                    @icerik<span>...</span>
+                                    @*@Html.Raw(haber.HaberIcerik.Substring(0, 155).Trim())<span>...</span>*@
                                 </p>
                             </div>
-                            
+
                         </li>
                     }
                 }
@@ -94,14 +97,14 @@
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
-                    <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
+            <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
                 }
                 else
                 {
                     if (haber.HaberResimleri.Count > 0)
                     {
 
-                        <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+            <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
                     }
                 }
 
@@ -137,62 +140,62 @@
                 {
                     if (haber.HaberIcerik.Length > 150)
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="" alt="img">
-                            </a>~/Home/HaberDetay/@haber.HaberID
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="single_iteam">
+                <a href="~/Home/HaberDetay/@haber.HaberID">
+                    <img src="" alt="img">
+                </a>~/Home/HaberDetay/@haber.HaberID
+                <div class="slider_article">
+                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
+                    </div>
+                </div>
+            </div>
                     }
                     else
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="" alt="img">
-                            </a>~/Home/HaberDetay/@haber.HaberID
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="single_iteam">
+                <a href="~/Home/HaberDetay/@haber.HaberID">
+                    <img src="" alt="img">
+                </a>~/Home/HaberDetay/@haber.HaberID
+                <div class="slider_article">
+                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
+                    </div>
+                </div>
+            </div>
                     }
                 }
                 else
                 {
                     if (haber.HaberIcerik.Length > 150)
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                            </a>
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="single_iteam">
+                <a href="~/Home/HaberDetay/@haber.HaberID">
+                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                </a>
+                <div class="slider_article">
+                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                        @HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true)<span>...</span>
+                    </div>
+                </div>
+            </div>
                     }
                     else
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                            </a>
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="single_iteam">
+                <a href="~/Home/HaberDetay/@haber.HaberID">
+                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                </a>
+                <div class="slider_article">
+                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                        @HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true)<span>...</span>
+                    </div>
+                </div>
+            </div>
                     }
 
                 }
@@ -226,33 +229,33 @@
                             if (haber.HaberBaslik.Length > 95)
                             {
 
-                                <li>
-                                    <div class="media">
-                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                            <img alt="Resim yok" src="">
-                                        </a>
-                                        <div class="media-body">
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                <span>
-                                                   @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
+                    <li>
+                        <div class="media">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                <img alt="Resim yok" src="">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                    <span>
+                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                                                         }
                                                         else
                                                         {
-                                                            <li>
-                                                                <div class="media">
-                                                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                        <img alt="Resim yok" src="">
-                                                                    </a>
-                                                                    <div class="media-body">
-                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
+                    <li>
+                        <div class="media">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                <img alt="Resim yok" src="">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
+                            </div>
+                        </div>
+                    </li>
                                                             }
                                                         }
                                                         else
@@ -262,35 +265,35 @@
 
                                                                 if (haber.HaberBaslik.Length > 95)
                                                                 {
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                            </a>
-                                                                            <div class="media-body">
-                                                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                                                    <span>
-                                                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                    <li>
+                        <div class="media">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                    <span>
+                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
 
-                                                                    </li>
+                    </li>
                                                                                             }
                                                                                             else
                                                                                             {
-                                                                                                <li>
-                                                                                                    <div class="media">
-                                                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                                                        </a>
-                                                                                                        <div class="media-body">
-                                                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
-                                                                                                        </div>
-                                                                                                    </div>
+                    <li>
+                        <div class="media">
+                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                            </a>
+                            <div class="media-body">
+                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                            </div>
+                        </div>
 
-                                                                                                </li>
+                    </li>
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -318,18 +321,18 @@
 
                 foreach (var haber in (List<HaberCl>)ViewBag.enCokOkunanlarListesi)
                 {
-                    if (haber.HaberResimleri==null || haber.HaberResimleri.Count==0)
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                     {
                         <li>
-                        <div class="media wow fadeInDown">
-                            <a href="#" class="media-left">
-                                <img alt="Resim yok" src="">
-                            </a>
-                            <div class="media-body">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                            <div class="media wow fadeInDown">
+                                <a href="#" class="media-left">
+                                    <img alt="Resim yok" src="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">@haber.HaberBaslik</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     }
                     else
                     {
@@ -346,7 +349,7 @@
                     }
                 }
             }
-            
+
         </ul>
     </div>
 
@@ -354,58 +357,58 @@
 
 
 @section sidebar{
-   <!-- start tab section -->
-<div class="single_sidebar">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
-    </ul>
+    <!-- start tab section -->
+    <div class="single_sidebar">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
+        </ul>
 
 
-    <!-- Container, Row, and Column used for illustration purposes -->
-    <style>
-        .deneme2 {
-            margin-top: 0px;
-        }
-    </style>
-    <!-- Fluid width widget -->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Son Yorumlar
-            </h3>
+        <!-- Container, Row, and Column used for illustration purposes -->
+        <style>
+            .deneme2 {
+                margin-top: 0px;
+            }
+        </style>
+        <!-- Fluid width widget -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Son Yorumlar
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="media-list">
+                    @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
+                    {
+                        var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
+                        <li class="media deneme2">
+                            <div class="media-left">
+                            </div>
+                            <div class="media-body" style="width:100%;margin-bottom:3px;">
+                                <h4 class="media-heading">
+                                    @yorum.YorumYazari
+                                    @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
+                                        int sayi2 = yorum.YorumIcerik.Length;}
+                                    <br>
+                                    <small style="color:#689F38">
+                                        yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span></span></a>
+                                    </small>
+                                </h4>
+                                <p>
+                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2), true, true)</span></a>
+                                </p>
+                            </div>
+                        </li>
+                                        }
+                </ul>
+            </div>
         </div>
-        <div class="panel-body">
-            <ul class="media-list">
-                @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
-                {
-                    var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
-                    <li class="media deneme2">
-                        <div class="media-left">
-                        </div>
-                        <div class="media-body" style="width:100%;margin-bottom:3px;">
-                            <h4 class="media-heading">
-                                @yorum.YorumYazari
-                                @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
-                                    int sayi2 = yorum.YorumIcerik.Length;}
-                                <br>
-                                <small style="color:#689F38">
-                                    yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span></span></a>
-                                </small>
-                            </h4>
-                            <p>
-                                <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2), true, true)</span></a>
-                            </p>
-                        </div>
-                    </li>
-                                    }
-            </ul>
-        </div>
+        <!-- End fluid width widget -->
+
+
     </div>
-    <!-- End fluid width widget -->
-
-
-</div>
 
 }
 

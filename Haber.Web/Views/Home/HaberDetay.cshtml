@@ -52,7 +52,9 @@
             <h2>Benzer Haberler</h2>
             <ul class="spost_nav wow fadeInDown animated">
                 @{
-                    foreach (var haber in (List<HaberCl>)ViewBag.benzerhaberler)
+                    var benzerHaberListesi = (List<HaberCl>)ViewBag.benzerhaberler;
+                    
+                    foreach (var haber in benzerHaberListesi.Take(3))
                     {
                         if (haber.HaberResimleri.Count == 0 || haber.HaberResimleri == null)
                         {
