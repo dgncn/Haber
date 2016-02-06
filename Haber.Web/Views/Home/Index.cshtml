@@ -153,8 +153,7 @@
                                         <div class="media-body">
                                             <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
                                                 <span>
-                                                    @{ string abc = haber.HaberBaslik.Substring(0, 95);
-                                                        @abc}...
+                                                    @haber.HaberBaslik.Substring(0, 95)<span>...</span>
                                                 </span>
                                             </a>
                                         </div>
@@ -189,10 +188,8 @@
                                                                             </a>
                                                                             <div class="media-body">
                                                                                 <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                                                    <span>
-                                                                                        @{ string abc = haber.HaberBaslik.Substring(0, 95);
-                                                                                            @abc}...
-                                                                                    </span>
+                                                                                    
+                                                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
                                                                                 </a>
                                                                             </div>
                                                                         </div>
@@ -262,17 +259,13 @@
                             @if (haber.HaberIcerik.Length > 95)
                             {
                                 <p>
-                                    @{ string abc = haber.HaberIcerik.Substring(0, 95);
-                                        @abc}...
-
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 90).Trim(), true, true))<span>...</span>
                                 </p>
                                         }
                                         else if (haber.HaberIcerik.Length <= 105)
                                         {
                                             <p>
-                                                @{ string abc = haber.HaberIcerik.Substring(0, 60);
-                                                    @abc}...
-
+                                                @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 60).Trim(), true, true))<span>...</span>
                                             </p>
                                                     }
                         </figure>
@@ -370,8 +363,8 @@
 
                             @if (haber.HaberIcerik.Length > 195)
                             {
-                                <p>
-                                    @haber.HaberIcerik.Substring(0, 195)<span>...</span>
+                                <p style="padding-right:2px;">
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 195).Trim(), true, true))<span>...</span>
                                 </p>
                             }
 
@@ -469,8 +462,8 @@
 
                                     @if (haber.HaberIcerik.Length > 195)
                                     {
-                                        <p>
-                                            @haber.HaberIcerik.Substring(0, 195)<span>...</span>
+                                        <p style="padding-left:2px;">
+                                            @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 195).Trim(), true, true))<span>...</span>
                                         </p>
                                     }
 
@@ -596,14 +589,14 @@
                                 @if (haber.HaberIcerik.Length > 105)
                                 {
                                     <p>
-                                        @haber.HaberIcerik.Substring(0, 105)<span>...</span>
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 100).Trim(), true, true))<span>...</span>
 
                                     </p>
                                 }
                                 else if (haber.HaberIcerik.Length <= 105)
                                 {
                                     <p>
-                                        @haber.HaberIcerik.Substring(0, 60)<span>...</span>
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, haber.HaberIcerik.Length).Trim(), true, true))<span>...</span>
 
                                     </p>
                                 }
