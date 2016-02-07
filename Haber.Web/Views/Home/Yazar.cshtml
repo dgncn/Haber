@@ -1,5 +1,6 @@
-﻿@model List<HaberCl>
+﻿@model PagedList.IPagedList<HaberCl>
 @using Haber.COM;
+@using PagedList.Mvc;
     @{
         ViewBag.Title = "Yazar " + Model[0].HaberYazari.YazarAdSoyad + " Haberleri";
         Layout = "~/Views/Shared/_Layout.cshtml";
@@ -218,3 +219,5 @@
 
 
 }
+
+@Html.PagedListPager(Model,page=>Url.Action("Yazar",new { page }))

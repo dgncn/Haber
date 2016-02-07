@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace Haber.Web.Controllers
 {
     public class HomeController : Controller
@@ -252,7 +252,7 @@ namespace Haber.Web.Controllers
             ViewbagListesi();
             return View();
         }
-        public ActionResult Yazar(int? id)
+        public ActionResult Yazar(int? id, int? page)
         {
             ViewbagListesi();
             if (id != null || id != 0)
@@ -261,7 +261,18 @@ namespace Haber.Web.Controllers
                 if (yazar != null)
                 {
                     var liste = haberhelper.YazaraGoreHaberler(yazar).OrderByDescending(x => x.HaberGirisTarihi).ToList();
-                    return View(liste);
+                    int pageSize = 10;
+                    int pageNumber = (page ?? 1);
+
+                    if (liste.Count>15)
+                    {
+                        ViewBag.sayfalama = true;
+                    }
+                    else
+                    {
+                        ViewBag.sayfalama = false;
+                    }
+                    return View(liste.ToPagedList(pageNumber,pageSize));
                 }
                 else
                 {
