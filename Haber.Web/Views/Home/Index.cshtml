@@ -133,12 +133,10 @@
             <div class="latest_post_container">
                 <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
                 <ul class="latest_postnav">
-                    @{
-                        int i = 0;
-                    }
-                    @foreach (var haber in Model)
+                    
+                    @foreach (var haber in Model.Take(10))
                     {
-                        i++;
+
                         if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                         {
 
@@ -159,64 +157,59 @@
                                         </div>
                                     </div>
                                 </li>
-                                                        }
-                                                        else
-                                                        {
-                                                            <li>
-                                                                <div class="media">
-                                                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                        <img alt="img" src="">
-                                                                    </a>
-                                                                    <div class="media-body">
-                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            if (haber.HaberResimleri.Count > 0)
-                                                            {
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="media">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                            <img alt="img" src="">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            if (haber.HaberResimleri.Count > 0)
+                            {
 
-                                                                if (haber.HaberBaslik.Length > 95)
-                                                                {
-                                                                    <li>
-                                                                        <div class="media">
-                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                            </a>
-                                                                            <div class="media-body">
-                                                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                                                    
-                                                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                if (haber.HaberBaslik.Length > 95)
+                                {
+                                    <li>
+                                        <div class="media">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                                    @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                                </a>
+                                            </div>
+                                        </div>
 
-                                                                    </li>
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                <li>
-                                                                                                    <div class="media">
-                                                                                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                                                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                                                                                        </a>
-                                                                                                        <div class="media-body">
-                                                                                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
-                                                                                                        </div>
-                                                                                                    </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="media">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                            </div>
+                                        </div>
 
-                                                                                                </li>
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                                if (i == 5)
-                                                                                                {
-                                                                                                    break;
-                                                                                                }
-                                                                                            }
+                                    </li>
+                                }
+                            }
+                        }
+                    }
 
                     <!-- #region yorum -->
                     <!-- #endregion -->

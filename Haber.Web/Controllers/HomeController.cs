@@ -53,23 +53,27 @@ namespace Haber.Web.Controllers
 
 
             ViewbagListesi();
+            var liste = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList();
 
-
-            return View(haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList());
+            return View(liste);
         }
-        public ActionResult Kategori(int? id)
+        public ActionResult Kategori(int? id,int? page)
         {
             ViewbagListesi();
 
             if (id == null)
             {
-                var result1 = haberhelper.KategoriyeGoreHaberler(10);
-                return View(result1);
+                var result1 = haberhelper.KategoriyeGoreHaberler();
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+                return View(result1.ToPagedList(pageNumber,pageSize));
             }
             else
             {
                 var result1 = haberhelper.KategoriyeGoreSonHaberler1(kategorihelper.KategoriGetir(id));
-                return View(result1);
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+                return View(result1.ToPagedList(pageNumber,pageSize));
             }
 
         }
@@ -261,17 +265,8 @@ namespace Haber.Web.Controllers
                 if (yazar != null)
                 {
                     var liste = haberhelper.YazaraGoreHaberler(yazar).OrderByDescending(x => x.HaberGirisTarihi).ToList();
-                    int pageSize = 10;
+                    int pageSize = 15;
                     int pageNumber = (page ?? 1);
-
-                    if (liste.Count>15)
-                    {
-                        ViewBag.sayfalama = true;
-                    }
-                    else
-                    {
-                        ViewBag.sayfalama = false;
-                    }
                     return View(liste.ToPagedList(pageNumber,pageSize));
                 }
                 else

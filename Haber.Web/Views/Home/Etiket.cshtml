@@ -141,7 +141,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Substring(0, 150).Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                             <div class="slider_article">
                                 <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
                                 <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(haber.HaberIcerik.Trim())<span>...</span>
+                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
                                 </div>
                             </div>
                         </div>

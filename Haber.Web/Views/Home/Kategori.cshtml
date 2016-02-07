@@ -1,4 +1,5 @@
-﻿@model List<HaberCl>
+﻿@model PagedList.IPagedList<HaberCl>
+@using PagedList.Mvc;
 @using Haber.COM;
 @{
     ViewBag.Title = Model[0].HaberKategori.KategoriAdi + " Kategorisindeki Haberler";
@@ -18,7 +19,7 @@
 
     <div class="single_post_content">
         <h2>
-            <span>Kategori Haberleri</span>
+            <span>@Model[0].HaberKategori.KategoriAdi Haberleri</span>
         </h2>
 
         <ul id="spotLi" class="spost_nav">
@@ -87,6 +88,7 @@
         </ul>
     </div>
 
+@Html.PagedListPager(Model, page => Url.Action("Kategori", new { page }))
 }
 
 @section sonHaberlerkucuk{
@@ -479,3 +481,4 @@
 <!-- =========================
       //////////////This Theme Design and Developed //////////////////////
       //////////// by www.wpfreeware.com======================-->
+

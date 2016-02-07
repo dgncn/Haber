@@ -219,10 +219,20 @@ namespace Haber.Helper
             var result = context.Haberler.ToList();
             return result;
         }
-        public List<HaberCl> KategoriyeGoreHaberler(int haberAdet)
+        public List<HaberCl> KategoriyeGoreHaberler(int? haberAdet)
         {
-            var result = context.Haberler.Take(haberAdet).ToList();
-            return result;
+            if (haberAdet==null)
+            {
+                var result = context.Haberler.ToList();
+                return result;
+            }
+            else
+            {
+                int hAdet = Convert.ToInt32(haberAdet);
+                var result = context.Haberler.Take(hAdet).ToList();
+                return result;
+            }
+            
         }
         public List<HaberCl> YazaraGoreHaberler()
         {

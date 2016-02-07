@@ -25,7 +25,7 @@
     // latest post slider call 
     $('.latest_postnav').newsTicker({
     row_height: 64,
-    speed: 800,
+    speed: 600,
     prevButton:  $('#prev-button'),
     nextButton:  $('#next-button')   
 });

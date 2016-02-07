@@ -618,7 +618,7 @@ img:hover{
 }
 
 .latest_postnav {
-  height: auto !important;
+  height: 400px !important;
   margin-top: 20px;
 }
 .latest_postnav li{
