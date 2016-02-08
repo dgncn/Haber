@@ -359,7 +359,7 @@ namespace Haber.Web.Controllers
         public ActionResult KategoriHaberleri()
         {
             ViewBag.kategoriler = kategorihelper.TumKategoriler();
-            var result = haberhelper.KategoriyeGoreHaberler();
+            var result = haberhelper.KategoriyeGoreHaberler().OrderByDescending(x=>x.HaberGirisTarihi).ToList();
             return View(result);
 
         }

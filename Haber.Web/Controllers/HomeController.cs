@@ -73,6 +73,7 @@ namespace Haber.Web.Controllers
                 var result1 = haberhelper.KategoriyeGoreSonHaberler1(kategorihelper.KategoriGetir(id));
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
+                ViewBag.kategori = kategorihelper.KategoriGetir(id).KategoriAdi;
                 return View(result1.ToPagedList(pageNumber,pageSize));
             }
 

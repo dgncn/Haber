@@ -556,7 +556,7 @@
 
 
     <div class="single_post_content">
-        <h2><span>Gündem</span></h2>
+        <h2><span>Dünya</span></h2>
         <div class="single_post_content_left">
             <ul class="business_catgnav  wow fadeInDown ">
                 @{
@@ -736,14 +736,16 @@
                                                 <h4 class="media-heading">
                                                     @yorum.YorumYazari
                                                     @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
-                                                        int sayi2 = yorum.YorumIcerik.Length;}
+                                                        int sayii = (sayi * 55) / 100;
+                                                        int sayi2 = yorum.YorumIcerik.Length;
+                                                        int sayii2 = (sayi2 * 55) / 100;}
                                                     <br>
                                                     <small style="color:#689F38">
-                                                        yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0,sayi)<span></span></a>
+                                                        yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0,sayi)<span>...</span></a>
                                                     </small>
                                                 </h4>
                                                 <p>
-                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2),true,true)</span></a>
+                                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayii2),true,true)<span>...</span></span></a>
                                                 </p>
                                             </div>
                                         </li>

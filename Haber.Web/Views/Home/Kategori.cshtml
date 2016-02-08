@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 @using Haber.COM;
 @{
-    ViewBag.Title = Model[0].HaberKategori.KategoriAdi + " Kategorisindeki Haberler";
+    ViewBag.Title = ViewBag.kategori + " Kategorisindeki Haberler";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,77 +16,80 @@
 
 @section katHaberleri{
 
+    @if (Model.TotalItemCount > 0)
+    {
+        <div class="single_post_content">
+            <h2>
+                <span>@Model[0].HaberKategori.KategoriAdi Haberleri</span>
+            </h2>
 
-    <div class="single_post_content">
-        <h2>
-            <span>@Model[0].HaberKategori.KategoriAdi Haberleri</span>
-        </h2>
+            <ul id="spotLi" class="spost_nav">
+                @{
+                    foreach (var haber in Model)
+                    {
+                        string icerik = "";
+                        if (haber.HaberIcerik.Length > 150)
+                        {
+                            icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
+                        }
+                        else
+                        {
+                            icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
+                        }
 
-        <ul id="spotLi" class="spost_nav">
-            @{
-                foreach (var haber in Model)
-                {
-                    string icerik = "";
-                    if (haber.HaberIcerik.Length > 150)
-                    {
-                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
-                    }
-                    else
-                    {
-                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
-                    }
+                        if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                        {
+                            <li>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                    <p>@icerik<span>...</span></p>
+                                </div>
+                            </li>
+                        }
+                        else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
+                        {
+                            <li>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                    </a>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                    <p>
+                                        @icerik<span>...</span>
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
+                                    </a>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
+                                    <p>
+                                        @icerik<span>...</span>
+                                        @*@Html.Raw(haber.HaberIcerik.Substring(0, 155).Trim())<span>...</span>*@
+                                    </p>
+                                </div>
 
-                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>@icerik<span>...</span></p>
-                            </div>
-                        </li>
-                    }
-                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
-                                </a>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>
-                                    @icerik<span>...</span>
-                                </p>
-                            </div>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <a href="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
-                                </a>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>
-                                    @icerik<span>...</span>
-                                    @*@Html.Raw(haber.HaberIcerik.Substring(0, 155).Trim())<span>...</span>*@
-                                </p>
-                            </div>
-
-                        </li>
+                            </li>
+                        }
                     }
                 }
-            }
 
-        </ul>
-    </div>
+            </ul>
+        </div>
+
+    }
 
 @Html.PagedListPager(Model, page => Url.Action("Kategori", new { page }))
 }
@@ -202,116 +205,102 @@
 
                 }
             }
-            <div class="single_iteam">
-                <a href="single_page.html"> <img src="~/Gallery/img/slider_img2.jpg" alt="img"></a>
-                <div class="slider_article">
-                    <h2><a class="slider_tittle" href="single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
-                </div>
-            </div>
         </div>
     </div>
 }
 @section SonGonderilen{
     <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-            <h2><span>Son Gönderilenler</span></h2>
-            <div class="latest_post_container">
-                <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-                <ul class="latest_postnav">
-                    @{
-                        int i = 0;
-                    }
-                    @foreach (var haber in Model)
+    <div class="latest_post">
+        <h2><span>Son Gönderilenler</span></h2>
+        <div class="latest_post_container">
+            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+            <ul class="latest_postnav">
+
+                @foreach (var haber in Model.Take(10))
+                {
+
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                     {
-                        i++;
-                        if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+
+                        if (haber.HaberBaslik.Length > 95)
+                        {
+
+                            <li>
+                                <div class="media">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                        <img alt="img" src="">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                            <span>
+                                                @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="media">
+                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                        <img alt="img" src="">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        if (haber.HaberResimleri.Count > 0)
                         {
 
                             if (haber.HaberBaslik.Length > 95)
                             {
+                                <li>
+                                    <div class="media">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                                @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                            </a>
+                                        </div>
+                                    </div>
 
-                    <li>
-                        <div class="media">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                <img alt="Resim yok" src="">
-                            </a>
-                            <div class="media-body">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                    <span>
-                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                                                        }
-                                                        else
-                                                        {
-                    <li>
-                        <div class="media">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                <img alt="Resim yok" src="">
-                            </a>
-                            <div class="media-body">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
-                            </div>
-                        </div>
-                    </li>
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            if (haber.HaberResimleri.Count > 0)
-                                                            {
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="media">
+                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                            <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                        </div>
+                                    </div>
 
-                                                                if (haber.HaberBaslik.Length > 95)
-                                                                {
-                    <li>
-                        <div class="media">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                            </a>
-                            <div class="media-body">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                    <span>
-                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
+                                </li>
+                            }
+                        }
+                    }
+                }
 
-                    </li>
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                    <li>
-                        <div class="media">
-                            <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
-                            </a>
-                            <div class="media-body">
-                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
-                            </div>
-                        </div>
-
-                    </li>
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                                if (i == 5)
-                                                                                                {
-                                                                                                    break;
-                                                                                                }
-                                                                                            }
-
-                    <!-- #region yorum -->
-                    <!-- #endregion -->
-                </ul>
-                <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-            </div>
+                <!-- #region yorum -->
+                <!-- #endregion -->
+            </ul>
+            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
         </div>
     </div>
+</div>
+
 }
 
 
@@ -359,58 +348,60 @@
 
 
 @section sidebar{
-    <!-- start tab section -->
-    <div class="single_sidebar">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
-        </ul>
+   <!-- start tab section -->
+<div class="single_sidebar">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Son Yorumlar</a></li>
+    </ul>
 
 
-        <!-- Container, Row, and Column used for illustration purposes -->
-        <style>
-            .deneme2 {
-                margin-top: 0px;
-            }
-        </style>
-        <!-- Fluid width widget -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    Son Yorumlar
-                </h3>
-            </div>
-            <div class="panel-body">
-                <ul class="media-list">
-                    @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
-                    {
-                        var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
-                        <li class="media deneme2">
-                            <div class="media-left">
-                            </div>
-                            <div class="media-body" style="width:100%;margin-bottom:3px;">
-                                <h4 class="media-heading">
-                                    @yorum.YorumYazari
-                                    @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
-                                        int sayi2 = yorum.YorumIcerik.Length;}
-                                    <br>
-                                    <small style="color:#689F38">
-                                        yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span></span></a>
-                                    </small>
-                                </h4>
-                                <p>
-                                    <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayi2), true, true)</span></a>
-                                </p>
-                            </div>
-                        </li>
-                                        }
-                </ul>
-            </div>
+    <!-- Container, Row, and Column used for illustration purposes -->
+    <style>
+        .deneme2 {
+            margin-top: 0px;
+        }
+    </style>
+    <!-- Fluid width widget -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Son Yorumlar
+            </h3>
         </div>
-        <!-- End fluid width widget -->
-
-
+        <div class="panel-body">
+            <ul class="media-list">
+                @foreach (var yorum in (List<Yorum>)ViewBag.yorumListe2)
+                {
+                    var yorumId2 = yorum.YorumHaberi.HaberID + "#yorum" + yorum.YorumID;
+                    <li class="media deneme2">
+                        <div class="media-left">
+                        </div>
+                        <div class="media-body" style="width:100%;margin-bottom:3px;">
+                            <h4 class="media-heading">
+                                @yorum.YorumYazari
+                                @{ int sayi = yorum.YorumHaberi.HaberBaslik.Length;
+                                    int sayii = (sayi * 55) / 100;
+                                    int sayi2 = yorum.YorumIcerik.Length;
+                                    int sayii2 = (sayi2 * 55) / 100;}
+                                <br>
+                                <small style="color:#689F38">
+                                    yorum yazdı <a href="@Url.Action("HaberDetay",new { id = yorum.YorumHaberi.HaberID })">@yorum.YorumHaberi.HaberBaslik.Substring(0, sayi)<span>...</span></a>
+                                </small>
+                            </h4>
+                            <p>
+                                <a href="~/Home/HaberDetay/@yorumId2"><span class="text-primary" style="color:#689F38">@HtmlHelperText.HtmlStripTags(yorum.YorumIcerik.Substring(0, sayii2), true, true)<span>...</span></span></a>
+                            </p>
+                        </div>
+                    </li>
+                                    }
+            </ul>
+        </div>
     </div>
+    <!-- End fluid width widget -->
+
+
+</div>
 
 }
 

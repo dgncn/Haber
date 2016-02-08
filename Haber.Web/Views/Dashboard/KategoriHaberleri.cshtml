@@ -39,7 +39,16 @@
                 <tr>
                     <td>@haber.HaberID</td>
                     <td>@haber.HaberBaslik</td>
-                    <td>@haber.HaberIcerik</td>
+                    <td>
+                        @if (haber.HaberIcerik.Length > 250)
+                        {
+                            @Html.Raw(haber.HaberIcerik.Substring(0, 250))<span>...</span>
+                        }
+                        else
+                        {
+                            @Html.Raw(haber.HaberIcerik)
+                        }
+                    </td>
                     <td>@haber.HaberGirisTarihi</td>
                     <td>@haber.HaberYazari.YazarAdSoyad</td>
                     <td>@haber.HaberKategori.KategoriAdi</td>

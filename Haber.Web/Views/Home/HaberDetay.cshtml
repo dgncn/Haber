@@ -29,10 +29,21 @@
             }
             else
             {
-                <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="img">
+                <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[0].ResimAdi" alt="Resim1" style="width:100%;height:300px;" />
             }
             <p>@Html.Raw(Model.HaberIcerik)</p>
             
+            @if (Model.HaberResimleri.Count == 2)
+            {
+               <img class="img-center" src="~/Content/Galeri/@Model.HaberResimleri[1].ResimAdi" alt="Resim2" />
+            }
+            else if (Model.HaberResimleri.Count == 3)
+            {
+                <img class="img-center" style="float:left;" src="~/Content/Galeri/@Model.HaberResimleri[1].ResimAdi" alt="Resim2" />
+                <img class="img-center" style="float:left;" src="~/Content/Galeri/@Model.HaberResimleri[2].ResimAdi" alt="Resim2" />
+            }
+
+
                         @foreach (var etiket in Model.HaberEtiketleri)
                         {
                             <a href="~/Home/Etiket/@etiket.EtiketAdi"><button class="btn default-btn">@etiket.EtiketAdi</button></a>
@@ -101,7 +112,7 @@
                 }
                 int id = Model.HaberID;
 
-                <textarea class="form-control" name="txtYorum" id="txtYorum" placeholder="Yorumunuz" required></textarea>
+                <textarea class="form-control" name="txtYorum" id="txtYorum" placeholder="Yorumunuz" title="Yorum yazınız." required></textarea>
                     <input type="submit" class="btn btn-primary" name="txtYorumGonder" value="Yorum Ekle" />
             }
         </div>
