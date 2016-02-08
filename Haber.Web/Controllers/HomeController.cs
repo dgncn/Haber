@@ -27,15 +27,17 @@ namespace Haber.Web.Controllers
             ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
             ViewBag.yorumlar = yorumhelper.TumYorumlariListele();
             ViewBag.etiketler = etikethelper.TumEtiketleriListele();
-            ViewBag.resimler = resimhelper.ResimListele();
+            ViewBag.resimler = resimhelper.ResimListele().Where(x=>x.ResimHaber != null).ToList();
             var haberList = (List<HaberCl>)ViewBag.haberler;
             var enCokOkunanlar = (from p in haberList
+                                  where p.HaberDurumu == true
                                   orderby p.HaberOkunmaSayisi descending
                                   select p).Take(6).ToList();
             ViewBag.enCokOkunanlarListesi = enCokOkunanlar;
             var etiketListe = (List<Etiket>)ViewBag.etiketler;
             var yorumListe = (List<Yorum>)ViewBag.yorumlar;
             var yorumListe2 = (from p in yorumListe
+                               where p.YorumHaberi.HaberDurumu == true
                                orderby p.YorumYazmaTarihi descending
                                select p).Take(15).ToList();
             ViewBag.yorumListe2 = yorumListe2;

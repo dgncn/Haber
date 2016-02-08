@@ -18,16 +18,19 @@
         <ul id="ticker01" class="news_sticker">
             @foreach (var haber in Model)
             {
-                if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                if (haber.HaberDurumu)
                 {
-            <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
-                }
-                else
-                {
-                    if (haber.HaberResimleri.Count > 0)
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                     {
+                        <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="" alt="">@haber.HaberBaslik</a></li>
+                    }
+                    else
+                    {
+                        if (haber.HaberResimleri.Count > 0)
+                        {
 
-            <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                            <li><a href="~/Home/HaberDetay/@haber.HaberID"><img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="">@haber.HaberBaslik</a></li>
+                        }
                     }
                 }
 
@@ -59,68 +62,71 @@
         <div class="slick_slider">
             @foreach (var haber in Model)
             {
-                if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                if (haber.HaberDurumu)
                 {
-                    if (haber.HaberIcerik.Length > 150)
+                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="" alt="img">
-                            </a>~/Home/HaberDetay/@haber.HaberID
-                            <div class="slider_article" style="background-color:#0f0f0f">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
+                        if (haber.HaberIcerik.Length > 150)
+                        {
+                            <div class="single_iteam">
+                                <a href="~/Home/HaberDetay/@haber.HaberID">
+                                    <img src="" alt="img">
+                                </a>~/Home/HaberDetay/@haber.HaberID
+                                <div class="slider_article" style="background-color:#0f0f0f">
+                                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+                        else
+                        {
+                            <div class="single_iteam">
+                                <a href="~/Home/HaberDetay/@haber.HaberID">
+                                    <img src="" alt="img">
+                                </a>~/Home/HaberDetay/@haber.HaberID
+                                <div class="slider_article">
+                                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     }
                     else
                     {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="" alt="img">
-                            </a>~/Home/HaberDetay/@haber.HaberID
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
+                        if (haber.HaberIcerik.Length > 150)
+                        {
+                            <div class="single_iteam">
+                                <a href="~/Home/HaberDetay/@haber.HaberID">
+                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                                </a>
+                                <div class="slider_article">
+                                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                }
-                else
-                {
-                    if (haber.HaberIcerik.Length > 150)
-                    {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                            </a>
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true))<span>...</span>
+                        }
+                        else
+                        {
+                            <div class="single_iteam">
+                                <a href="~/Home/HaberDetay/@haber.HaberID">
+                                    <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
+                                </a>
+                                <div class="slider_article">
+                                    <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
+                                    <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
+                                        @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="single_iteam">
-                            <a href="~/Home/HaberDetay/@haber.HaberID">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="img">
-                            </a>
-                            <div class="slider_article">
-                                <h2><a class="slider_tittle" href="~/Home/HaberDetay/@haber.HaberID">@haber.HaberBaslik</a></h2>
-                                <div style="background: none repeat scroll 0 0 rgba(15, 15, 15, 0.84); padding-left:5px; color:#fff">
-                                    @Html.Raw(HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true))<span>...</span>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                        }
 
+                    }
                 }
             }
         </div>
@@ -137,60 +143,27 @@
                     @foreach (var haber in Model.Take(10))
                     {
 
-                        if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
+                        if (haber.HaberDurumu)
                         {
-
-                            if (haber.HaberBaslik.Length > 95)
-                            {
-
-                                <li>
-                                    <div class="media">
-                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                            <img alt="img" src="">
-                                        </a>
-                                        <div class="media-body">
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                <span>
-                                                    @haber.HaberBaslik.Substring(0, 95)<span>...</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <div class="media">
-                                        <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                            <img alt="img" src="">
-                                        </a>
-                                        <div class="media-body">
-                                            <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            if (haber.HaberResimleri.Count > 0)
+                            if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                             {
 
                                 if (haber.HaberBaslik.Length > 95)
                                 {
+
                                     <li>
                                         <div class="media">
                                             <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                <img alt="img" src="">
                                             </a>
                                             <div class="media-body">
                                                 <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
-                                                    @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                                    <span>
+                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                                    </span>
                                                 </a>
                                             </div>
                                         </div>
-
                                     </li>
                                 }
                                 else
@@ -198,14 +171,50 @@
                                     <li>
                                         <div class="media">
                                             <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
-                                                <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                <img alt="img" src="">
                                             </a>
                                             <div class="media-body">
-                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span></a>
                                             </div>
                                         </div>
-
                                     </li>
+                                }
+                            }
+                            else
+                            {
+                                if (haber.HaberResimleri.Count > 0)
+                                {
+
+                                    if (haber.HaberBaslik.Length > 95)
+                                    {
+                                        <li>
+                                            <div class="media">
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                </a>
+                                                <div class="media-body">
+                                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title">
+                                                        @haber.HaberBaslik.Substring(0, 95)<span>...</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <div class="media">
+                                                <a href="~/Home/HaberDetay/@haber.HaberID" class="media-left">
+                                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                                </a>
+                                                <div class="media-body">
+                                                    <a href="~/Home/HaberDetay/@haber.HaberID" class="catg_title"><span>@haber.HaberBaslik</span> </a>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    }
                                 }
                             }
                         }
@@ -233,7 +242,7 @@
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
-                                  where p.HaberKategori.KategoriAdi == "Gündem"
+                                  where p.HaberKategori.KategoriAdi == "Gündem" && p.HaberDurumu==true
                                   select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                     int i = 0;
                 }
@@ -336,7 +345,7 @@
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
-                                  where p.HaberKategori.KategoriAdi == "Türkiye"
+                                  where p.HaberKategori.KategoriAdi == "Türkiye" && p.HaberDurumu == true
                                   select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                     int j = 0;
                 }
@@ -433,12 +442,10 @@
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
-                                  where p.HaberKategori.KategoriAdi == "Teknoloji"
+                                  where p.HaberKategori.KategoriAdi == "Teknoloji" && p.HaberDurumu == true
                                   select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                     int j = 0;
                 }
-                <HaberCl>
-                    <HaberCl>
 
                         @foreach (var haber in result)
                         {
@@ -531,6 +538,7 @@
             @{
                 var resimListesi = (List<Resim>)ViewBag.resimler;
                 var result = (from p in resimListesi
+                              where p.ResimHaber.HaberDurumu==true
                               orderby p.ResimID descending
                               select p).Take(6).ToList();
 
@@ -562,11 +570,10 @@
                 @{
                     var haberListesi = (List<HaberCl>)ViewBag.haberler;
                     var result = (from p in haberListesi
-                                  where p.HaberKategori.KategoriAdi == "Dünya"
+                                  where p.HaberKategori.KategoriAdi == "Dünya" && p.HaberDurumu == true
                                   select p).OrderByDescending(x => x.HaberGirisTarihi).ToList();
                     int i = 0;
                 }
-                <HaberCl>
                     @foreach (var haber in result)
                     {
                         i++;

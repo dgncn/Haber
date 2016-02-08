@@ -132,7 +132,8 @@ namespace Haber.Web.Controllers
         }
         public ActionResult HaberDuzenle()
         {
-            var result = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).ToList();
+            //HaberClHelper haberhelper2 = new HaberClHelper(context);
+            var result = haberhelper.TumHaberleriListele();
             return View(result);
         }
         public ActionResult HaberDuzenleme(int? id)

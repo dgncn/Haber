@@ -24,7 +24,9 @@ namespace Haber.Helper
 
         public List<HaberCl> TumHaberleriListele()
         {
-            return context.Haberler.ToList();
+            HaberContext context2 = new HaberContext();
+            var list = context2.Haberler.ToList();
+            return list;
         }
 
         public int HaberKaydet(HaberCl haber)

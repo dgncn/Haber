@@ -20,6 +20,8 @@
             <td>@Html.LabelFor(x => x[0].HaberGirisTarihi)</td>
             <td>@Html.LabelFor(x => x[0].HaberYazari.YazarAdSoyad)</td>
             <td>@Html.LabelFor(x => x[0].HaberKategori.KategoriAdi)</td>
+            <td>@Html.LabelFor(x => x[0].HaberDurumu)</td>
+            <td>@Html.LabelFor(x => x[0].HaberOkunmaSayisi)</td>
             <td></td>
         </tr>
     </thead>
@@ -43,6 +45,18 @@
                 <td>@haber.HaberGirisTarihi</td>
                 <td>@Html.ActionLink(haber.HaberYazari.YazarAdSoyad.ToString(), "YazarHaberleriYeni", new { id = haber.HaberYazari.YazarID })</td>
                 <td>@Html.ActionLink(haber.HaberKategori.KategoriAdi.ToString(), "KategoriHaberleriYeni", new { id = haber.HaberKategori.KategoriID })</td>
+                <td>
+                    @if (haber.HaberDurumu)
+
+                    {
+                        <input type="checkbox" name="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" value="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" value="@haber.HaberID.ToString() @haber.HaberKategori.KategoriID" />
+                    }
+                </td>
+                <td>@haber.HaberOkunmaSayisi</td>
                 <td>
                     <div class="btn btn-default">
                         @Html.ActionLink("Düzenle", "HaberDuzenleme", new { id = haber.HaberID })
