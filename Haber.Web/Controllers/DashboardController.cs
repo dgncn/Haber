@@ -149,6 +149,7 @@ namespace Haber.Web.Controllers
             }
             else
             {
+                ViewBag.haberOkSayi = haberhelper.HaberGetir(id).HaberOkunmaSayisi;
                 var result = (from p in context.Haberler
                               where p.HaberID == id
                               select p).FirstOrDefault();
@@ -157,6 +158,7 @@ namespace Haber.Web.Controllers
                     var haber = haberhelper.HaberGetir(id);
                     ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
                     ViewBag.kategoriler = kategorihelper.TumKategoriler();
+                    haber.HaberOkunmaSayisi = (int)ViewBag.haberOkSayi;
                     return View(haber);
                 }
                 else

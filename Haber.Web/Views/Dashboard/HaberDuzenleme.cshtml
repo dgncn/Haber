@@ -101,6 +101,12 @@
             </td>
         </tr>
         <tr>
+            <td>@Html.LabelFor(x => x.HaberOkunmaSayisi)</td>
+            <td>
+                @Html.TextBoxFor(x => x.HaberOkunmaSayisi,new { @readonly="readonly" })
+            </td>
+        </tr>
+        <tr>
             <td>
                 @Html.LabelFor(x => x.HaberResimleri) 1
                 <input type="hidden" name="resimListe" value="@Model.HaberResimleri" />

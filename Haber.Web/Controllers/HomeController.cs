@@ -55,7 +55,7 @@ namespace Haber.Web.Controllers
 
 
             ViewbagListesi();
-            var liste = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList();
+            var liste = haberhelper.TumHaberleriListele().Where(x=>x.HaberDurumu==true).OrderByDescending(x => x.HaberGirisTarihi).Take(10).ToList();
 
             return View(liste);
         }
@@ -65,14 +65,14 @@ namespace Haber.Web.Controllers
 
             if (id == null)
             {
-                var result1 = haberhelper.KategoriyeGoreHaberler();
+                var result1 = haberhelper.KategoriyeGoreHaberler().Where(x => x.HaberDurumu == true).ToList();
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
                 return View(result1.ToPagedList(pageNumber,pageSize));
             }
             else
             {
-                var result1 = haberhelper.KategoriyeGoreSonHaberler1(kategorihelper.KategoriGetir(id));
+                var result1 = haberhelper.KategoriyeGoreSonHaberler1(kategorihelper.KategoriGetir(id)).Where(x => x.HaberDurumu == true).ToList();
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
                 ViewBag.kategori = kategorihelper.KategoriGetir(id).KategoriAdi;
