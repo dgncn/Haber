@@ -17,7 +17,7 @@ using System.Net;
 namespace Haber.Web.Controllers
 {
     //[Authorize(Roles ="Admin")]
-    [Authorize(Roles ="SuperAdmin")]
+    [Authorize(Roles =ClassOfUserRoles.SuperAdmin +","+ClassOfUserRoles.Admin + "," + ClassOfUserRoles.NewsWriter)]
     public class DashboardController : Controller
     {
         static HaberContext context = new HaberContext();
@@ -45,7 +45,7 @@ namespace Haber.Web.Controllers
         }
 
         #region Haber Sayfaları
-
+        
         public ActionResult HaberEkle()
         {
             ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
@@ -55,7 +55,7 @@ namespace Haber.Web.Controllers
         }
 
 
-
+        
         [HttpPost]
         public ActionResult HaberEkle(HaberCl haber, int yazarid, int kategoriID, IEnumerable<HttpPostedFileBase> files)
         {
@@ -130,12 +130,14 @@ namespace Haber.Web.Controllers
             return View(result);
 
         }
+        
         public ActionResult HaberDuzenle()
         {
             //HaberClHelper haberhelper2 = new HaberClHelper(context);
             var result = haberhelper.TumHaberleriListele().OrderByDescending(x => x.HaberGirisTarihi).ToList();
             return View(result);
         }
+        
         public ActionResult HaberDuzenleme(int? id)
         {
             //if (id==null)
@@ -169,6 +171,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        
         [HttpPost]
         public ActionResult HaberDuzenleme(HaberCl haber, int haberID, int kategoriID, int yazarID, string haberEtiketi, IEnumerable<HttpPostedFileBase> files, List<Resim> resimListe)
         {
@@ -251,8 +254,8 @@ namespace Haber.Web.Controllers
             //id - kategori - yazar
             return RedirectToAction("HaberDuzenle");
         }
-        
 
+        
         public ActionResult HaberSil(int id)
         {
             haberhelper.HaberSil(id);
@@ -264,17 +267,19 @@ namespace Haber.Web.Controllers
         #region Kategori Sayfaları
 
 
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult KategoriListele()
         {
             var result = kategorihelper.TumKategoriler();
             return View(result);
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult KategoriEkle()
         {
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult KategoriEkle(Kategori kategori)
         {
@@ -289,12 +294,14 @@ namespace Haber.Web.Controllers
 
             return RedirectToAction("KategoriListele");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult KategoriDuzenle()
         {
 
             var result = kategorihelper.TumKategoriler();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult KategoriDuzenleme(int? id)
         {
@@ -320,6 +327,7 @@ namespace Haber.Web.Controllers
 
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult KategoriDuzenleme(Kategori kategori, int kategoriID)
         {
@@ -333,6 +341,7 @@ namespace Haber.Web.Controllers
 
             return RedirectToAction("KategoriDuzenle");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult KategoriSil(int id)
         {
@@ -359,6 +368,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult KategoriHaberleri()
         {
             ViewBag.kategoriler = kategorihelper.TumKategoriler();
@@ -366,6 +376,7 @@ namespace Haber.Web.Controllers
             return View(result);
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult KategoriHaberleri(int kategoriID)
         {
@@ -375,6 +386,7 @@ namespace Haber.Web.Controllers
             return View(result);
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult KategoriHaberleriYeni(int? id)
         {
@@ -390,17 +402,19 @@ namespace Haber.Web.Controllers
 
         #region Yorum Sayfaları
 
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YorumListele()
         {
             var result = yorumhelper.TumYorumlariListele().OrderByDescending(x => x.YorumYazmaTarihi).ToList();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YorumEkle()
         {
             ViewBag.haberlistesi = haberhelper.TumHaberleriListele();
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult YorumEkle(Yorum yorum, int HaberID)
         {
@@ -419,6 +433,7 @@ namespace Haber.Web.Controllers
                 return View();
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult YorumDuzenle()
         {
@@ -426,6 +441,7 @@ namespace Haber.Web.Controllers
             var result = yorumhelper.TumYorumlariListele().OrderByDescending(x => x.YorumYazmaTarihi).ToList();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult YorumDuzenleme(int? id)
         {
@@ -451,6 +467,7 @@ namespace Haber.Web.Controllers
 
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult YorumDuzenleme(Yorum yorum, int yorumID)
         {
@@ -465,6 +482,7 @@ namespace Haber.Web.Controllers
 
             return RedirectToAction("YorumDuzenle");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult YorumSil(int id)
         {
@@ -494,27 +512,31 @@ namespace Haber.Web.Controllers
         #endregion
 
         #region Yazar Sayfaları
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarListele()
         {
             var result = yazarhelper.TumYazarlariListele();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarEkle()
         {
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult YazarEkle(Yazar yazar)
         {
             yazarhelper.YazarKaydet(yazar);
             return RedirectToAction("YazarListele");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarDuzenle()
         {
             var result = yazarhelper.TumYazarlariListele();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarDuzenleme(int? id)
         {
             bool bosMu = string.IsNullOrEmpty(id.ToString());
@@ -540,6 +562,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult YazarDuzenleme(Yazar yazar, int yazarID)
         {
@@ -551,6 +574,7 @@ namespace Haber.Web.Controllers
             return RedirectToAction("YazarListele");
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult YazarSil(int id)
         {
@@ -576,6 +600,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("YazarDuzenle");
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult YazarHaberleri()
         {
@@ -583,6 +608,7 @@ namespace Haber.Web.Controllers
             var result = haberhelper.YazaraGoreHaberler();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         [HttpPost]
         public ActionResult YazarHaberleri(int yazarID)
@@ -593,6 +619,7 @@ namespace Haber.Web.Controllers
             return View(result);
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarHaberleriYeni(int? id)
         {
             if (id == null)
@@ -607,19 +634,19 @@ namespace Haber.Web.Controllers
         #endregion
 
         #region Etiket Sayfaları
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult EtiketListele()
         {
             var result = etikethelper.TumEtiketleriListele();
             return View(result);
         }
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult EtiketEkle()
         {
             ViewBag.hata = "";
             return View();
         }
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult EtiketEkle(Etiket etiket)
         {
@@ -643,6 +670,7 @@ namespace Haber.Web.Controllers
                 return View();
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
 
 
@@ -651,6 +679,7 @@ namespace Haber.Web.Controllers
             var result = etikethelper.TumEtiketleriListele();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult EtiketDuzenleme(int? id)
         {
             bool bosMu = string.IsNullOrEmpty(id.ToString());
@@ -673,6 +702,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult EtiketDuzenleme(Etiket etiket, int etiketID)
         {
@@ -684,6 +714,7 @@ namespace Haber.Web.Controllers
             return RedirectToAction("EtiketListele");
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult EtiketSil(int? id)
         {
@@ -716,6 +747,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("EtiketDuzenle");
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult EtiketHaberleri()
         {
@@ -724,6 +756,7 @@ namespace Haber.Web.Controllers
             var result = haberhelper.EtiketeGoreHaberler();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         [HttpPost]
         public ActionResult EtiketHaberleri(int etiketID)
@@ -743,6 +776,7 @@ namespace Haber.Web.Controllers
 
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult EtiketHaberleriYeni(int? id)
         {
@@ -807,17 +841,19 @@ namespace Haber.Web.Controllers
         #endregion
 
         #region Hakkında Sayfaları
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult HakkindaListele()
         {
             var result = hakkindahelper.TumHakkindaListesi();
             return View(result);
         }
-       
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
+
         public ActionResult HakkindaEkle()
         {
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         [HttpPost]
         public ActionResult HakkindaEkle(Hakkimizda hak)
@@ -828,6 +864,7 @@ namespace Haber.Web.Controllers
             return RedirectToAction("HakkindaListele");
             
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult HakkindaDuzenleme(int? id)
         {
             
@@ -855,6 +892,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult HakkindaDuzenleme(Hakkimizda hakkinda)
         {
@@ -872,6 +910,7 @@ namespace Haber.Web.Controllers
             
             return RedirectToAction("HakkindaListele");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult HakkindaSil(int? id)
         {
@@ -890,15 +929,16 @@ namespace Haber.Web.Controllers
         }
 
         #endregion
-        
-        #region İletişim Sayfaları
 
-        
+        #region İletişim Sayfaları
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
+
         public ActionResult IletisimListele()
         {
             var result = iletisimhelper.TumIletisimListesi().OrderByDescending(x=>x.IltGondermeTarihi).ToList();
             return View(result);
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult IletisimDuzenleme(int? id)
         {
             bool bosMu = string.IsNullOrEmpty(id.ToString());
@@ -925,6 +965,7 @@ namespace Haber.Web.Controllers
             }
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
         public ActionResult IletisimDuzenleme(Iletisim iletisim)
         {
@@ -943,10 +984,12 @@ namespace Haber.Web.Controllers
 
             return RedirectToAction("IletisimListele");
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult IletisimEkle()
         {
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         [HttpPost]
         public ActionResult IletisimEkle(Iletisim ile)
@@ -957,6 +1000,7 @@ namespace Haber.Web.Controllers
             return RedirectToAction("IletisimListele");
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
         public ActionResult IletisimSil(int? id)
         {
@@ -973,8 +1017,9 @@ namespace Haber.Web.Controllers
 
 
         }
+        
         #endregion
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public ActionResult KullaniciListesi()
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -987,6 +1032,7 @@ namespace Haber.Web.Controllers
 
             return View();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public ActionResult KullaniciDuzenleme(string id)
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -1012,7 +1058,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("KullaniciListesi");
             }
         }
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         [HttpPost]
         public ActionResult KullaniciDuzenleme(HaberUser user, string roleID)
         {
@@ -1039,6 +1085,7 @@ namespace Haber.Web.Controllers
             return RedirectToAction("KullaniciListesi");
 
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public ActionResult KullaniciDetay(string id)
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -1067,6 +1114,7 @@ namespace Haber.Web.Controllers
                 }
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public void KullaniciRolSilV(HaberUser user, string id)
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -1077,6 +1125,7 @@ namespace Haber.Web.Controllers
             userManager.RemoveFromRole(user.Id, roleManager.FindById(id).Name);
             context.SaveChanges();
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         [HttpGet]
         public ActionResult KullaniciRolSil(string id)
         {
@@ -1097,6 +1146,7 @@ namespace Haber.Web.Controllers
                 return View(hu);
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         [HttpPost]
         public ActionResult KullaniciRolSil(string rID, string userID)
         {
@@ -1125,6 +1175,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("KullaniciListesi");
             }
         }
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public ActionResult KullaniciSil(string id)
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -1145,6 +1196,8 @@ namespace Haber.Web.Controllers
                     return RedirectToAction("KullaniciListesi");
             }
         }
+
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         public ActionResult KullaniciEkle()
         {
             UserStore<HaberUser> userStore = new UserStore<HaberUser>(context);
@@ -1153,7 +1206,7 @@ namespace Haber.Web.Controllers
             return View();
             
         }
-
+        [Authorize(Roles = ClassOfUserRoles.SuperAdmin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult KullaniciEkle(RegisterModel model)

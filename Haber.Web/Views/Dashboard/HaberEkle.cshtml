@@ -44,12 +44,24 @@
 
                 <td>@Html.LabelFor(x => x.HaberYazari)</td>
                 <td>
-                    <select name="yazarid">
-                        @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
-                        {
-                            <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
-                        }
-                    </select>
+                    @if (User.IsInRole("News Writer"))
+                    {
+                        HaberUser hu = UserInfo.kullaniciBilgiAlAdIle(User.Identity.Name);
+                        Haber.Helper.YazarHelper yh = new Haber.Helper.YazarHelper();
+                        Yazar y = yh.YazarGetir(hu.Name + " " + hu.SurName);
+                        <select name="yazarid">
+                             <option value="@y.YazarID" readonly>@y.YazarAdSoyad</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select name="yazarid">
+                            @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
+                            {
+                                <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                            }
+                        </select>
+                    }
                 </td>
             </tr>
             <tr>

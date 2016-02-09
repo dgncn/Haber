@@ -152,7 +152,16 @@ namespace Haber.Web.Controllers
             authManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+        
 
     }
-    
+    public static class ClassOfUserRoles
+    {
+        public const string Admin = "Admin";
+        public const string SuperAdmin = "SuperAdmin";
+        public const string User = "User";
+        public const string NewsWriter = "News Writer";
+    }
+
+
 }
