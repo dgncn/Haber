@@ -9,9 +9,10 @@
 
 <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
-
+@Html.ValidationSummary()
 @using (Html.BeginForm("HaberEkle", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
     <table>
         <thead>
             <tr>
@@ -66,8 +67,15 @@
             </tr>
             <tr>
 
-                <td>@Html.LabelFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
-                <td>@Html.TextBoxFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+                @if (ViewBag.test == "HttpPost")
+                {
+
+                }
+                else
+                {
+                        <td>@Html.LabelFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+                        <td>@Html.TextBoxFor(x => x.HaberEtiketleri[0].EtiketAdi)</td>
+                }
             </tr>
             <tr>
 

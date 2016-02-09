@@ -6,9 +6,10 @@
 }
 
 <h2>Yazar Ekleme Sayfası</h2>
+@Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-
+    @Html.AntiForgeryToken()
     <table>
         <thead>
             <tr>

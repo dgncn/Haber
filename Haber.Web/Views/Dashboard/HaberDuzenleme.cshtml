@@ -8,9 +8,10 @@
 <h2>Haber Düzenleme</h2>
 
 <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
-
+@Html.ValidationSummary()
 @using (Html.BeginForm("HaberDuzenleme","Dashboard",FormMethod.Post,new { enctype = "multipart/form-data" }) )
 {
+    @Html.AntiForgeryToken()
     <table>
         <tr>
 
@@ -33,22 +34,29 @@
 
         <tr>
 
-            <td>@Html.LabelFor(x => x.HaberKategori.KategoriAdi)</td>
-            <td>
-                <select name="kategoriID">
-                    @foreach (var kategori in (List<Kategori>)ViewBag.kategoriler)
-                {
-                    if (Model.HaberKategori.KategoriID == kategori.KategoriID)
-                    {
-                            <option value="@kategori.KategoriID" selected="selected">@kategori.KategoriAdi</option>
-                        }
-                        else
-                        {
-                            <option value="@kategori.KategoriID">@kategori.KategoriAdi</option>
-                        }
-                    }
-                </select>
-            </td>
+            @if (ViewBag.test2 == "HttpPost")
+            {
+
+            }
+            else
+            {
+                <td>@Html.LabelFor(x => x.HaberKategori.KategoriAdi)</td>
+                    <td>
+                        <select name="kategoriID">
+                            @foreach (var kategori in (List<Kategori>)ViewBag.kategoriler)
+                            {
+                                if (Model.HaberKategori.KategoriID == kategori.KategoriID)
+                                {
+                                    <option value="@kategori.KategoriID" selected="selected">@kategori.KategoriAdi</option>
+                                }
+                                else
+                                {
+                                    <option value="@kategori.KategoriID">@kategori.KategoriAdi</option>
+                                }
+                            }
+                        </select>
+                    </td>
+            }
         </tr>
         <tr>
             <td>@Html.LabelFor(x => x.HaberGirisTarihi)</td>
@@ -74,24 +82,31 @@
             }
         </tr>
         <tr>
-            <td>
-                @Html.LabelFor(x => x.HaberYazari.YazarAdSoyad)
-            </td>
-            <td>
-                <select name="yazarID">
-                    @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
-                {
-                    if (Model.HaberYazari.YazarID == yazar.YazarID)
-                    {
-                            <option selected="selected" value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
-                        }
-                        else
+            @if (ViewBag.test2 == "HttpPost")
+            {
+
+            }
+            else
+            {
+                <td>
+                    @Html.LabelFor(x => x.HaberYazari.YazarAdSoyad)
+                </td>
+                <td>
+                    <select name="yazarID">
+                        @foreach (var yazar in (List<Yazar>)ViewBag.yazarlar)
                         {
-                            <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                            if (Model.HaberYazari.YazarID == yazar.YazarID)
+                            {
+                                <option selected="selected" value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                            }
+                            else
+                            {
+                                <option value="@yazar.YazarID">@yazar.YazarAdSoyad</option>
+                            }
                         }
-                    }
-                </select>
-            </td>
+                    </select>
+                </td>
+            }
         </tr>
         <tr>
 

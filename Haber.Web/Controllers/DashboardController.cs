@@ -50,6 +50,7 @@ namespace Haber.Web.Controllers
         {
             ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
             ViewBag.kategoriler = kategorihelper.TumKategoriler();
+            ViewBag.test = "HttpGet";
 
             return View();
         }
@@ -57,69 +58,81 @@ namespace Haber.Web.Controllers
 
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult HaberEkle(HaberCl haber, int yazarid, int kategoriID, IEnumerable<HttpPostedFileBase> files)
         {
-            haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
-            haber.HaberGirisTarihi = DateTime.Now;
-            haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
-            haber.HaberYazari = yazarhelper.YazarGetir(yazarid);
-            haber.HaberOkunmaSayisi = 0;
-            int i1 = 1;
-            foreach (var file in files)
+            ViewBag.test = "HttpPost";
+            if (haber.HaberEtiketleri[0].EtiketAdi==null)
             {
-                if (file != null && file.ContentLength > 0)
+                haber.HaberEtiketleri.Clear();
+            }
+            if (ModelState.IsValid)
+            {
+                haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
+                haber.HaberGirisTarihi = DateTime.Now;
+                haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
+                haber.HaberYazari = yazarhelper.YazarGetir(yazarid);
+                haber.HaberOkunmaSayisi = 0;
+                int i1 = 1;
+                foreach (var file in files)
                 {
-
-                    var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
-                    file.SaveAs(path);
-
-
-                    Resim r = new Resim { ResimAdi = resimAdi };
-                    if (haber.HaberResimleri == null)
+                    if (file != null && file.ContentLength > 0)
                     {
-                        haber.HaberResimleri = new List<Resim> { r };
+
+                        var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
+                        file.SaveAs(path);
+
+
+                        Resim r = new Resim { ResimAdi = resimAdi };
+                        if (haber.HaberResimleri == null)
+                        {
+                            haber.HaberResimleri = new List<Resim> { r };
+                        }
+                        else
+                        {
+                            haber.HaberResimleri.Add(r);
+                        }
+
                     }
-                    else
-                    {
-                        haber.HaberResimleri.Add(r);
-                    }
+                    i1++;
 
                 }
-                i1++;
-
-            }
-            if (haber.HaberEtiketleri[0].EtiketAdi == null)
-            {
-                haber.HaberEtiketleri = null;
-                haberhelper.HaberKaydet(haber);
-            }
-            else
-            {
-                string etiketOrn = haber.HaberEtiketleri[0].EtiketAdi;
-                //birden fazla virgül ile ayrılan etiket ekleme
-                if (etiketOrn.Contains(','))
+                if (haber.HaberEtiketleri[0].EtiketAdi == null)
                 {
-                    string[] etiketDizim = etiketOrn.Split(',');
-                    haber.HaberEtiketleri.Clear();
-                    foreach (var etiketE in etiketDizim)
-                    {
-                        haber.HaberEtiketleri.Add(new Etiket { EtiketAdi = etiketE.Trim() });
-                    }
+                    haber.HaberEtiketleri = null;
                     haberhelper.HaberKaydet(haber);
                 }
                 else
                 {
-                    foreach (var etiket2 in haber.HaberEtiketleri)
+                    string etiketOrn = haber.HaberEtiketleri[0].EtiketAdi;
+                    //birden fazla virgül ile ayrılan etiket ekleme
+                    if (etiketOrn.Contains(','))
                     {
-                        etiket2.EtiketAdi = etiket2.EtiketAdi.Trim();
+                        string[] etiketDizim = etiketOrn.Split(',');
+                        haber.HaberEtiketleri.Clear();
+                        foreach (var etiketE in etiketDizim)
+                        {
+                            haber.HaberEtiketleri.Add(new Etiket { EtiketAdi = etiketE.Trim() });
+                        }
+                        haberhelper.HaberKaydet(haber);
                     }
-                    haberhelper.HaberKaydet(haber);
-                }                
-            }
+                    else
+                    {
+                        foreach (var etiket2 in haber.HaberEtiketleri)
+                        {
+                            etiket2.EtiketAdi = etiket2.EtiketAdi.Trim();
+                        }
+                        haberhelper.HaberKaydet(haber);
+                    }
+                }
 
-            return RedirectToAction("HaberDuzenle");
-            
+                return RedirectToAction("HaberDuzenle");
+
+            }
+            ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
+            ViewBag.kategoriler = kategorihelper.TumKategoriler();
+            return View(haber);
         }
 
         
@@ -144,6 +157,7 @@ namespace Haber.Web.Controllers
             //{
             //    id = -1;
             //}
+            ViewBag.test2 = "HttpGet";
             bool bosMu = string.IsNullOrEmpty(id.ToString());
             if (bosMu)
             {
@@ -173,86 +187,98 @@ namespace Haber.Web.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult HaberDuzenleme(HaberCl haber, int haberID, int kategoriID, int yazarID, string haberEtiketi, IEnumerable<HttpPostedFileBase> files, List<Resim> resimListe)
         {
-
-            haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
-            haber.HaberID = haberID;
-            haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
-            haber.HaberYazari = yazarhelper.YazarGetir(yazarID);
-            var haberResimleri = haberhelper.HaberResimleriniGetir(haberhelper.HaberGetir(haberID));
-            haber.HaberResimleri = haberResimleri;
-
-            if (haber.HaberEtiketleri != null && haber.HaberEtiketleri[0].EtiketAdi == haberEtiketi)
+            ViewBag.test2 = "HttpPost";
+            if (ModelState.IsValid)
             {
+                haber.HaberIcerik = System.Net.WebUtility.HtmlDecode(haber.HaberIcerik);
+                haber.HaberID = haberID;
+                haber.HaberKategori = kategorihelper.KategoriGetir(kategoriID);
+                haber.HaberYazari = yazarhelper.YazarGetir(yazarID);
+                var haberResimleri = haberhelper.HaberResimleriniGetir(haberhelper.HaberGetir(haberID));
+                haber.HaberResimleri = haberResimleri;
 
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(haberEtiketi) || string.IsNullOrEmpty(haberEtiketi))
+                if (haber.HaberEtiketleri != null && haber.HaberEtiketleri[0].EtiketAdi == haberEtiketi)
                 {
-                    haber.HaberEtiketleri = new List<Etiket>();
+
                 }
                 else
                 {
-
-
-                    var etiket = new Etiket { EtiketAdi = haberEtiketi };
-                    if (haber.HaberEtiketleri == null)
+                    if (string.IsNullOrWhiteSpace(haberEtiketi) || string.IsNullOrEmpty(haberEtiketi))
                     {
                         haber.HaberEtiketleri = new List<Etiket>();
-                        haber.HaberEtiketleri.Add(etiket);
-                    }
-                    else if (haber.HaberEtiketleri.Count == 0)
-                    {
-                        haber.HaberEtiketleri.Add(etiket);
-                    }
-                    
-                }
-            }
-            int i1 = 1;
-            foreach (var file in files)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-
-                    var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
-                    file.SaveAs(path);
-                    // var result = resimhelper.ResimKaydet(resimAdi);
-                    // Resim r = resimhelper.ResimGetir(result);
-
-
-                    Resim r = new Resim { ResimAdi = resimAdi };
-                    if (haber.HaberResimleri == null)
-                    {
-                        haber.HaberResimleri = new List<Resim> { r };
                     }
                     else
                     {
-                        haber.HaberResimleri.Add(r);
+
+
+                        var etiket = new Etiket { EtiketAdi = haberEtiketi };
+                        if (haber.HaberEtiketleri == null)
+                        {
+                            haber.HaberEtiketleri = new List<Etiket>();
+                            haber.HaberEtiketleri.Add(etiket);
+                        }
+                        else if (haber.HaberEtiketleri.Count == 0)
+                        {
+                            haber.HaberEtiketleri.Add(etiket);
+                        }
+
                     }
+                }
+                int i1 = 1;
+                foreach (var file in files)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        var resimAdi = Path.GetFileName(Guid.NewGuid().ToString() + file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Galeri"), resimAdi);
+                        file.SaveAs(path);
+                        // var result = resimhelper.ResimKaydet(resimAdi);
+                        // Resim r = resimhelper.ResimGetir(result);
+
+
+                        Resim r = new Resim { ResimAdi = resimAdi };
+                        if (haber.HaberResimleri == null)
+                        {
+                            haber.HaberResimleri = new List<Resim> { r };
+                        }
+                        else
+                        {
+                            haber.HaberResimleri.Add(r);
+                        }
+
+                    }
+                    i1++;
 
                 }
-                i1++;
+                var h = haberhelper.HaberGetir(haber.HaberID);
+                //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
 
+                h.HaberBaslik = haber.HaberBaslik;
+                h.HaberIcerik = haber.HaberIcerik;
+                h.HaberDurumu = haber.HaberDurumu;
+                h.HaberGirisTarihi = haber.HaberGirisTarihi;
+                h.HaberKategori = haber.HaberKategori;
+                h.HaberYazari = haber.HaberYazari;
+                h.HaberEtiketleri = haber.HaberEtiketleri;
+                h.HaberResimleri = haber.HaberResimleri;
+                h.HaberOkunmaSayisi = haber.HaberOkunmaSayisi;
+                context.Entry(h).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+                //id - kategori - yazar
+                return RedirectToAction("HaberDuzenle");
             }
-            var h = haberhelper.HaberGetir(haber.HaberID);
-            //context.Entry(haber).State = System.Data.Entity.EntityState.Unchanged;
-
-            h.HaberBaslik = haber.HaberBaslik;
-            h.HaberIcerik = haber.HaberIcerik;
-            h.HaberDurumu = haber.HaberDurumu;
-            h.HaberGirisTarihi = haber.HaberGirisTarihi;
-            h.HaberKategori = haber.HaberKategori;
-            h.HaberYazari = haber.HaberYazari;
-            h.HaberEtiketleri = haber.HaberEtiketleri;
-            h.HaberResimleri = haber.HaberResimleri;
-            h.HaberOkunmaSayisi = haber.HaberOkunmaSayisi;
-            context.Entry(h).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
-            //id - kategori - yazar
-            return RedirectToAction("HaberDuzenle");
+            else
+            {
+                ViewBag.haberOkSayi = haberhelper.HaberGetir(haber.HaberID).HaberOkunmaSayisi;
+                ViewBag.yazarlar = yazarhelper.TumYazarlariListele();
+                ViewBag.kategoriler = kategorihelper.TumKategoriler();
+                
+                return View(haber);
+            }
         }
 
         
@@ -281,18 +307,26 @@ namespace Haber.Web.Controllers
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult KategoriEkle(Kategori kategori)
         {
-            try
+            if (ModelState.IsValid)
             {
-                kategorihelper.KategoriKaydet(kategori);
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+                try
+                {
+                    kategorihelper.KategoriKaydet(kategori);
+                }
+                catch (Exception)
+                {
+                    return View();
+                }
 
-            return RedirectToAction("KategoriListele");
+                return RedirectToAction("KategoriListele");
+            }
+            else
+            {
+                return View(kategori);
+            }
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult KategoriDuzenle()
@@ -329,17 +363,25 @@ namespace Haber.Web.Controllers
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult KategoriDuzenleme(Kategori kategori, int kategoriID)
         {
             var k = kategorihelper.KategoriGetir(kategori.KategoriID);
+            if (ModelState.IsValid)
+            {
 
-            k.KategoriAdi = kategori.KategoriAdi;
-            k.KategoriAciklama = kategori.KategoriAciklama;
+                k.KategoriAdi = kategori.KategoriAdi;
+                k.KategoriAciklama = kategori.KategoriAciklama;
 
-            context.Entry(k).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+                context.Entry(k).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
 
-            return RedirectToAction("KategoriDuzenle");
+                return RedirectToAction("KategoriDuzenle");
+            }
+            else
+            {
+                return View(kategori);
+            }
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
 
@@ -525,10 +567,18 @@ namespace Haber.Web.Controllers
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult YazarEkle(Yazar yazar)
         {
-            yazarhelper.YazarKaydet(yazar);
-            return RedirectToAction("YazarListele");
+            if (ModelState.IsValid)
+            {
+                yazarhelper.YazarKaydet(yazar);
+                return RedirectToAction("YazarListele");
+            }
+            else
+            {
+                return View(yazar);
+            }
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         public ActionResult YazarDuzenle()
@@ -564,14 +614,22 @@ namespace Haber.Web.Controllers
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult YazarDuzenleme(Yazar yazar, int yazarID)
         {
-            var y = yazarhelper.YazarGetir(yazarID);
-            y.YazarAdSoyad = yazar.YazarAdSoyad;
+            if (ModelState.IsValid)
+            {
+                var y = yazarhelper.YazarGetir(yazarID);
+                y.YazarAdSoyad = yazar.YazarAdSoyad;
 
-            context.Entry(y).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
-            return RedirectToAction("YazarListele");
+                context.Entry(y).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("YazarListele");
+            }
+            else
+            {
+                return View(yazar);
+            }
 
         }
         [Authorize(Roles = ClassOfUserRoles.SuperAdmin + "," + ClassOfUserRoles.Admin)]

@@ -6,9 +6,10 @@
 }
 
 <h2>Kategori Düzenleme</h2>
+@Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-
+    @Html.AntiForgeryToken()
 
     <table>
         <tr>

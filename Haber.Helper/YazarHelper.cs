@@ -66,11 +66,5 @@ namespace Haber.Helper
         }
         
     }
-    public static class YazarDetayiGetir
-    {
-        public static Yazar asd()
-        {
-            return new Yazar { };
-        }
-    }
+    
 }
