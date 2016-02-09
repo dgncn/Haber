@@ -580,7 +580,14 @@
                         <li>
                             <figure class="bsbig_fig">
                                 <a href="~/Home/HaberDetay/@haber.HaberID" class="featured_img">
-                                    <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    @if (haber.HaberResimleri.Count == 0)
+                                    {
+                                        <img alt="Resim yok" src="">
+                                    }
+                                    else
+                                    {
+                                        <img alt="img" src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi">
+                                    }
                                     <span class="overlay"></span>
                                 </a>
                                 <figcaption>

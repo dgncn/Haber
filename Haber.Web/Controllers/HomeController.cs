@@ -37,7 +37,7 @@ namespace Haber.Web.Controllers
             var etiketListe = (List<Etiket>)ViewBag.etiketler;
             var yorumListe = (List<Yorum>)ViewBag.yorumlar;
             var yorumListe2 = (from p in yorumListe
-                               where p.YorumHaberi.HaberDurumu == true
+                               where p.YorumHaberi.HaberDurumu == true && p.YorumDurumu==true
                                orderby p.YorumYazmaTarihi descending
                                select p).Take(15).ToList();
             ViewBag.yorumListe2 = yorumListe2;

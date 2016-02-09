@@ -120,6 +120,7 @@
         @{
             var result = Model.Yorumlar;
             var result2 = (from p in result
+                           where p.YorumDurumu ==true
                            orderby p.YorumYazmaTarihi descending
                            select p).ToList();
 

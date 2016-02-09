@@ -22,7 +22,17 @@
         {
             <tr>
                 <td>@Html.ActionLink(yorum.YorumID.ToString(),"YorumDuzenleme",new { id = yorum.YorumID })</td>
-                <td>@yorum.YorumIcerik</td>
+                
+                <td>
+                    @if (yorum.YorumIcerik.Length > 250)
+                    {
+                        @Html.Raw(yorum.YorumIcerik.Substring(0, 250))<span>...</span>
+                    }
+                    else
+                    {
+                        @Html.Raw(yorum.YorumIcerik)
+                    }
+                </td>
                 <td>@yorum.YorumYazmaTarihi</td>
                 <td>
                     @if (yorum.YorumDurumu)
