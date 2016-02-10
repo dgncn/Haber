@@ -1547,6 +1547,7 @@
     <Content Include="Views\Dashboard\KullaniciEkle.cshtml" />
     <Content Include="Views\Home\Yazar.cshtml" />
     <Content Include="Views\Home\Ara.cshtml" />
+    <Content Include="Views\Home\Hata.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

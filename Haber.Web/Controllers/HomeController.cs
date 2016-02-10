@@ -69,8 +69,16 @@ namespace Haber.Web.Controllers
             else
             {
                 List<HaberCl> haberListesi = haberhelper.HaberAra(aramaDegeri.Trim());
+                if (haberListesi.Count<1)
+                {
+                    var haberList = (List<HaberCl>)ViewBag.haberler;
+                    var haberSonList = haberList.OrderByDescending(x => x.HaberGirisTarihi).ToList();
+                    ViewBag.haberSonList = haberSonList;
+                    return View("Hata");
+                }
                 int pageSize = 15;
                 int pageNumber = (page ?? 1);
+                ViewBag.aramaDegeri = aramaDegeri;
                 return View(haberListesi.ToPagedList(pageNumber,pageSize));
             }
         }

@@ -104,7 +104,7 @@
                               <img src="~/Gallery/img/logo.jpg" alt="logo">
                             </a> -->
                             <!-- for your text logo format -->
-                            <a href="#" class="logo">
+                            <a href="@Url.Action("Index","Home")" class="logo">
                                 Haber <span> Servis</span>
                             </a>
                         </div>
@@ -186,7 +186,7 @@
                                 @RenderSection("Dunya", required: false)
 
                                 @RenderSection("katHaberleri",required:false)
-
+                                @RenderSection("HataSayfa",required:false)
                                 @RenderSection("haberDetay", required: false)
                             </div>
                         </div>

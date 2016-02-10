@@ -1,11 +1,12 @@
-﻿@model PagedList.IPagedList<HaberCl>
-@using Haber.COM;
-@using PagedList.Mvc;
+﻿@using Haber.COM
 @{
-    ViewBag.Title = ViewBag.aramaDegeri + " haberleri listelendi.";
+    ViewBag.Title = "Hata";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section HataSayfa{
+<h4>Aradığınız kelime arama sonuçlarında bulunamamıştır.</h4>
+}
 
 @section kategori{
     @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
@@ -14,79 +15,11 @@
     }
 
 }
-@section katHaberleri{
-
-
-    <div class="single_post_content">
-        <h2>
-            <span>@ViewBag.aramaDegeri Haberleri</span>
-        </h2>
-
-        <ul id="spotLi" class="spost_nav">
-            @{
-                foreach (var haber in Model)
-                {
-                    string icerik = "";
-                    if (haber.HaberIcerik.Length > 150)
-                    {
-                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Substring(0, 150).Trim(), true, true);
-                    }
-                    else
-                    {
-                        icerik = HtmlHelperText.HtmlStripTags(haber.HaberIcerik.Trim(), true, true);
-                    }
-
-
-                    if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="" alt="Resim yok" style="width:100%;height:100%;padding:5px;" />
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>@icerik<span>...</span></p>
-                            </div>
-                        </li>
-                    }
-                    else if (haber.HaberResimleri.Count > 0 && haber.HaberIcerik.Length > 155)
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>@icerik<span>...</span></p>
-                            </div>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <img src="~/Content/Galeri/@haber.HaberResimleri[0].ResimAdi" alt="Alternate Text" style="width:100%;height:100%;padding:5px;" />
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <h4>@Html.ActionLink(haber.HaberBaslik, "HaberDetay", new { id = haber.HaberID })</h4>
-                                <p>@icerik<span>...</span></p>
-                            </div>
-
-                        </li>
-                    }
-                }
-            }
-
-        </ul>
-    </div>
-
-}
-
 @section sonHaberlerkucuk{
     <div class="latest_newsarea">
         <span>Son Haberler</span>
         <ul id="ticker01" class="news_sticker">
-            @foreach (var haber in (List<Haber.COM.HaberCl>)ViewBag.haberler)
+            @foreach (var haber in (List<HaberCl>)ViewBag.haberSonList)
             {
                 if (haber.HaberResimleri == null || haber.HaberResimleri.Count == 0)
                 {
@@ -121,7 +54,6 @@
         </div>
     </div>
 }
-
 
 @section EnCokOkunanlar{
     <div class="single_sidebar">
@@ -164,7 +96,6 @@
     </div>
 
 }
-
 
 @section FooterEtiketleri{
 
@@ -220,5 +151,3 @@
 
 
 }
-
-@Html.PagedListPager(Model, page => Url.Action("Yazar", new { page }))
