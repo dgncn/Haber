@@ -4,7 +4,23 @@
     ViewBag.Title = "Anasayfa";
 }
 
+@section arama{
 
+<li>
+            
+                @using (Html.BeginForm("Ara", "Home", FormMethod.Post))
+                {
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                        <input type="text" class="form-control center" value="" style="margin-top:8px;" id="aramaDegeri" name="aramaDegeri" />
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <input type="submit" class="navbar-btn btn btn-default" value="Ara" id="btnAra" name="btnAra" />
+                    </div>
+                }
+
+                    
+</li>
+        }
 @section kategori{
     @foreach (var kategori in (List<Haber.COM.Kategori>)ViewBag.kategoriler)
     {

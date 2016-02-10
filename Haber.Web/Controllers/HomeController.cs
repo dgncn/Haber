@@ -59,6 +59,21 @@ namespace Haber.Web.Controllers
 
             return View(liste);
         }
+        public ActionResult Ara(string aramaDegeri, int? page)
+        {
+            ViewbagListesi();
+            if (string.IsNullOrEmpty(aramaDegeri)  || string.IsNullOrWhiteSpace(aramaDegeri))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                List<HaberCl> haberListesi = haberhelper.HaberAra(aramaDegeri.Trim());
+                int pageSize = 15;
+                int pageNumber = (page ?? 1);
+                return View(haberListesi.ToPagedList(pageNumber,pageSize));
+            }
+        }
         public ActionResult Kategori(int? id,int? page)
         {
             ViewbagListesi();

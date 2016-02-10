@@ -326,5 +326,16 @@ namespace Haber.Helper
             context.Entry(h).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
+        public List<HaberCl> HaberAra(string id)
+        {
+
+            var result = (from p in context.Haberler
+                          where p.HaberBaslik.Contains(id.Trim()) ||
+                          p.HaberIcerik.Contains(id.Trim()) ||
+                          p.HaberKategori.KategoriAdi == id.Trim() ||
+                          p.HaberYazari.YazarAdSoyad == id.Trim()
+                          select p).ToList();
+            return result;
+        }
     }
 }
