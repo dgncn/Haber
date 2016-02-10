@@ -16,27 +16,27 @@
         <tbody>
             <tr>
                 <td>@Html.LabelFor(x => x.Name)</td>
-                <td>@Html.TextBoxFor(x => x.Name)</td>
+                <td>@Html.TextBoxFor(x => x.Name, null, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.SurName)</td>
-                <td>@Html.TextBoxFor(x => x.SurName)</td>
+                <td>@Html.TextBoxFor(x => x.SurName, null, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.Email)</td>
-                <td>@Html.TextBoxFor(x => x.Email)</td>
+                <td>@Html.TextBoxFor(x => x.Email, null, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.UserName)</td>
-                <td>@Html.TextBoxFor(x => x.UserName)</td>
+                <td>@Html.TextBoxFor(x => x.UserName, null, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.Password)</td>
-                <td>@Html.PasswordFor(x => x.Password)</td>
+                <td>@Html.PasswordFor(x => x.Password, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.ConfirmPassword)</td>
-                <td>@Html.PasswordFor(x => x.ConfirmPassword)</td>
+                <td>@Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })</td>
             </tr>
             <tr>
                 <td></td>

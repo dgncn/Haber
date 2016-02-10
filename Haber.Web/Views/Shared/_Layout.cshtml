@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
 
     <title>@ViewBag.Title - HaberServis</title>
-    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />*@
-        @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+   
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
     <style>
@@ -56,21 +55,7 @@
 
 </head>
 <body>
-
-
-
-    @*<script id="dsq-count-scr" src="//dgncn.disqus.com/count.js" async></script>*@
-
-
-
-    <!-- =========================
-      //////////////This Theme Design and Developed //////////////////////
-      //////////// by www.wpfreeware.com======================-->
-    <!-- Preloader -->
-    @*<div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>*@
-    <!-- End Preloader -->
+    
 
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 
@@ -256,20 +241,18 @@
             </div>
             <div class="footer_bottom">
                 <p class="copyright">
-                    Tüm Hakları Saklıdır <a href="home.html">Haber Besle</a>
+                    Tüm Hakları Saklıdır <a href="@Url.Action("Index","Home")">Haber Servis</a>
                 </p>
-                <p class="developer">Developed By <a href="http://wpfreeware.com">WpFreeware</a></p>
             </div>
         </footer>
     </div>
 
     <!-- jQuery Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="~/scripts/js/jquery.min.js"></script>
 
     <script src="~/scripts/js/bootstrap.min.js"></script>
 
     <script src="~/scripts/js/jquery.li-scroller.1.0.js"></script>
-    @* <script src="~/scripts/js/jquery.li-scroller.1.0.js"></script>*@
     <!-- for news slider -->
     <script src="~/scripts/js/jquery.newsTicker.min.js"></script>
     <!-- for fancybox slider -->
@@ -281,9 +264,5 @@
     <!-- bootstrap js file -->
     <!-- slick slider js file -->
     <script src="~/scripts/js/slick.min.js"></script>
-
-    <!-- news ticker jquery file -->
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>*@
 </body>
 </html>
