@@ -162,7 +162,10 @@ namespace Haber.Web.Controllers
             HaberCl haber = haberhelper.HaberGetir(id);
             Yorum yorum = new Yorum();
             yorum.YorumDurumu = false;
-            //txtYorum = WebUtility.HtmlDecode(txtYorum);
+            if (User.IsInRole("SuperAdmin"))
+            {
+                yorum.YorumDurumu = true;
+            }
             yorum.YorumIcerik = txtYorum;
             yorum.YorumYazari = txtName;
             yorum.YorumYazmaTarihi = DateTime.Now;

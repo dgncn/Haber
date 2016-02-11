@@ -3,14 +3,14 @@
 {
     <ul class="top_nav" style="float:right;">
         <li><span style="color:white;">Hoşgeldiniz @User.Identity.Name</span></li>
-        <li style="margin-right:10px;">@Html.ActionLink("Çıkış Yap", "Logout", "Account")</li>
+        <li style="margin-right:10px;">@Html.ActionLink("ÇIKIŞ YAP", "Logout", "Account")</li>
     </ul>
 }
 else
 {
     <ul class="top_nav" style="float:right;">
         <li>@Html.ActionLink("Kayıt Ol", "Register", "Account")</li>
-        <li>@Html.ActionLink("Giriş Yap", "Login", "Account")</li>
+        <li>@Html.ActionLink("GİRİŞ YAP", "Login", "Account")</li>
     </ul>
 
 }

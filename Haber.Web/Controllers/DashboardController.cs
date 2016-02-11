@@ -437,7 +437,7 @@ namespace Haber.Web.Controllers
                 return RedirectToAction("HaberListele");
             }
             ViewBag.kategoriAd = kategorihelper.KategoriGetir(id).KategoriAdi;
-            var result = haberhelper.KategoriyeGoreHaberler(kategorihelper.KategoriGetir(id));
+            var result = haberhelper.KategoriyeGoreHaberler(kategorihelper.KategoriGetir(id)).OrderByDescending(x => x.HaberGirisTarihi).ToList();
             return View(result);
         }
         #endregion
