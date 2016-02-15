@@ -434,7 +434,7 @@ namespace Haber.Web.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("HaberListele");
+                return RedirectToAction("KategoriHaberleri");
             }
             ViewBag.kategoriAd = kategorihelper.KategoriGetir(id).KategoriAdi;
             var result = haberhelper.KategoriyeGoreHaberler(kategorihelper.KategoriGetir(id)).OrderByDescending(x => x.HaberGirisTarihi).ToList();

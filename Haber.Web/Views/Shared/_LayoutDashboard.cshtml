@@ -73,135 +73,121 @@
                         <a href="##"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Ara...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
+                
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">Navigasyon</li>
-                    <li class="active treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-dashboard"></i> <span>Yönetim</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="@Url.Action("Index","Home")"><i class="fa fa-circle-o"></i> Anasayfa</a></li>
-                            <li class="active"><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-circle-o"></i> Yönetim Paneli</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-circle-o"></i> Yönetim Paneli</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HaberEkle" || ViewContext.RouteData.Values["Action"].ToString() == "HaberListele" || ViewContext.RouteData.Values["Action"].ToString() == "HaberDuzenle" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-pie-chart"></i>
                             <span>Haberler</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/HaberEkle"><i class="fa fa-circle-o"></i> Haber Ekle</a></li>
-                            <li><a href="~/Dashboard/HaberListele"><i class="fa fa-circle-o"></i> Haber Listele</a></li>
-                            <li><a href="~/Dashboard/HaberDuzenle"><i class="fa fa-circle-o"></i> Haber Düzenle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HaberEkle" ? "active" : "")"><a href="~/Dashboard/HaberEkle"><i class="fa fa-circle-o"></i> Haber Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HaberListele" ? "active" : "")"><a href="~/Dashboard/HaberListele"><i class="fa fa-circle-o"></i> Haber Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HaberDuzenle" ? "active" : "")"><a href="~/Dashboard/HaberDuzenle"><i class="fa fa-circle-o"></i> Haber Düzenle</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriEkle" || ViewContext.RouteData.Values["Action"].ToString() == "KategoriListele" || ViewContext.RouteData.Values["Action"].ToString() == "KategoriDuzenle" || ViewContext.RouteData.Values["Action"].ToString() == "KategoriHaberleri" || ViewContext.RouteData.Values["Action"].ToString() == "KategoriHaberleriYeni" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-laptop"></i>
                             <span>Kategoriler</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/KategoriEkle"><i class="fa fa-circle-o"></i> Kategori Ekle</a></li>
-                            <li><a href="~/Dashboard/KategoriListele"><i class="fa fa-circle-o"></i> Kategori Listele</a></li>
-                            <li><a href="~/Dashboard/KategoriDuzenle"><i class="fa fa-circle-o"></i> Kategori Düzenle</a></li>
-                            <li><a href="~/Dashboard/KategoriHaberleri"><i class="fa fa-circle-o"></i> Kategori Haberleri</a></li>
-                            <li><a href="~/Dashboard/KategoriHaberleriYeni"><i class="fa fa-circle-o"></i> Kategori Haberleri2</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriEkle" ? "active" : "")"><a href="~/Dashboard/KategoriEkle"><i class="fa fa-circle-o"></i> Kategori Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriListele" ? "active" : "")"><a href="~/Dashboard/KategoriListele"><i class="fa fa-circle-o"></i> Kategori Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriDuzenle" ? "active" : "")"><a href="~/Dashboard/KategoriDuzenle"><i class="fa fa-circle-o"></i> Kategori Düzenle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriHaberleri" ? "active" : "")"><a href="~/Dashboard/KategoriHaberleri"><i class="fa fa-circle-o"></i> Kategori Haberleri</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KategoriHaberleriYeni" ? "active" : "")"><a href="~/Dashboard/KategoriHaberleriYeni"><i class="fa fa-circle-o"></i> Kategori Haberleri2</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YorumEkle" || ViewContext.RouteData.Values["Action"].ToString() == "YorumListele" || ViewContext.RouteData.Values["Action"].ToString() == "YorumDuzenle" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-edit"></i>
                             <span>Yorumlar</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/YorumEkle"><i class="fa fa-circle-o"></i> Yorum Ekle</a></li>
-                            <li><a href="~/Dashboard/YorumListele"><i class="fa fa-circle-o"></i> Yorum Listele</a></li>
-                            <li><a href="~/Dashboard/YorumDuzenle"><i class="fa fa-circle-o"></i> Yorum Düzenle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YorumEkle" ? "active" : "")"><a href="~/Dashboard/YorumEkle"><i class="fa fa-circle-o"></i> Yorum Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YorumListele" ? "active" : "")"><a href="~/Dashboard/YorumListele"><i class="fa fa-circle-o"></i> Yorum Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YorumDuzenle" ? "active" : "")"><a href="~/Dashboard/YorumDuzenle"><i class="fa fa-circle-o"></i> Yorum Düzenle</a></li>
 
 
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YazarEkle" || ViewContext.RouteData.Values["Action"].ToString() == "YazarListele" || ViewContext.RouteData.Values["Action"].ToString() == "YazarDuzenle" || ViewContext.RouteData.Values["Action"].ToString() == "YazarHaberleri" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-table"></i>
                             <span>Yazarlar</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/YazarEkle"><i class="fa fa-circle-o"></i> Yazar Ekle</a></li>
-                            <li><a href="~/Dashboard/YazarListele"><i class="fa fa-circle-o"></i> Yazar Listele</a></li>
-                            <li><a href="~/Dashboard/YazarDuzenle"><i class="fa fa-circle-o"></i> Yazar Düzenle</a></li>
-                            <li><a href="~/Dashboard/YazarHaberleri"><i class="fa fa-circle-o"></i> Yazar Haberleri</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YazarEkle" ? "active" : "")"><a href="~/Dashboard/YazarEkle"><i class="fa fa-circle-o"></i> Yazar Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YazarListele" ? "active" : "")"><a href="~/Dashboard/YazarListele"><i class="fa fa-circle-o"></i> Yazar Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YazarDuzenle" ? "active" : "")"><a href="~/Dashboard/YazarDuzenle"><i class="fa fa-circle-o"></i> Yazar Düzenle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "YazarHaberleri" ? "active" : "")"><a href="~/Dashboard/YazarHaberleri"><i class="fa fa-circle-o"></i> Yazar Haberleri</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EtiketEkle" || ViewContext.RouteData.Values["Action"].ToString() == "EtiketListele" || ViewContext.RouteData.Values["Action"].ToString() == "EtiketDuzenle" || ViewContext.RouteData.Values["Action"].ToString() == "EtiketHaberleri" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-table"></i>
                             <span>Etiketler</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/EtiketEkle"><i class="fa fa-circle-o"></i> Etiket Ekle</a></li>
-                            <li><a href="~/Dashboard/EtiketListele"><i class="fa fa-circle-o"></i> Etiket Listele</a></li>
-                            <li><a href="~/Dashboard/EtiketDuzenle"><i class="fa fa-circle-o"></i> Etiket Düzenle</a></li>
-                            <li><a href="~/Dashboard/EtiketHaberleri"><i class="fa fa-circle-o"></i> Etiket Haberleri</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EtiketEkle" ? "active" : "")"><a href="~/Dashboard/EtiketEkle"><i class="fa fa-circle-o"></i> Etiket Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EtiketListele" ? "active" : "")"><a href="~/Dashboard/EtiketListele"><i class="fa fa-circle-o"></i> Etiket Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EtiketDuzenle" ? "active" : "")"><a href="~/Dashboard/EtiketDuzenle"><i class="fa fa-circle-o"></i> Etiket Düzenle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "EtiketHaberleri" ? "active" : "")"><a href="~/Dashboard/EtiketHaberleri"><i class="fa fa-circle-o"></i> Etiket Haberleri</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HakkindaEkle" || ViewContext.RouteData.Values["Action"].ToString() == "HakkindaListele" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-table"></i>
                             <span>Hakkımızda</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/HakkindaEkle"><i class="fa fa-circle-o"></i> Hakkımızda Ekle</a></li>
-                            <li><a href="~/Dashboard/HakkindaListele"><i class="fa fa-circle-o"></i> Hakkımızda Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HakkindaEkle" ? "active" : "")"><a href="~/Dashboard/HakkindaEkle"><i class="fa fa-circle-o"></i> Hakkımızda Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "HakkindaListele" ? "active" : "")"><a href="~/Dashboard/HakkindaListele"><i class="fa fa-circle-o"></i> Hakkımızda Listele</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "IletisimEkle" || ViewContext.RouteData.Values["Action"].ToString() == "IletisimListele" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-table"></i>
                             <span>İletişim</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/IletisimEkle"><i class="fa fa-circle-o"></i> İletişim Ekle</a></li>
-                            <li><a href="~/Dashboard/IletisimListele"><i class="fa fa-circle-o"></i> İletişim Listele</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "IletisimEkle" ? "active" : "")"><a href="~/Dashboard/IletisimEkle"><i class="fa fa-circle-o"></i> İletişim Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "IletisimListele" ? "active" : "")"><a href="~/Dashboard/IletisimListele"><i class="fa fa-circle-o"></i> İletişim Listele</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KullaniciListesi" || ViewContext.RouteData.Values["Action"].ToString() == "KullaniciEkle" ? "active" : "") treeview">
                         <a href="##">
                             <i class="fa fa-table"></i>
                             <span>Kullanıcı Yönetimi</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Dashboard/KullaniciListesi"><i class="fa fa-circle-o"></i> Kullanıcı Listesi</a></li>
-                            <li><a href="~/Dashboard/KullaniciEkle"><i class="fa fa-circle-o"></i> Kullanıcı Ekle</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KullaniciListesi" ? "active" : "")"><a href="~/Dashboard/KullaniciListesi"><i class="fa fa-circle-o"></i> Kullanıcı Listesi</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "KullaniciEkle" ? "active" : "")"><a href="~/Dashboard/KullaniciEkle"><i class="fa fa-circle-o"></i> Kullanıcı Ekle</a></li>
                         </ul>
                     </li>
-
-                    <li class="header">LABELS</li>
-                    <li><a href="##"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                    <li><a href="##"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                    <li><a href="##"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -216,8 +202,8 @@
                     <small>Version 2.0</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="##"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i> ANASAYFA</a></li>
+                    <li class="active">Yönetim Paneli</li>
                 </ol>
             </section>
 
@@ -229,7 +215,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-bookmarks"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Haberler</span>
+                                <span class="info-box-text">HABERLER</span>
                                 <span class="info-box-number">
                                     @{  int a = SayiToplam.haberSayisi();
                                         string deger = a.ToString();
@@ -243,7 +229,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-red"><i class="ion ion-android-drafts"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Yazarlar</span>
+                                <span class="info-box-text">YAZARLAR</span>
                                 <span class="info-box-number">
                                     @{  int b = SayiToplam.yazarSayisi();
                                         string degerb = b.ToString();
@@ -260,7 +246,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-green"><i class="ion ion-clipboard"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Kategoriler</span>
+                                <span class="info-box-text">KATEGORİLER</span>
                                 <span class="info-box-number">
                                     @{  int c = SayiToplam.kategoriSayisi();
                                         string degerc = c.ToString();
@@ -274,7 +260,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-yellow"><i class="ion ion-chatbox"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Yorumlar</span>
+                                <span class="info-box-text">YORUMLAR</span>
                                 <span class="info-box-number">
                                     @{  int d = SayiToplam.yorumSayisi();
                                         string degerd = d.ToString();
@@ -290,7 +276,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-red"><i class="ion ion-clipboard"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Etiketler</span>
+                                <span class="info-box-text">ETİKETLER</span>
                                 <span class="info-box-number">
                                     @{  int e = SayiToplam.etiketSayisi();
                                         string degere = e.ToString();
@@ -304,7 +290,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-red"><i class="ion ion-person-stalker"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Kullanıcılar</span>
+                                <span class="info-box-text">KULLANICILAR</span>
                                 <span class="info-box-number">
                                     @{  int f = SayiToplam.kullaniciSayisi();
                                         string degerf = f.ToString();
